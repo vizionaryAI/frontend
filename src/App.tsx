@@ -1,23 +1,21 @@
+import React from "react";
 import "./App.css";
-import { msalInstance, loginRequest } from "./authConfig";
+import { LoginButton } from "./components/LoginButton/LoginButton";
+import { useIsAuthenticated } from "@azure/msal-react";
+import { useClientStore } from "./store/client.store";
 
 function App() {
-  const login = async () => {
-    try {
-      const loginResponse = await msalInstance.loginPopup(loginRequest);
-
-      console.log(loginResponse.accessToken);
-      // setTokens(loginResponse.accessToken);
-      // További műveletek a bejelentkezés után...
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+  const isAuthenticated = useIsAuthenticated();
+  const { token } = useClientStore();
   return (
-    <>
-      <button onClick={() => login()}>Login</button>
-    </>
+    <React.Fragment>
+      <LoginButton />
+      {isAuthenticated && token ? (
+        <h1>Authenticated</h1>
+      ) : (
+        <h1>Not Authenticated</h1>
+      )}
+    </React.Fragment>
   );
 }
 
