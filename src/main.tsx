@@ -4,8 +4,6 @@ import App from "./App.tsx";
 import { MsalProvider } from "@azure/msal-react";
 import { msalInstance } from "./authConfig.ts";
 
-import "./index.css";
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MsalProvider instance={msalInstance}>
