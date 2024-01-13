@@ -6,11 +6,14 @@ export const lightTheme = {
   toggleBorder: "#FFF",
   background: "#FFF",
   card: "#F9F9F9",
-  border: "#ddd",
+  border: "#eee",
   loaderBackground: "linear-gradient(#050a30, #d4f1f4, #050a30)",
   loaderColor: "black",
-  buttonBackground: "#04AA6D",
-  headerBackground: "beige",
+  buttonBackground: "#EBD9B4",
+  headerBackground: "#F9EFDB",
+  adviserTextBackground: "#F9EFDB",
+  userTextBackground: "",
+  notebookBackground: "beige",
 };
 
 export const darkTheme = {
@@ -20,9 +23,12 @@ export const darkTheme = {
   toggleBorder: "#6B8096",
   background: "#000",
   card: "#2D2D2D",
-  border: "#888",
+  border: "black",
   loaderBackground: "linear-gradient(black, red, black)",
   loaderColor: "#FFFFFF",
-  buttonBackground: "#3348dc",
-  headerBackground: "gray",
+  buttonBackground: "#3D3B40",
+  headerBackground: "#202020",
+  adviserTextBackground: "grey",
+  userTextBackground: "",
+  notebookBackground: "#191919",
 };

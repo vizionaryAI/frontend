@@ -16,7 +16,7 @@ export const Container = styled.button<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.text};
 
   &:hover {
-    background-color: #5568fc;
+    filter: brightness(0.8);
   }
   &:active,
   &:focus,
