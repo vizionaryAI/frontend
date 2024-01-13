@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { Layout } from "./components/Layout/Layout";
 import { Footer } from "./components/Footer/Footer";
 import { darkTheme, lightTheme } from "./theme/theme";
+import { QuestionsAndAnswears } from "./components/QuestionsAndAnswears/QuestionsAndAnswears";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
@@ -27,11 +28,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
       <Layout>
         <LoginButton />
-        {/* {isAuthenticated && token ? (
-          <h1>Authenticated</h1>
-        ) : (
-          <h1>Not Authenticated</h1>
-        )} */}
+        {isAuthenticated && token && <QuestionsAndAnswears />}
         <Footer toggleTheme={toggleTheme} />
       </Layout>
     </ThemeProvider>

@@ -12,8 +12,9 @@ export const Layout = styled.div<{ theme: DefaultTheme }>`
   background-size: cover;
   background-position: center;
   z-index: -1;
+  flex-direction: column;
 
   display: flex;
   justify-content: center; // horizontally center
-  // align-items: center; // vertically center
+  align-items: center; // vertically center
 `;

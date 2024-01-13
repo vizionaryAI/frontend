@@ -3,6 +3,7 @@ import { useClientStore } from "../../store/client.store";
 import Button from "../Button/Button";
 import { msalInstance, loginRequest } from "../../authConfig";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+import * as S from "./LoginButton.styles";
 
 export const LoginButton = () => {
   const isAuthenticated = useIsAuthenticated();
@@ -57,9 +58,13 @@ export const LoginButton = () => {
       });
   };
 
-  return token && isAuthenticated ? (
-    <Button onClick={logout}>Log Out</Button>
-  ) : (
-    <Button onClick={login}>Log In</Button>
+  return (
+    <S.Container>
+      {token && isAuthenticated ? (
+        <Button onClick={logout}>Log Out</Button>
+      ) : (
+        <Button onClick={login}>Log In</Button>
+      )}
+    </S.Container>
   );
 };
