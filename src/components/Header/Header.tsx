@@ -1,7 +1,6 @@
 import * as S from "./Header.styles";
-import { LoginButton } from "../LoginButton/LoginButton";
-import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { DefaultTheme } from "styled-components";
+import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 
 type Props = {
   themeChange: React.Dispatch<React.SetStateAction<DefaultTheme>>;
@@ -17,8 +16,7 @@ export const Header: React.FC<Props> = ({ theme, themeChange }) => {
   };
   return (
     <S.Container>
-      <LoginButton />
-      <ThemeToggle toggleTheme={toggleTheme} />
+      <HamburgerMenu themeChange={toggleTheme} />
     </S.Container>
   );
 };

@@ -14,6 +14,7 @@ export const lightTheme = {
   adviserTextBackground: "#F9EFDB",
   userTextBackground: "",
   notebookBackground: "beige",
+  menuBackground: "#F9EFDB",
 };
 
 export const darkTheme = {
@@ -31,4 +32,5 @@ export const darkTheme = {
   adviserTextBackground: "grey",
   userTextBackground: "",
   notebookBackground: "black",
+  menuBackground: "#202020",
 };

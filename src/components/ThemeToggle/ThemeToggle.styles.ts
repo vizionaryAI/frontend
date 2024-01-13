@@ -7,7 +7,7 @@ export const SwitchContainer = styled.div<{
   color: string;
 }>`
   width: 4rem;
-  height: 100%;
+  height: 2rem;
   border-radius: 20px;
   border: 0.5px solid;
   background-color: ${({ color }) => color};
