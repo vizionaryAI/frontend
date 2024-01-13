@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { LoginButton } from "./components/LoginButton/LoginButton";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { useClientStore } from "./store/client.store";
-import { ThemeProvider } from "styled-components";
+import { DefaultTheme, ThemeProvider } from "styled-components";
 import { Layout } from "./components/Layout/Layout";
-import { Footer } from "./components/Footer/Footer";
 import { darkTheme, lightTheme } from "./theme/theme";
 import { QuestionsAndAnswears } from "./components/QuestionsAndAnswears/QuestionsAndAnswears";
+import { Header } from "./components/Header/Header";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
@@ -14,22 +13,15 @@ const getInitialTheme = () => {
 };
 
 const App: React.FC = () => {
-  const [theme, setTheme] = useState(getInitialTheme);
+  const [theme, setTheme] = useState<DefaultTheme>(getInitialTheme);
 
-  const toggleTheme = () => {
-    const newTheme =
-      theme.mode === "light" ? { mode: "dark" } : { mode: "light" };
-    localStorage.setItem("themeMode", newTheme.mode);
-    setTheme(newTheme);
-  };
   const isAuthenticated = useIsAuthenticated();
   const { token } = useClientStore();
   return (
     <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
       <Layout>
-        <LoginButton />
+        <Header theme={theme} themeChange={setTheme} />
         {isAuthenticated && token && <QuestionsAndAnswears />}
-        <Footer toggleTheme={toggleTheme} />
       </Layout>
     </ThemeProvider>
   );
