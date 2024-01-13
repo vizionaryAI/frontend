@@ -30,5 +30,5 @@ export const darkTheme = {
   headerBackground: "#202020",
   adviserTextBackground: "grey",
   userTextBackground: "",
-  notebookBackground: "#191919",
+  notebookBackground: "black",
 };

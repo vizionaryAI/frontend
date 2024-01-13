@@ -31,11 +31,6 @@ export async function getQuestionsAndAnswersAPI(): Promise<ChatbotQuestionsAndAn
               "Your aspirations are quite clear and well-explained. Now, can you please describe what tasks you envision doing on a daily basis as a CTO in an AI-related company?",
           },
           {
-            role: "assistant",
-            message:
-              "That sounds like an excellent career choice. Can you please specify what level of seniority you are aiming for in this industry? Would you like to become a Manager, CEO, or perhaps work in a self-employed capacity?",
-          },
-          {
             role: "user",
             message:
               "In my envisioned career path in artificial intelligence, I aim to achieve a level of seniority that balances hands-on research with leadership. My goal is to become a Chief Technology Officer (CTO) in an innovative tech company, where I can lead cutting-edge AI projects while still being deeply involved in the research and development process. This role would allow me to shape the direction of AI advancements, mentor emerging talent in the field, and ensure ethical considerations are at the forefront of technological progress. Being a CTO would provide the perfect blend of leadership, innovation, and impact in the field I am passionate about.",
@@ -44,11 +39,6 @@ export async function getQuestionsAndAnswersAPI(): Promise<ChatbotQuestionsAndAn
             role: "assistant",
             message:
               "That sounds like an excellent career choice. Can you please specify what level of seniority you are aiming for in this industry? Would you like to become a Manager, CEO, or perhaps work in a self-employed capacity?",
-          },
-          {
-            role: "user",
-            message:
-              "In my envisioned career path in artificial intelligence, I aim to achieve a level of seniority that balances hands-on research with leadership. My goal is to become a Chief Technology Officer (CTO) in an innovative tech company, where I can lead cutting-edge AI projects while still being deeply involved in the research and development process. This role would allow me to shape the direction of AI advancements, mentor emerging talent in the field, and ensure ethical considerations are at the forefront of technological progress. Being a CTO would provide the perfect blend of leadership, innovation, and impact in the field I am passionate about.",
           },
         ],
         completed: false,
@@ -109,11 +99,6 @@ export async function sendAnswerAPI(
               "Your aspirations are quite clear and well-explained. Now, can you please describe what tasks you envision doing on a daily basis as a CTO in an AI-related company?",
           },
           {
-            role: "assistant",
-            message:
-              "That sounds like an excellent career choice. Can you please specify what level of seniority you are aiming for in this industry? Would you like to become a Manager, CEO, or perhaps work in a self-employed capacity?",
-          },
-          {
             role: "user",
             message:
               "In my envisioned career path in artificial intelligence, I aim to achieve a level of seniority that balances hands-on research with leadership. My goal is to become a Chief Technology Officer (CTO) in an innovative tech company, where I can lead cutting-edge AI projects while still being deeply involved in the research and development process. This role would allow me to shape the direction of AI advancements, mentor emerging talent in the field, and ensure ethical considerations are at the forefront of technological progress. Being a CTO would provide the perfect blend of leadership, innovation, and impact in the field I am passionate about.",
@@ -122,11 +107,6 @@ export async function sendAnswerAPI(
             role: "assistant",
             message:
               "That sounds like an excellent career choice. Can you please specify what level of seniority you are aiming for in this industry? Would you like to become a Manager, CEO, or perhaps work in a self-employed capacity?",
-          },
-          {
-            role: "user",
-            message:
-              "In my envisioned career path in artificial intelligence, I aim to achieve a level of seniority that balances hands-on research with leadership. My goal is to become a Chief Technology Officer (CTO) in an innovative tech company, where I can lead cutting-edge AI projects while still being deeply involved in the research and development process. This role would allow me to shape the direction of AI advancements, mentor emerging talent in the field, and ensure ethical considerations are at the forefront of technological progress. Being a CTO would provide the perfect blend of leadership, innovation, and impact in the field I am passionate about.",
           },
         ],
         completed: false,
