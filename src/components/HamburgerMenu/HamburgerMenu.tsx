@@ -22,8 +22,8 @@ export const HamburgerMenu: React.FC<Props> = ({ themeChange }) => {
         <FontAwesomeIcon icon={faUser} /> {/* FontAwesome user ikon */}
       </S.MenuIcon>
       <S.MenuContent isopen={isOpen ? "true" : "false"}>
-        <LoginButton />
         <ThemeToggle toggleTheme={themeChange} />
+        <LoginButton />
       </S.MenuContent>
     </S.MenuContainer>
   );
