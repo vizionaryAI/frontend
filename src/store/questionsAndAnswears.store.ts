@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { ChatbotQuestionsAndAnswers } from "../types/chatbot";
-import { getQuestionsAndAnswersAPI } from "../api/chatbot.api";
+import { getQuestionsAndAnswersAPI, sendAnswerAPI } from "../api/chatbot.api";
 
 type QuestionsAndAnswearsStore = {
   questionsAndAnswearsStore: ChatbotQuestionsAndAnswers;
   getNewQA: () => void;
+  sendAnswer: (answer: string) => void;
 };
 
 export const useQuestionsAndAnswearsStore = create<QuestionsAndAnswearsStore>(
@@ -22,6 +23,10 @@ export const useQuestionsAndAnswearsStore = create<QuestionsAndAnswearsStore>(
 
     getNewQA: async () => {
       const newQA = await getQuestionsAndAnswersAPI();
+      set({ questionsAndAnswearsStore: newQA });
+    },
+    sendAnswer: async (answer: string) => {
+      const newQA = await sendAnswerAPI(answer);
       set({ questionsAndAnswearsStore: newQA });
     },
   })

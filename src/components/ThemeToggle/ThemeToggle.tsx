@@ -19,11 +19,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ toggleTheme }) => {
   });
 
   return (
-    <S.SwitchContainer
-      onClick={toggleTheme}
-      color={theme?.body}
-      borderColor={theme?.loaderColor}
-    >
+    <S.SwitchContainer onClick={toggleTheme} color={theme?.body}>
       <S.Slider style={props} />
     </S.SwitchContainer>
   );
