@@ -7,8 +7,8 @@ export const SwitchContainer = styled.div<{
   color: string;
   borderColor: string;
 }>`
-  width: 80px;
-  height: 40px;
+  width: 4rem;
+  height: 100%;
   border-radius: 20px;
   border: 0.5px solid ${({ borderColor }) => borderColor};
   background-color: ${({ color }) => color};
@@ -18,10 +18,9 @@ export const SwitchContainer = styled.div<{
 
 export const Slider = styled(animated.div)<{ theme: DefaultTheme }>`
   position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 30px;
-  height: 30px;
+  top: 0%;
+  width: 50%;
+  height: 100%;
   border-radius: 15px;
   background-color: transparent;
   background-size: 75%;

@@ -5,6 +5,6 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   width: 100%;
   flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 0.5rem;
 `;

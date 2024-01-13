@@ -15,7 +15,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ toggleTheme }) => {
   }, [theme?.mode]);
 
   const props = useSpring({
-    left: theme?.mode === "dark" ? "5px" : "45px",
+    left: theme?.mode === "dark" ? "0%" : "50%",
   });
 
   return (

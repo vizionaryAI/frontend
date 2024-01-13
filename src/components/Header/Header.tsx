@@ -17,8 +17,8 @@ export const Header: React.FC<Props> = ({ theme, themeChange }) => {
   };
   return (
     <S.Container>
-      <ThemeToggle toggleTheme={toggleTheme} />
       <LoginButton />
+      <ThemeToggle toggleTheme={toggleTheme} />
     </S.Container>
   );
 };
