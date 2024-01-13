@@ -27,11 +27,11 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
       <Layout>
         <LoginButton />
-        {isAuthenticated && token ? (
+        {/* {isAuthenticated && token ? (
           <h1>Authenticated</h1>
         ) : (
           <h1>Not Authenticated</h1>
-        )}
+        )} */}
         <Footer toggleTheme={toggleTheme} />
       </Layout>
     </ThemeProvider>

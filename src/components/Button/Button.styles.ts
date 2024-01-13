@@ -1,18 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from "styled-components";
-import { ButtonVariant } from "./Button";
+import styled, { DefaultTheme } from "styled-components";
 
-export const Container = styled.button<{ variant: ButtonVariant }>`
+export const Container = styled.button<{ theme: DefaultTheme }>`
   border-radius: 0.5rem;
   border: none;
   padding: 0.25rem 1rem;
   font-size: 1rem;
   font-family: inherit;
-  background-color: #3348dc;
+  background-color: ${({ theme }) => theme.buttonBackground};
   color: white;
   cursor: pointer;
   transition: all 0.125s ease-in-out;
   outline: 0.0625rem solid transparent;
+  height: 1.8rem;
+  color: ${({ theme }) => theme.text};
 
   &:hover {
     background-color: #5568fc;

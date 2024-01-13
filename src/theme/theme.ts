@@ -9,6 +9,7 @@ export const lightTheme = {
   border: "#ddd",
   loaderBackground: "linear-gradient(#050a30, #d4f1f4, #050a30)",
   loaderColor: "black",
+  buttonBackground: "#04AA6D",
 };
 
 export const darkTheme = {
@@ -21,4 +22,5 @@ export const darkTheme = {
   border: "#888",
   loaderBackground: "linear-gradient(black, red, black)",
   loaderColor: "#FFFFFF",
+  buttonBackground: "#3348dc",
 };

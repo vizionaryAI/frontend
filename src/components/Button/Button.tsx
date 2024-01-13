@@ -1,6 +1,7 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, useContext } from "react";
 import * as S from "./Button.styles";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { ThemeContext } from "styled-components";
 
 export type ButtonVariant = "primary" | "secondary" | "danger" | "success";
 
@@ -9,9 +10,10 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: IconProp;
 };
 
-const Button = ({ variant = "primary", icon, children, ...rest }: Props) => {
+const Button = ({ icon, children, ...rest }: Props) => {
+  const theme = useContext(ThemeContext);
   return (
-    <S.Container variant={variant} {...rest}>
+    <S.Container {...rest} theme={theme}>
       {icon && <S.Icon icon={icon} />}
       {children}
     </S.Container>
