@@ -40,9 +40,9 @@ export const QuestionsAndAnswears = () => {
           <S.Input
             value={newAnswer}
             onChange={(e) => setNewAnswer(e.currentTarget.value)}
-            placeholder="New answer"
+            placeholder="New answer, min 200 characters"
           />
-          <Button disabled={newAnswer.length < 1} onClick={handleSendAnswer}>
+          <Button disabled={newAnswer.length < 200} onClick={handleSendAnswer}>
             Answear
           </Button>
         </>

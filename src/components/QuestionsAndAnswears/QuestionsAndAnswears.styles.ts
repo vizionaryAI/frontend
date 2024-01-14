@@ -53,7 +53,7 @@ export const ErrorBox = styled.div`
   border-radius: 4px;
 `;
 
-export const Input = styled.input`
+export const Input = styled.textarea`
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif; // A jegyzetfüzet stílusú kézírás betűtípust használva
   background: transparent; // Átlátszó háttér, hogy illeszkedjen a NotebookPage háttérhez
   border: none; // Border eltávolítása
