@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { useClientStore } from "./store/client.store";
 import { DefaultTheme, ThemeProvider } from "styled-components";
@@ -8,6 +8,7 @@ import { QuestionsAndAnswers } from "./components/QuestionsAndAnswers/QuestionsA
 import { Header } from "./components/Header/Header";
 
 import { Login } from "./components/Login/Login";
+import { Loader } from "./components/Loader/Loader";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
@@ -15,22 +16,32 @@ const getInitialTheme = () => {
 };
 
 const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [theme, setTheme] = useState<DefaultTheme>(getInitialTheme);
-
   const isAuthenticated = useIsAuthenticated();
   const { token } = useClientStore();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+  }, []);
   return (
     <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
-      <Layout>
-        {isAuthenticated && token ? (
-          <>
-            <Header theme={theme} themeChange={setTheme} />
-            <QuestionsAndAnswers />
-          </>
-        ) : (
-          <Login />
-        )}
-      </Layout>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Layout>
+          {isAuthenticated && token ? (
+            <>
+              <Header theme={theme} themeChange={setTheme} />
+              <QuestionsAndAnswers />
+            </>
+          ) : (
+            <Login />
+          )}
+        </Layout>
+      )}
     </ThemeProvider>
   );
 };
