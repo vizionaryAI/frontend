@@ -2,15 +2,15 @@ import { create } from "zustand";
 import { ChatbotQuestionsAndAnswers } from "../types/chatbot";
 import { getQuestionsAndAnswersAPI, sendAnswerAPI } from "../api/chatbot.api";
 
-type QuestionsAndAnswearsStore = {
-  questionsAndAnswearsStore: ChatbotQuestionsAndAnswers;
+type QuestionsAndAnswersStore = {
+  questionsAndAnswersStore: ChatbotQuestionsAndAnswers;
   getNewQA: () => void;
-  sendAnswer: (answer: string) => void;
+  sendAnswer: (Answer: string) => void;
 };
 
-export const useQuestionsAndAnswearsStore = create<QuestionsAndAnswearsStore>(
+export const useQuestionsAndAnswersStore = create<QuestionsAndAnswersStore>(
   (set) => ({
-    questionsAndAnswearsStore: {
+    questionsAndAnswersStore: {
       question: {
         title: "",
         subtitle: "",
@@ -23,11 +23,11 @@ export const useQuestionsAndAnswearsStore = create<QuestionsAndAnswearsStore>(
 
     getNewQA: async () => {
       const newQA = await getQuestionsAndAnswersAPI();
-      set({ questionsAndAnswearsStore: newQA });
+      set({ questionsAndAnswersStore: newQA });
     },
-    sendAnswer: async (answer: string) => {
-      const newQA = await sendAnswerAPI(answer);
-      set({ questionsAndAnswearsStore: newQA });
+    sendAnswer: async (Answer: string) => {
+      const newQA = await sendAnswerAPI(Answer);
+      set({ questionsAndAnswersStore: newQA });
     },
   })
 );

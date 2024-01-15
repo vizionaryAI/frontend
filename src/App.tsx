@@ -4,7 +4,7 @@ import { useClientStore } from "./store/client.store";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import { Layout } from "./components/Layout/Layout";
 import { darkTheme, lightTheme } from "./theme/theme";
-import { QuestionsAndAnswears } from "./components/QuestionsAndAnswears/QuestionsAndAnswears";
+import { QuestionsAndAnswers } from "./components/QuestionsAndAnswers/QuestionsAndAnswers";
 import { Header } from "./components/Header/Header";
 
 import { Login } from "./components/Login/Login";
@@ -25,7 +25,7 @@ const App: React.FC = () => {
         {isAuthenticated && token ? (
           <>
             <Header theme={theme} themeChange={setTheme} />
-            <QuestionsAndAnswears />
+            <QuestionsAndAnswers />
           </>
         ) : (
           <Login />

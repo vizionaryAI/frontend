@@ -65,10 +65,10 @@ export async function getQuestionsAndAnswersAPI(): Promise<ChatbotQuestionsAndAn
 }
 
 export async function sendAnswerAPI(
-  answer: string
+  Answer: string
 ): Promise<ChatbotQuestionsAndAnswers> {
   try {
-    // const resp = await api.post(``, { answer });
+    // const resp = await api.post(``, { Answer });
 
     ///=========================================================================
     //dummy data
@@ -117,12 +117,12 @@ export async function sendAnswerAPI(
 
     dummyData.question.conversation.push({
       role: "user",
-      message: answer,
+      message: Answer,
     });
 
     return dummyData;
   } catch (error) {
-    console.log("Faild to send answer: ", error);
+    console.log("Faild to send Answer: ", error);
 
     return {
       question: {
@@ -132,7 +132,7 @@ export async function sendAnswerAPI(
         completed: false,
       },
       finished_all: false,
-      error: "Failed to send answer",
+      error: "Failed to send Answer",
     };
   }
 }

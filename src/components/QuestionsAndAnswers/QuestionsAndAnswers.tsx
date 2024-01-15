@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { useQuestionsAndAnswearsStore } from "../../store/questionsAndAnswears.store";
-import * as S from "./QuestionsAndAnswears.styles";
+import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
+import * as S from "./QuestionsAndAnswers.styles";
 import { ThemeContext } from "styled-components";
 import Button from "../Button/Button";
 
-export const QuestionsAndAnswears = () => {
+export const QuestionsAndAnswers = () => {
   const theme = useContext(ThemeContext);
-  const { questionsAndAnswearsStore, getNewQA, sendAnswer } =
-    useQuestionsAndAnswearsStore();
+  const { questionsAndAnswersStore, getNewQA, sendAnswer } =
+    useQuestionsAndAnswersStore();
   const [newAnswer, setNewAnswer] = useState("");
   useEffect(() => {
     getNewQA();
@@ -18,20 +18,20 @@ export const QuestionsAndAnswears = () => {
     setNewAnswer("");
   };
 
-  if (questionsAndAnswearsStore.error) {
-    return <S.ErrorBox>Error: {questionsAndAnswearsStore.error}</S.ErrorBox>;
+  if (questionsAndAnswersStore.error) {
+    return <S.ErrorBox>Error: {questionsAndAnswersStore.error}</S.ErrorBox>;
   }
 
   return (
     <S.NotebookPage theme={theme}>
-      <S.Question>{questionsAndAnswearsStore.question.title}</S.Question>
-      <S.Subtitle>{questionsAndAnswearsStore.question.subtitle}</S.Subtitle>
-      {questionsAndAnswearsStore.question.conversation.map((entry, index) => (
+      <S.Question>{questionsAndAnswersStore.question.title}</S.Question>
+      <S.Subtitle>{questionsAndAnswersStore.question.subtitle}</S.Subtitle>
+      {questionsAndAnswersStore.question.conversation.map((entry, index) => (
         <S.Message key={index} role={entry.role} theme={theme}>
           {entry.message}
         </S.Message>
       ))}
-      {questionsAndAnswearsStore.question.completed ? (
+      {questionsAndAnswersStore.question.completed ? (
         <Button onClick={() => console.log("Next Question")}>
           Next Question
         </Button>
@@ -40,10 +40,10 @@ export const QuestionsAndAnswears = () => {
           <S.Input
             value={newAnswer}
             onChange={(e) => setNewAnswer(e.currentTarget.value)}
-            placeholder="New answer, min 200 characters"
+            placeholder="New Answer, min 200 characters"
           />
           <Button disabled={newAnswer.length < 200} onClick={handleSendAnswer}>
-            Answear
+            Answer
           </Button>
         </>
       )}
