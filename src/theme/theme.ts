@@ -15,6 +15,8 @@ export const lightTheme = {
   userTextBackground: "",
   notebookBackground: "beige",
   menuBackground: "#F9EFDB",
+  animatedBackground: "#FFF",
+  animatedBackgroundText: "#000",
 };
 
 export const darkTheme = {
@@ -33,4 +35,6 @@ export const darkTheme = {
   userTextBackground: "",
   notebookBackground: "black",
   menuBackground: "#202020",
+  animatedBackground: "#000",
+  animatedBackgroundText: "#FFF",
 };
