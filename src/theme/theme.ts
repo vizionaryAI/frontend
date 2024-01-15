@@ -31,7 +31,7 @@ export const darkTheme = {
   loaderColor: "#FFFFFF",
   buttonBackground: "#3D3B40",
   headerBackground: "#202020",
-  adviserTextBackground: "grey",
+  adviserTextBackground: "#000",
   userTextBackground: "",
   notebookBackground: "black",
   menuBackground: "#202020",

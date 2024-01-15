@@ -66,7 +66,7 @@ export const Input = styled.textarea`
 
   &:focus {
     outline: none; // Fókuszáláskor az alapértelmezett keret eltávolítása
-    border-bottom: 2px solid ${(props) => props.theme.highlight}; // Fókuszált állapotban vastagabb alsó vonal
+    border-bottom: 0px solid ${(props) => props.theme.highlight}; // Fókuszált állapotban vastagabb alsó vonal
   }
 
   &::placeholder {
