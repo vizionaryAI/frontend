@@ -7,6 +7,7 @@ import { darkTheme, lightTheme } from "./theme/theme";
 import { QuestionsAndAnswears } from "./components/QuestionsAndAnswears/QuestionsAndAnswears";
 import { Header } from "./components/Header/Header";
 import { LoginButton } from "./components/LoginButton/LoginButton";
+import { AnimatedLoginBackground } from "./components/AnimatedLoginBackground/AnimatedLoginBackground";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
@@ -27,7 +28,10 @@ const App: React.FC = () => {
             <QuestionsAndAnswears />
           </>
         ) : (
-          <LoginButton />
+          <>
+            <LoginButton />
+            <AnimatedLoginBackground />
+          </>
         )}
       </Layout>
     </ThemeProvider>
