@@ -4,8 +4,8 @@ import { useClientStore } from "./store/client.store";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import { Layout } from "./components/Layout/Layout";
 import { darkTheme, lightTheme } from "./theme/theme";
-import { QuestionsAndAnswers } from "./components/QuestionsAndAnswers/QuestionsAndAnswers";
-import { Header } from "./components/Header/Header";
+import { Header, routes } from "./components/Header/Header";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Login } from "./components/Login/Login";
 import { Loader } from "./components/Loader/Loader";
@@ -26,20 +26,35 @@ const App: React.FC = () => {
       setIsLoading(false);
     }, 800);
   }, []);
+
+  if (!isAuthenticated || token.length === 0) {
+    return (
+      <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Layout>
+            <Login />
+          </Layout>
+        )}
+      </ThemeProvider>
+    );
+  }
+
   return (
     <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
       {isLoading ? (
         <Loader />
       ) : (
         <Layout>
-          {isAuthenticated && token ? (
-            <>
-              <Header theme={theme} themeChange={setTheme} />
-              <QuestionsAndAnswers />
-            </>
-          ) : (
-            <Login />
-          )}
+          <Router>
+            <Header theme={theme} themeChange={setTheme} />
+            <Routes>
+              {routes.map((route, index) => (
+                <Route key={index} path={route.path} element={route.element} />
+              ))}
+            </Routes>
+          </Router>
         </Layout>
       )}
     </ThemeProvider>
