@@ -16,11 +16,9 @@ type NavigationItem = {
   title: string;
 };
 
-//export const queryClient = new QueryClient();
-
 export const routes: NavigationItem[] = [
   {
-    path: "/*",
+    path: "/home",
     element: <QuestionsAndAnswers />,
     title: "Home",
   },
