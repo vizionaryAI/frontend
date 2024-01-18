@@ -3,7 +3,7 @@ export const lightTheme = {
   mode: "light",
   body: "#FFFFFF",
   text: "#000000",
-  toggleBorder: "#FFF",
+  toggleBorder: "#ececf1",
   background: "#FFF",
   card: "#F9F9F9",
   border: "#eee",
@@ -18,7 +18,7 @@ export const lightTheme = {
   loaderColor: "#000",
   hamburgerMenuBackground: "#FFF",
   hamburgerMenuHoverBackground: "#F9EFDB",
-  hamburgerMenuBorder: "#000",
+  hamburgerMenuBorder: "#ececf1",
   appLayoutBackground: "#FFF",
 };
 
@@ -26,7 +26,7 @@ export const darkTheme = {
   mode: "dark",
   body: "#363537",
   text: "#FAFAFA",
-  toggleBorder: "#6B8096",
+  toggleBorder: "#3D3B40",
   background: "#000",
   card: "#2D2D2D",
   border: "black",

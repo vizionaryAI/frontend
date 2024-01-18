@@ -4,13 +4,14 @@ import sunIcon from "../../assets/sun.png";
 import moonIcon from "../../assets/moon.png";
 
 export const SwitchContainer = styled.div<{
-  color: string;
+  theme: DefaultTheme;
 }>`
   width: 4rem;
   height: 2rem;
   border-radius: 20px;
   border: 0.5px solid;
-  background-color: ${({ color }) => color};
+  background-color: ${({ theme }) => theme.body};
+  border-color: ${({ theme }) => theme.toggleBorder};
   position: relative;
   cursor: pointer;
 `;
@@ -27,6 +28,11 @@ export const Slider = styled(animated.div)<{ theme: DefaultTheme }>`
   background-position: center;
   background-image: ${({ theme }) =>
     theme.mode === "dark" ? `url(${moonIcon})` : `url(${sunIcon})`};
+  filter: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "brightness(0) invert(1)"
+      : "brightness(0) invert(0)"};
+
   &:hover {
     transform: scale(1.3);
   }

@@ -5,9 +5,8 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   position: fixed;
   top: 0;
   left: 0;
-  width: 20rem;
+  width: 15rem;
   height: 100%;
-  box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
@@ -49,6 +48,11 @@ export const MenuItem = styled.div<{ theme: DefaultTheme }>`
   &:hover {
     background-color: ${(props) =>
       props.theme.hamburgerMenuHoverBackground || "#f9efdb"};
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 0rem;
+    text-align: center;
   }
 `;
 
