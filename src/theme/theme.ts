@@ -25,7 +25,7 @@ export const lightTheme = {
 export const darkTheme = {
   mode: "dark",
   body: "#363537",
-  text: "#FAFAFA",
+  text: "#CACACA",
   toggleBorder: "#3D3B40",
   background: "#000",
   card: "#2D2D2D",
@@ -36,11 +36,11 @@ export const darkTheme = {
   notebookBackground: "black",
   menuBackground: "#202020",
   animatedBackground: "#000",
-  animatedBackgroundText: "#FFF",
+  animatedBackgroundText: "#CACACA",
   loaderBackground: "#000",
-  loaderColor: "#FFF",
+  loaderColor: "#CACACA",
   hamburgerMenuBackground: "#000",
   hamburgerMenuHoverBackground: "#202020",
-  hamburgerMenuBorder: "#FFF",
+  hamburgerMenuBorder: "#3D3B40",
   appLayoutBackground: "#000",
 };
