@@ -43,6 +43,8 @@ export const Message = styled.div<{ role: string; theme: DefaultTheme }>`
   margin: 10px 0;
   display: inline-block;
   font-weight: ${(props) => (props.role !== "user" ? "bold" : "normal")};
+  word-wrap: break-word;
+  word-break: break-word;
 `;
 
 export const ErrorBox = styled.div`
