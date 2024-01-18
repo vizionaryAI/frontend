@@ -7,6 +7,7 @@ import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { QuestionsAndAnswers } from "../QuestionsAndAnswers/QuestionsAndAnswers";
 import { DefaultTheme } from "styled-components";
 import { LoginButton } from "../LoginButton/LoginButton";
+import { ChatBot } from "../ChatBot/ChatBot";
 
 type NavigationItem = {
   path: string;
@@ -21,9 +22,9 @@ export const routes: NavigationItem[] = [
     title: "Home",
   },
   {
-    path: "/login",
-    element: <LoginButton />,
-    title: "Logout",
+    path: "/chatbot",
+    element: <ChatBot />,
+    title: "ChatBot",
   },
 ];
 
@@ -59,11 +60,13 @@ export const HamburgerMenu: React.FC<Props> = ({
 
       {isMenuOpen && (
         <S.Container>
-          <S.MenuItem>
-            <Link to="/home" onClick={toggleMenu}>
-              Home
-            </Link>
-          </S.MenuItem>
+          {routes.map((route, index) => (
+            <S.MenuItem key={index}>
+              <Link to={route.path} onClick={toggleMenu}>
+                {route.title}
+              </Link>
+            </S.MenuItem>
+          ))}
           <S.MenuItem>
             <LoginButton />
           </S.MenuItem>
