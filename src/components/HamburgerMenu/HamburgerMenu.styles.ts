@@ -16,7 +16,6 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   border-style: solid;
   border-width: 0 0.0625rem 0 0;
   overflow: auto;
-
   transition: left 0.3s ease;
 
   @media (max-width: 768px) {

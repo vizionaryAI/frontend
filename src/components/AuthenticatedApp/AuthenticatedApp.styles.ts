@@ -13,15 +13,13 @@ export const LoginLayout = styled.div<{ theme: DefaultTheme }>`
   background-position: center;
   z-index: -1;
   flex-direction: column;
-
   display: flex;
-  justify-content: center; // horizontally center
-  align-items: center; // vertically center
+  justify-content: center;
+  align-items: center;
 `;
 
 export const AppLayout = styled.div<{ theme: DefaultTheme }>`
   background-color: ${(props) => props.theme.appLayoutBackground || "#fff"};
-
   min-width: 320px;
   min-height: 100vh;
   position: fixed;
@@ -29,7 +27,6 @@ export const AppLayout = styled.div<{ theme: DefaultTheme }>`
   left: 0;
   width: 100%;
   height: 100%;
-
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -43,7 +40,6 @@ export const Layout = styled.div<{ theme: DefaultTheme; ismenuopen: string }>`
   left: ${(props) => (props.ismenuopen === "true" ? "20rem" : "0")};
   transition: left 0.3s ease;
   top: 0;
-
   width: ${(props) =>
     props.ismenuopen === "true" ? "calc(100% - 20rem)" : "100%"};
   height: 100%;

@@ -59,13 +59,15 @@ export const HamburgerMenu: React.FC<Props> = ({
 
       {isMenuOpen && (
         <S.Container>
-          {routes.map((route, index) => (
-            <S.MenuItem key={index}>
-              <Link to={route.path} onClick={toggleMenu}>
-                {route.title}
-              </Link>
-            </S.MenuItem>
-          ))}
+          <S.MenuItem>
+            <Link to="/home" onClick={toggleMenu}>
+              Home
+            </Link>
+          </S.MenuItem>
+          <S.MenuItem>
+            <LoginButton />
+          </S.MenuItem>
+
           <S.ThemeToggleWrapper>
             <ThemeToggle toggleTheme={toggleTheme} />
           </S.ThemeToggleWrapper>

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import { routes } from "../HamburgerMenu/HamburgerMenu";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "../Login/Login";
-import { Loader } from "../Loader/Loader";
+
 import { useClientStore } from "../../store/client.store";
 import { darkTheme, lightTheme } from "../../theme/theme";
 import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
@@ -17,23 +16,10 @@ const getInitialTheme = () => {
 };
 
 export const AuthenticatedApp: React.FC = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [theme, setTheme] = useState<DefaultTheme>(getInitialTheme);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isAuthenticated = useIsAuthenticated();
   const { token } = useClientStore();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isAuthenticated || token.length === 0) {
-      navigate("/login");
-    }
-    setIsLoading(false);
-  }, [isAuthenticated, token, navigate]);
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   if (!isAuthenticated || token.length === 0) {
     return (
