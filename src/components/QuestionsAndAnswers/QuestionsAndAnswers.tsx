@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
 import * as S from "./QuestionsAndAnswers.styles";
 import { ThemeContext } from "styled-components";
@@ -19,34 +19,50 @@ export const QuestionsAndAnswers = () => {
     setNewAnswer("");
   };
 
+  const endOfMessagesRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [questionsAndAnswersStore.question.conversation]);
+
   if (questionsAndAnswersStore.error) {
     return <S.ErrorBox>Error: {questionsAndAnswersStore.error}</S.ErrorBox>;
   }
 
   return (
     <S.NotebookPage theme={theme}>
-      <S.Question>{questionsAndAnswersStore.question.title}</S.Question>
-      <S.Subtitle>{questionsAndAnswersStore.question.subtitle}</S.Subtitle>
-      {questionsAndAnswersStore.question.conversation.map((entry, index) => (
-        <S.Message key={index} role={entry.role} theme={theme}>
-          {entry.message}
-        </S.Message>
-      ))}
+      <S.MessagesContainer>
+        <S.Question>{questionsAndAnswersStore.question.title}</S.Question>
+        <S.Subtitle>{questionsAndAnswersStore.question.subtitle}</S.Subtitle>
+        {questionsAndAnswersStore.question.conversation.map((entry, index) => (
+          <S.Message key={index} role={entry.role} theme={theme}>
+            {entry.message}
+          </S.Message>
+        ))}
+        <div ref={endOfMessagesRef} />
+      </S.MessagesContainer>
       {questionsAndAnswersStore.question.completed ? (
         <Button onClick={() => console.log("Next Question")}>
           Next Question
         </Button>
       ) : (
-        <>
+        <S.InputContainer>
           <S.Input
             value={newAnswer}
             onChange={(e) => setNewAnswer(e.currentTarget.value)}
             placeholder="New Answer, min 200 characters"
           />
-          <Button disabled={newAnswer.length < 200} onClick={handleSendAnswer}>
+          <S.SendButton
+            disabled={newAnswer.length < 200}
+            onClick={handleSendAnswer}
+          >
             Answer
-          </Button>
-        </>
+          </S.SendButton>
+        </S.InputContainer>
       )}
     </S.NotebookPage>
   );

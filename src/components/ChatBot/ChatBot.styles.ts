@@ -1,10 +1,21 @@
 import styled from "styled-components";
 import Button from "../Button/Button";
 
+export const MessagesContainer = styled.div`
+  overflow-y: auto;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50rem;
+  height: 100vh;
   overflow-y: auto;
   margin: auto;
   padding: 20px;
@@ -45,16 +56,27 @@ export const BotMessage = styled(Message)`
   border: 1px solid #d3d8db;
 `;
 
+export const InputContainer = styled.div`
+  background-color: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid #d3d8db;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
 export const Input = styled.textarea`
   flex: 1;
+  width: 100%;
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: #fff;
   border: 2px solid #007bff;
-  border-radius: 15px;
+  border-radius: 5px;
   color: #333;
-  padding: 10px 15px;
-  margin-right: 10px;
   resize: none;
+  min-height: 6rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -67,25 +89,15 @@ export const Input = styled.textarea`
   }
 `;
 
-export const InputContainer = styled.div`
-  background-color: #f8f9fa;
-  padding: 10px 15px;
-  border-top: 1px solid #d3d8db;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
 export const SendButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  align-self: flex-end;
   background-color: #007bff;
-  border: none;
   color: white;
-  padding: 8px 16px;
-  margin-left: 8px;
-  border-radius: 5px;
   cursor: pointer;
 
   &:disabled {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
 import * as S from "./ChatBot.styles";
 import Button from "../Button/Button";
@@ -17,15 +17,28 @@ export const ChatBot: React.FC = () => {
     setNewAnswer("");
   };
 
+  const endOfMessagesRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [questionsAndAnswersStore.question.conversation]);
+
   return (
     <S.ChatContainer>
-      {questionsAndAnswersStore.question.conversation.map((conv, index) =>
-        conv.role === "user" ? (
-          <S.UserMessage key={index}>{conv.message}</S.UserMessage>
-        ) : (
-          <S.BotMessage key={index}>{conv.message}</S.BotMessage>
-        )
-      )}
+      <S.MessagesContainer>
+        {questionsAndAnswersStore.question.conversation.map((conv, index) =>
+          conv.role === "user" ? (
+            <S.UserMessage key={index}>{conv.message}</S.UserMessage>
+          ) : (
+            <S.BotMessage key={index}>{conv.message}</S.BotMessage>
+          )
+        )}
+        <div ref={endOfMessagesRef} />
+      </S.MessagesContainer>
       {questionsAndAnswersStore.question.completed ? (
         <Button onClick={() => console.log("Next Question")}>
           Next Question

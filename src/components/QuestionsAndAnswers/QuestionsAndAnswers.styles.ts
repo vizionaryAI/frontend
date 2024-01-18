@@ -1,13 +1,24 @@
 import styled, { DefaultTheme } from "styled-components";
+import Button from "../Button/Button";
+
+export const MessagesContainer = styled.div`
+  overflow-y: auto;
+  padding: 0 20px;
+  margin-bottom: 10px;
+  flex-grow: 1;
+`;
 
 export const NotebookPage = styled.div<{ theme: DefaultTheme }>`
+  display: flex;
+  flex-direction: column;
+  max-width: 50rem;
+  height: 100vh;
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: ${(props) => props.theme.notebookBackground};
   color: ${(props) => props.theme.text};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 20px;
   padding: 20px;
-  max-width: 800px;
   max-height: 90vh;
   overflow-y: auto;
   border-radius: 10px;
@@ -83,4 +94,19 @@ export const Input = styled.textarea`
   &::placeholder {
     color: #999;
   }
+`;
+
+export const InputContainer = styled.div`
+  padding: 0.5rem 1rem;
+`;
+
+export const SendButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  align-self: flex-start;
+  cursor: pointer;
 `;
