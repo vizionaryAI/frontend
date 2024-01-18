@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { DefaultTheme } from "styled-components";
-import { LoginButton } from "../LoginButton/LoginButton";
 import { routes } from "./routes";
+import { Logout } from "./MenuItems/Logout";
 
 type Props = {
   theme: DefaultTheme;
@@ -48,7 +48,7 @@ export const HamburgerMenu: React.FC<Props> = ({
             </S.MenuItem>
           ))}
           <S.MenuItem>
-            <LoginButton />
+            <Logout />
           </S.MenuItem>
 
           <S.ThemeToggleWrapper>

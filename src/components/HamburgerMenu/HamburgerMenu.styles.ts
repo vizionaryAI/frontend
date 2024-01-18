@@ -10,7 +10,6 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding-top: 3rem;
   border-color: ${(props) => props.theme.hamburgerMenuBorder || "#eee"};
   border-style: solid;
@@ -37,7 +36,8 @@ export const MenuItem = styled.div<{ theme: DefaultTheme }>`
   padding: 1rem 0;
   margin-top: 2rem;
   cursor: pointer;
-  text-align: center;
+  text-align: start;
+  padding-left: 3rem;
   color: ${(props) => props.theme.text || "#000"};
 
   a {
