@@ -1,38 +1,18 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import * as S from "./HamburgerMenu.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
-import { QuestionsAndAnswers } from "../QuestionsAndAnswers/QuestionsAndAnswers";
 import { DefaultTheme } from "styled-components";
 import { LoginButton } from "../LoginButton/LoginButton";
-import { ChatBot } from "../ChatBot/ChatBot";
-
-type NavigationItem = {
-  path: string;
-  element: ReactNode;
-  title: string;
-};
-
-export const routes: NavigationItem[] = [
-  {
-    path: "/home",
-    element: <QuestionsAndAnswers />,
-    title: "Home",
-  },
-  {
-    path: "/chatbot",
-    element: <ChatBot />,
-    title: "ChatBot",
-  },
-];
+import { routes } from "./routes";
 
 type Props = {
-  themeChange: React.Dispatch<React.SetStateAction<DefaultTheme>>;
   theme: DefaultTheme;
   isMenuOpen: boolean;
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  themeChange: React.Dispatch<React.SetStateAction<DefaultTheme>>;
 };
 
 export const HamburgerMenu: React.FC<Props> = ({

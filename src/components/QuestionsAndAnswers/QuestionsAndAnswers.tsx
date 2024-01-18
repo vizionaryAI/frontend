@@ -9,6 +9,7 @@ export const QuestionsAndAnswers = () => {
   const { questionsAndAnswersStore, getNewQA, sendAnswer } =
     useQuestionsAndAnswersStore();
   const [newAnswer, setNewAnswer] = useState("");
+
   useEffect(() => {
     getNewQA();
   }, []);

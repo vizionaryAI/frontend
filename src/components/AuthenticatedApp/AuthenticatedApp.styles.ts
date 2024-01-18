@@ -33,15 +33,14 @@ export const AppLayout = styled.div<{ theme: DefaultTheme }>`
   flex-direction: column;
 `;
 
-export const Layout = styled.div<{ theme: DefaultTheme; ismenuopen: string }>`
+export const Layout = styled.div<{ theme: DefaultTheme; open: boolean }>`
   min-width: 320px;
   min-height: 100vh;
   position: relative;
-  left: ${(props) => (props.ismenuopen === "true" ? "20rem" : "0")};
+  left: ${(props) => (props.open ? "20rem" : "0")};
   transition: left 0.3s ease;
   top: 0;
-  width: ${(props) =>
-    props.ismenuopen === "true" ? "calc(100% - 20rem)" : "100%"};
+  width: ${(props) => (props.open ? "calc(100% - 20rem)" : "100%")};
   height: 100%;
   background-size: cover;
   background-position: center;

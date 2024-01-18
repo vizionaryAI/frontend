@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
-import { routes } from "../HamburgerMenu/HamburgerMenu";
+import { routes } from "../HamburgerMenu/routes";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "../Login/Login";
-
 import { useClientStore } from "../../store/client.store";
 import { darkTheme, lightTheme } from "../../theme/theme";
 import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
@@ -40,7 +39,7 @@ export const AuthenticatedApp: React.FC = () => {
           isMenuOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
         />
-        <S.Layout ismenuopen={isMenuOpen ? "true" : "false"} theme={theme}>
+        <S.Layout open={isMenuOpen} theme={theme}>
           <Routes>
             {routes.map((route, index) => (
               <Route key={index} path={route.path} element={route.element} />

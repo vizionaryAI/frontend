@@ -1,25 +1,34 @@
 import styled, { DefaultTheme } from "styled-components";
 
 export const NotebookPage = styled.div<{ theme: DefaultTheme }>`
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif; /* Replace with actual handwriting font */
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: ${(props) => props.theme.notebookBackground};
   color: ${(props) => props.theme.text};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 20px;
   padding: 20px;
-  max-width: 800px; /* or your preferred max width */
-  max-height: 90vh; /* Adjust the height as necessary */
-  overflow-y: auto; /* This will add scroll */
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
   border-radius: 10px;
   line-height: 1.6;
-
   background-image: linear-gradient(
     to bottom,
     transparent,
     transparent 31px,
     ${(props) => props.theme.border} 31px
   );
-  background-size: 100% 32px; /* Height of the lines */
+  background-size: 100% 32px;
+  margin-top: 4.5rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    margin: 0;
+    border-radius: 0;
+    max-height: 100vh;
+    margin-top: 1.5rem;
+    margin-bottom: 2.8rem;
+  }
 `;
 
 export const Question = styled.h2`
@@ -56,22 +65,22 @@ export const ErrorBox = styled.div`
 `;
 
 export const Input = styled.textarea`
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif; // A jegyzetfüzet stílusú kézírás betűtípust használva
-  background: transparent; // Átlátszó háttér, hogy illeszkedjen a NotebookPage háttérhez
-  border: none; // Border eltávolítása
-  border-bottom: 1px solid ${(props) => props.theme.border}; // Csak az alján vékony vonal, mint egy jegyzetfüzetben
-  color: ${(props) => props.theme.text}; // Szöveg színe
-  padding: 8px 10px; // Kényelmes térköz
-  margin: 10px 0; // Külső térköz
-  width: 100%; // Teljes szélesség kihasználása
-  box-sizing: border-box; // Box-sizing a helyes méretezés érdekében
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid ${(props) => props.theme.border};
+  color: ${(props) => props.theme.text};
+  padding: 8px 10px;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
 
   &:focus {
-    outline: none; // Fókuszáláskor az alapértelmezett keret eltávolítása
-    border-bottom: 0px solid ${(props) => props.theme.highlight}; // Fókuszált állapotban vastagabb alsó vonal
+    outline: none;
+    border-bottom: 0px solid ${(props) => props.theme.highlight};
   }
 
   &::placeholder {
-    color: #999; // Helykitöltő szöveg színe
+    color: #999;
   }
 `;
