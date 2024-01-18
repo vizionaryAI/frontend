@@ -11,29 +11,35 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 1.25rem;
-
+  padding-top: 3rem;
+  border-color: ${(props) => props.theme.hamburgerMenuBorder || "#eee"};
+  border-style: solid;
+  border-width: 0 0.0625rem 0 0;
   overflow: auto;
-  border-right: 0.0625rem solid;
+
+  transition: left 0.3s ease;
 
   @media (max-width: 768px) {
     width: 100%;
   }
 `;
 
-export const MenuIcon = styled.div`
+export const MenuIcon = styled.div<{ theme: DefaultTheme }>`
   cursor: pointer;
   position: fixed;
-  top: 1rem;
+  top: 2rem;
   z-index: 200;
+  left: 2rem;
+  color: ${(props) => props.theme.text || "#000"};
 `;
 
-export const MenuItem = styled.div`
+export const MenuItem = styled.div<{ theme: DefaultTheme }>`
   width: 100%;
   padding: 1rem 0;
   margin-top: 2rem;
   cursor: pointer;
   text-align: center;
+  color: ${(props) => props.theme.text || "#000"};
 
   a {
     text-decoration: none;
@@ -52,5 +58,5 @@ export const ThemeToggleWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-bottom: 2rem;
+  padding-bottom: 5rem;
 `;

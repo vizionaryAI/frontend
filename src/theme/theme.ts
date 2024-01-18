@@ -8,8 +8,6 @@ export const lightTheme = {
   card: "#F9F9F9",
   border: "#eee",
   buttonBackground: "#EBD9B4",
-  headerBackground: "#FFF",
-  headerColor: "#000",
   adviserTextBackground: "#F9EFDB",
   userTextBackground: "",
   notebookBackground: "beige",
@@ -20,6 +18,8 @@ export const lightTheme = {
   loaderColor: "#000",
   hamburgerMenuBackground: "#FFF",
   hamburgerMenuHoverBackground: "#F9EFDB",
+  hamburgerMenuBorder: "#000",
+  appLayoutBackground: "#FFF",
 };
 
 export const darkTheme = {
@@ -31,8 +31,6 @@ export const darkTheme = {
   card: "#2D2D2D",
   border: "black",
   buttonBackground: "#3D3B40",
-  headerBackground: "#000",
-  headerColor: "#FFF",
   adviserTextBackground: "#000",
   userTextBackground: "",
   notebookBackground: "black",
@@ -43,4 +41,6 @@ export const darkTheme = {
   loaderColor: "#FFF",
   hamburgerMenuBackground: "#000",
   hamburgerMenuHoverBackground: "#202020",
+  hamburgerMenuBorder: "#FFF",
+  appLayoutBackground: "#000",
 };
