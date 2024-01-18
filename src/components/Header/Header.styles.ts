@@ -5,6 +5,12 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   width: 100%;
   flex: 1;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  color: ${(props) => props.theme.headerColor};
   padding: 0.5rem;
+`;
+
+export const MenuIcon = styled.div`
+  cursor: pointer;
+  padding-left: 1.5rem;
 `;

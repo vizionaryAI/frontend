@@ -1,32 +1,56 @@
 import styled, { DefaultTheme } from "styled-components";
 
-export const MenuContainer = styled.div`
-  position: relative;
-`;
-
-export const MenuIcon = styled.div<{ theme: DefaultTheme }>`
-  cursor: pointer;
-  color: ${(props) => props.theme.text};
-  font-size: 1.5rem;
-`;
-
-export const MenuContent = styled.div<{ isopen: string }>`
-  display: ${(props) => (props.isopen === "true" ? "flex" : "none")};
+export const Container = styled.div<{ theme: DefaultTheme }>`
+  background-color: ${(props) => props.theme.hamburgerMenuBackground || "#fff"};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+  box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.5);
+  display: flex;
   flex-direction: column;
-  align-items: start;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: ${(props) => props.theme.menuBackground || "#f9f9f9"};
-  padding: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 5px;
-  min-width: 160px;
-  transform: translateX(45%);
   align-items: center;
+  padding-top: 1.25rem;
 
-  & > * {
-    margin: 5px 0; // Egyenletes térköz a gombok között
+  overflow: auto;
+  border-right: 0.0625rem solid;
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
+`;
+
+export const MenuIcon = styled.div`
+  cursor: pointer;
+  position: fixed;
+  top: 1rem;
+  z-index: 200;
+`;
+
+export const MenuItem = styled.div`
+  width: 100%;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  cursor: pointer;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  &:hover {
+    background-color: ${(props) =>
+      props.theme.hamburgerMenuHoverBackground || "#f9efdb"};
+  }
+`;
+
+export const ThemeToggleWrapper = styled.div`
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
 `;

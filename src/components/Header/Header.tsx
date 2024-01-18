@@ -1,9 +1,8 @@
 import * as S from "./Header.styles";
 import { DefaultTheme } from "styled-components";
-import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
+import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
 import { ReactNode } from "react";
 import { QuestionsAndAnswers } from "../QuestionsAndAnswers/QuestionsAndAnswers";
-import { Link } from "react-router-dom";
 
 type Props = {
   themeChange: React.Dispatch<React.SetStateAction<DefaultTheme>>;
@@ -33,12 +32,9 @@ export const Header: React.FC<Props> = ({ theme, themeChange }) => {
   };
   return (
     <S.Container>
-      <HamburgerMenu themeChange={toggleTheme} />
-      {routes.map((route) => (
-        <Link key={route.path} to={route.path}>
-          {route.title}
-        </Link>
-      ))}
+      <S.MenuIcon>
+        <HamburgerMenu themeChange={toggleTheme} routes={routes} />
+      </S.MenuIcon>
     </S.Container>
   );
 };

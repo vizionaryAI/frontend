@@ -1,15 +1,16 @@
-import { useState } from "react";
-import { LoginButton } from "../LoginButton/LoginButton";
-import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import * as S from "./HamburgerMenu.styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 
 type Props = {
   themeChange: () => void;
+  routes: { title: string; path: string }[];
 };
 
-export const HamburgerMenu: React.FC<Props> = ({ themeChange }) => {
+export const HamburgerMenu: React.FC<Props> = ({ themeChange, routes }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -17,16 +18,25 @@ export const HamburgerMenu: React.FC<Props> = ({ themeChange }) => {
   };
 
   return (
-    <S.MenuContainer>
+    <>
       <S.MenuIcon onClick={toggleMenu}>
-        <FontAwesomeIcon icon={faUser} /> {/* FontAwesome user ikon */}
+        <FontAwesomeIcon icon={faBars} />
       </S.MenuIcon>
-      <S.MenuContent isopen={isOpen ? "true" : "false"}>
-        <ThemeToggle toggleTheme={themeChange} />
-        <LoginButton />
-      </S.MenuContent>
-    </S.MenuContainer>
+
+      {isOpen && (
+        <S.Container>
+          {routes.map((route, index) => (
+            <S.MenuItem key={index}>
+              <Link to={route.path} onClick={toggleMenu}>
+                {route.title}
+              </Link>
+            </S.MenuItem>
+          ))}
+          <S.ThemeToggleWrapper>
+            <ThemeToggle toggleTheme={themeChange} />
+          </S.ThemeToggleWrapper>
+        </S.Container>
+      )}
+    </>
   );
 };
-
-export default HamburgerMenu;
