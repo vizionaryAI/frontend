@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import { routes } from "../HamburgerMenu/routes";
@@ -8,6 +8,7 @@ import { useClientStore } from "../../store/client.store";
 import { darkTheme, lightTheme } from "../../theme/theme";
 import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
 import * as S from "./AuthenticatedApp.styles";
+import { Loader } from "../Loader/Loader";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
@@ -17,8 +18,19 @@ const getInitialTheme = () => {
 export const AuthenticatedApp: React.FC = () => {
   const [theme, setTheme] = useState<DefaultTheme>(getInitialTheme);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const isAuthenticated = useIsAuthenticated();
   const { token } = useClientStore();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!isAuthenticated || token.length === 0) {
     return (
