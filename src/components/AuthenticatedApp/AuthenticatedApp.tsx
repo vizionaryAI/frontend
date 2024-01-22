@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import { routes } from "../HamburgerMenu/routes";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { Login } from "../Login/Login";
 import { useClientStore } from "../../store/client.store";
 import { darkTheme, lightTheme } from "../../theme/theme";
@@ -21,6 +21,7 @@ export const AuthenticatedApp: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const isAuthenticated = useIsAuthenticated();
   const { token } = useClientStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -33,6 +34,7 @@ export const AuthenticatedApp: React.FC = () => {
   }
 
   if (!isAuthenticated || token.length === 0) {
+    navigate("/login");
     return (
       <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
         <S.LoginLayout>
