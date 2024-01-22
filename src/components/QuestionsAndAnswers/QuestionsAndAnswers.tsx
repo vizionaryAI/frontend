@@ -40,7 +40,7 @@ export const QuestionsAndAnswers = () => {
         <S.Subtitle>{questionsAndAnswersStore.question.subtitle}</S.Subtitle>
         {questionsAndAnswersStore.question.conversation.map((entry, index) => (
           <S.Message key={index} role={entry.role} theme={theme}>
-            {entry.message}
+            {entry.content}
           </S.Message>
         ))}
         <div ref={endOfMessagesRef} />

@@ -32,9 +32,9 @@ export const ChatBot: React.FC = () => {
       <S.MessagesContainer>
         {questionsAndAnswersStore.question.conversation.map((conv, index) =>
           conv.role === "user" ? (
-            <S.UserMessage key={index}>{conv.message}</S.UserMessage>
+            <S.UserMessage key={index}>{conv.content}</S.UserMessage>
           ) : (
-            <S.BotMessage key={index}>{conv.message}</S.BotMessage>
+            <S.BotMessage key={index}>{conv.content}</S.BotMessage>
           )
         )}
         <div ref={endOfMessagesRef} />

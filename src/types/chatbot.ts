@@ -4,7 +4,7 @@ export type ChatbotQuestionsAndAnswers = {
     subtitle: string;
     conversation: {
       role: string;
-      message: string;
+      content: string;
     }[];
     completed: boolean;
   };
