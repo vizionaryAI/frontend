@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 import Button from "../Button/Button";
 
-export const MessagesContainer = styled.div`
+export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   overflow-y: auto;
   padding: 0 20px;
   margin-bottom: 10px;
@@ -9,9 +9,10 @@ export const MessagesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${({ theme }) => theme.chatBotMessageBackground};
 `;
 
-export const ChatContainer = styled.div`
+export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   max-width: 50rem;
@@ -20,7 +21,7 @@ export const ChatContainer = styled.div`
   margin: auto;
   padding: 20px;
   border-radius: 15px;
-  background-color: #f4f7f6;
+  background-color: ${({ theme }) => theme.chatBotBackground};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 4.5rem;
   margin-bottom: 1.5rem;
@@ -43,36 +44,36 @@ export const Message = styled.div`
   line-height: 1.4;
 `;
 
-export const UserMessage = styled(Message)`
-  background-color: #007bff;
-  color: white;
+export const UserMessage = styled(Message)<{ theme: DefaultTheme }>`
+  background-color: ${({ theme }) => theme.chatBotUserMessageBackground};
+  color: ${({ theme }) => theme.text};
   align-self: flex-end;
 `;
 
-export const BotMessage = styled(Message)`
-  background-color: #e1e9ee;
-  color: #333;
+export const BotMessage = styled(Message)<{ theme: DefaultTheme }>`
+  background-color: ${({ theme }) => theme.chatBotMessageBackground};
+  color: ${({ theme }) => theme.text};
   align-self: flex-start;
-  border: 1px solid #d3d8db;
+  border: 1px solid ${({ theme }) => theme.border};
 `;
 
-export const InputContainer = styled.div`
-  background-color: #f8f9fa;
+export const InputContainer = styled.div<{ theme: DefaultTheme }>`
+  background-color: ${({ theme }) => theme.chatBotChatBackground};
   padding: 0.5rem 1rem;
-  border-top: 1px solid #d3d8db;
+  border-top: 1px solid ${({ theme }) => theme.border};
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 `;
 
-export const Input = styled.textarea`
+export const Input = styled.textarea<{ theme: DefaultTheme }>`
   flex: 1;
   width: 100%;
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-  background: #fff;
-  border: 2px solid #007bff;
+  background-color: ${({ theme }) => theme.chatBotBackground};
+  border: 2px solid ${({ theme }) => theme.border};
   border-radius: 5px;
-  color: #333;
+  color: ${({ theme }) => theme.text};
   resize: none;
   min-height: 6rem;
   padding: 0.5rem;

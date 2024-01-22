@@ -20,6 +20,9 @@ export const lightTheme = {
   hamburgerMenuHoverBackground: "#F9EFDB",
   hamburgerMenuBorder: "#ececf1",
   appLayoutBackground: "#FFF",
+  chatBotBackground: "#FFF",
+  chatBotUserMessageBackground: "#F9EFDB",
+  chatBotMessageBackground: "#FFF",
 };
 
 export const darkTheme = {
@@ -43,4 +46,7 @@ export const darkTheme = {
   hamburgerMenuHoverBackground: "#202020",
   hamburgerMenuBorder: "#3D3B40",
   appLayoutBackground: "#000",
+  chatBotBackground: "#000",
+  chatBotUserMessageBackground: "#202020",
+  chatBotMessageBackground: "#000",
 };
