@@ -6,6 +6,7 @@ import { ThemeContext } from "styled-components";
 
 export const Login = () => {
   const theme = useContext(ThemeContext);
+
   return (
     <React.Fragment>
       <S.Title theme={theme}>Vizionary AI</S.Title>
