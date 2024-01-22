@@ -42,6 +42,8 @@ export const AuthenticatedApp: React.FC = () => {
         </S.LoginLayout>
       </ThemeProvider>
     );
+  } else {
+    navigate("/home");
   }
 
   return (
