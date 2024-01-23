@@ -3,8 +3,8 @@ import { ChatbotQuestionsAndAnswers } from "../types/chatbot";
 
 export async function getQuestionsAndAnswersAPI(): Promise<ChatbotQuestionsAndAnswers> {
   try {
-    return await api.get(`api/v0/next`);
-
+    const resp = await api.get(`api/v0/next`);
+    return resp.data;
     // const dummyData: ChatbotQuestionsAndAnswers = {
     //   question: {
     //     title: "What are your career ambitions?",
@@ -69,8 +69,8 @@ export async function sendAnswerAPI(
   Answer: string
 ): Promise<ChatbotQuestionsAndAnswers> {
   try {
-    return await api.post(`api/v0/next`, { Answer });
-
+    const resp = await api.post(`api/v0/next`, { Answer });
+    return resp.data;
     ///=========================================================================
     //dummy data
     // const dummyData: ChatbotQuestionsAndAnswers = {
