@@ -11,6 +11,7 @@ api.defaults.headers.post["Content-Type"] = "application/json";
 api.defaults.headers.put["Content-Type"] = "application/json";
 api.defaults.headers.patch["Content-Type"] = "application/json";
 api.defaults.headers.delete["Content-Type"] = "application/json";
+api.defaults.headers.get["Content-Type"] = "application/json";
 
 api.interceptors.request.use(
   async (config) => {
