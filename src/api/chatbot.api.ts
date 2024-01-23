@@ -69,7 +69,7 @@ export async function sendAnswerAPI(
   Answer: string
 ): Promise<ChatbotQuestionsAndAnswers> {
   try {
-    const resp = await api.post(`api/v0/next`, { Answer });
+    const resp = await api.post(`api/v0/next`, { content: Answer });
     return resp.data;
     ///=========================================================================
     //dummy data
