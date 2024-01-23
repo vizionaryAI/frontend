@@ -23,6 +23,7 @@ export const useQuestionsAndAnswersStore = create<QuestionsAndAnswersStore>(
 
     getNewQA: async () => {
       const newQA = await getQuestionsAndAnswersAPI();
+      console.log("newQA: ", newQA);
       set({ questionsAndAnswersStore: newQA });
     },
     sendAnswer: async (Answer: string) => {
