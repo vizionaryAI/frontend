@@ -38,11 +38,12 @@ export const QuestionsAndAnswers = () => {
       <S.MessagesContainer>
         <S.Question>{questionsAndAnswersStore.question.title}</S.Question>
         <S.Subtitle>{questionsAndAnswersStore.question.subtitle}</S.Subtitle>
-        {questionsAndAnswersStore.question.conversation.map((entry, index) => (
-          <S.Message key={index} role={entry.role} theme={theme}>
-            {entry.content}
-          </S.Message>
-        ))}
+        {questionsAndAnswersStore.question &&
+          questionsAndAnswersStore.question.conversation.map((entry, index) => (
+            <S.Message key={index} role={entry.role} theme={theme}>
+              {entry.content}
+            </S.Message>
+          ))}
         <div ref={endOfMessagesRef} />
       </S.MessagesContainer>
       {questionsAndAnswersStore.question.completed ? (
