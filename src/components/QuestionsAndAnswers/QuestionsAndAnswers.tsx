@@ -38,7 +38,7 @@ export const QuestionsAndAnswers = () => {
       <S.MessagesContainer>
         <S.Question>{questionsAndAnswersStore.question.title}</S.Question>
         <S.Subtitle>{questionsAndAnswersStore.question.subtitle}</S.Subtitle>
-        {questionsAndAnswersStore.question &&
+        {questionsAndAnswersStore.question.conversation.length > 0 &&
           questionsAndAnswersStore.question.conversation.map((entry, index) => (
             <S.Message key={index} role={entry.role} theme={theme}>
               {entry.content}
