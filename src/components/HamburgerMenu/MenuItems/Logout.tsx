@@ -1,21 +1,7 @@
-import { useMsal } from "@azure/msal-react";
-import { useClientStore } from "../../../store/client.store";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Logout: React.FC = () => {
-  const { setToken } = useClientStore();
-  const { instance } = useMsal();
+  const { logout } = useAuth0();
 
-  const logout = () => {
-    setToken("");
-
-    instance
-      .logoutPopup({
-        postLogoutRedirectUri: "/",
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
-
-  return <div onClick={logout}>Log Out</div>;
+  return <div onClick={() => logout()}>Log Out</div>;
 };

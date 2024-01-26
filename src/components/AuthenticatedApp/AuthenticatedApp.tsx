@@ -16,8 +16,8 @@ const getInitialTheme = () => {
 export const AuthenticatedApp: React.FC = () => {
   const [theme, setTheme] = useState<DefaultTheme>(getInitialTheme);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const { token } = useClientStore();
-  console.log("token", token);
   if (token.length === 0) {
     return (
       <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
