@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 
 export const QuestionsAndAnswers = () => {
   const theme = useContext(ThemeContext);
-  const { questionsAndAnswersStore, getNewQA, sendAnswer } =
+  const { questionsAndAnswers, getNewQA, sendAnswerToQuestion } =
     useQuestionsAndAnswersStore();
   const [newAnswer, setNewAnswer] = useState("");
 
@@ -15,7 +15,7 @@ export const QuestionsAndAnswers = () => {
   }, []);
 
   const handleSendAnswer = () => {
-    sendAnswer(newAnswer);
+    sendAnswerToQuestion(newAnswer);
     setNewAnswer("");
   };
 
@@ -27,26 +27,26 @@ export const QuestionsAndAnswers = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [questionsAndAnswersStore.question.conversation]);
+  }, [questionsAndAnswers.question.conversation]);
 
-  if (questionsAndAnswersStore.error) {
-    return <S.ErrorBox>Error: {questionsAndAnswersStore.error}</S.ErrorBox>;
+  if (questionsAndAnswers.error) {
+    return <S.ErrorBox>Error: {questionsAndAnswers.error}</S.ErrorBox>;
   }
 
   return (
     <S.NotebookPage theme={theme}>
       <S.MessagesContainer>
-        <S.Question>{questionsAndAnswersStore.question.title}</S.Question>
-        <S.Subtitle>{questionsAndAnswersStore.question.subtitle}</S.Subtitle>
-        {questionsAndAnswersStore.question.conversation.length > 0 &&
-          questionsAndAnswersStore.question.conversation.map((entry, index) => (
+        <S.Question>{questionsAndAnswers.question.title}</S.Question>
+        <S.Subtitle>{questionsAndAnswers.question.subtitle}</S.Subtitle>
+        {questionsAndAnswers.question.conversation.length > 0 &&
+          questionsAndAnswers.question.conversation.map((entry, index) => (
             <S.Message key={index} role={entry.role} theme={theme}>
               {entry.content}
             </S.Message>
           ))}
         <div ref={endOfMessagesRef} />
       </S.MessagesContainer>
-      {questionsAndAnswersStore.question.completed ? (
+      {questionsAndAnswers.question.completed ? (
         <Button onClick={() => console.log("Next Question")}>
           Next Question
         </Button>

@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import { QuestionsAndAnswers } from "../QuestionsAndAnswers/QuestionsAndAnswers";
-import { ChatBot } from "../ChatBot/ChatBot";
+import { Home } from "../Home/Home";
 
 type NavigationItem = {
   path: string;
@@ -11,12 +10,7 @@ type NavigationItem = {
 export const routes: NavigationItem[] = [
   {
     path: "/home",
-    element: <QuestionsAndAnswers />,
+    element: <Home />,
     title: "Home",
-  },
-  {
-    path: "/chatbot",
-    element: <ChatBot />,
-    title: "ChatBot",
   },
 ];

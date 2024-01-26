@@ -11,3 +11,11 @@ export type ChatbotQuestionsAndAnswers = {
   finished_all: boolean;
   error: string | null;
 };
+
+export type ChatBotConversation = {
+  conversation: {
+    role: string;
+    content: string;
+  }[];
+  error: string | null;
+};

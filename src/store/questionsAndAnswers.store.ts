@@ -1,16 +1,19 @@
 import { create } from "zustand";
 import { ChatbotQuestionsAndAnswers } from "../types/chatbot";
-import { getQuestionsAndAnswersAPI, sendAnswerAPI } from "../api/chatbot.api";
+import {
+  getQuestionsAndAnswersAPI,
+  sendAnswerToQuestionAPI,
+} from "../api/chatbot.api";
 
 type QuestionsAndAnswersStore = {
-  questionsAndAnswersStore: ChatbotQuestionsAndAnswers;
+  questionsAndAnswers: ChatbotQuestionsAndAnswers;
   getNewQA: () => void;
-  sendAnswer: (Answer: string) => void;
+  sendAnswerToQuestion: (Answer: string) => void;
 };
 
 export const useQuestionsAndAnswersStore = create<QuestionsAndAnswersStore>(
   (set) => ({
-    questionsAndAnswersStore: {
+    questionsAndAnswers: {
       question: {
         title: "",
         subtitle: "",
@@ -24,11 +27,11 @@ export const useQuestionsAndAnswersStore = create<QuestionsAndAnswersStore>(
     getNewQA: async () => {
       const newQA = await getQuestionsAndAnswersAPI();
 
-      set({ questionsAndAnswersStore: newQA });
+      set({ questionsAndAnswers: newQA });
     },
-    sendAnswer: async (Answer: string) => {
-      const newQA = await sendAnswerAPI(Answer);
-      set({ questionsAndAnswersStore: newQA });
+    sendAnswerToQuestion: async (Answer: string) => {
+      const newQA = await sendAnswerToQuestionAPI(Answer);
+      set({ questionsAndAnswers: newQA });
     },
   })
 );

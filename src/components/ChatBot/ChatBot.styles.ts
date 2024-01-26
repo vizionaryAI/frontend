@@ -106,3 +106,11 @@ export const SendButton = styled(Button)`
     cursor: not-allowed;
   }
 `;
+
+export const ErrorBox = styled.div`
+  background-color: #ffccbc;
+  color: #c62828;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+`;
