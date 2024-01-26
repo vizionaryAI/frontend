@@ -7,6 +7,8 @@ import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { DefaultTheme } from "styled-components";
 import { routes } from "./routes";
 import { Logout } from "./MenuItems/Logout";
+import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
+import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
 
 type Props = {
   theme: DefaultTheme;
@@ -21,6 +23,9 @@ export const HamburgerMenu: React.FC<Props> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
+  const { deleteChat } = useChatBotConversationStore();
+  const { questionsAndAnswers } = useQuestionsAndAnswersStore();
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -32,6 +37,15 @@ export const HamburgerMenu: React.FC<Props> = ({
     themeChange(newTheme);
   };
 
+  const handleLinkClick = (title: string) => {
+    if (title === "New Chat") {
+      {
+        deleteChat();
+      }
+      toggleMenu();
+    }
+  };
+
   return (
     <>
       <S.MenuIcon onClick={toggleMenu}>
@@ -40,14 +54,19 @@ export const HamburgerMenu: React.FC<Props> = ({
 
       {isMenuOpen && (
         <S.Container>
-          {routes.map((route, index) => (
-            <S.MenuItem key={index}>
-              <Link to={route.path} onClick={toggleMenu}>
-                {route.title}
-              </Link>
-            </S.MenuItem>
-          ))}
-
+          {routes.map((route, index) =>
+            !questionsAndAnswers.finished_all &&
+            route.title === "New Chat" ? null : (
+              <S.MenuItem key={index}>
+                <Link
+                  to={route.path}
+                  onClick={() => handleLinkClick(route.title)}
+                >
+                  {route.title}
+                </Link>
+              </S.MenuItem>
+            )
+          )}
           <S.MenuItem>
             <Logout />
           </S.MenuItem>
