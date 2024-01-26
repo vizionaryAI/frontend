@@ -40,6 +40,8 @@ export const NotebookPage = styled.div<{ theme: DefaultTheme }>`
     max-height: 100vh;
     margin-top: 1.5rem;
     margin-bottom: 2.8rem;
+    max-height: unset;
+    overflow-y: visible;
   }
 `;
 
