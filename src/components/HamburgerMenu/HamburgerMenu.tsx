@@ -7,8 +7,6 @@ import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { DefaultTheme } from "styled-components";
 import { routes } from "./routes";
 import { Logout } from "./MenuItems/Logout";
-import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
-import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
 
 type Props = {
   theme: DefaultTheme;
@@ -23,8 +21,6 @@ export const HamburgerMenu: React.FC<Props> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
-  const { deleteChat } = useChatBotConversationStore();
-  const { questionsAndAnswers } = useQuestionsAndAnswersStore();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -51,11 +47,7 @@ export const HamburgerMenu: React.FC<Props> = ({
               </Link>
             </S.MenuItem>
           ))}
-          {questionsAndAnswers.finished_all && (
-            <S.MenuItem>
-              <div onClick={deleteChat}>New Chat</div>
-            </S.MenuItem>
-          )}
+
           <S.MenuItem>
             <Logout />
           </S.MenuItem>
