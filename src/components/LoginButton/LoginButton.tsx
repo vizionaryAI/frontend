@@ -1,70 +1,36 @@
 import { useEffect } from "react";
 import { useClientStore } from "../../store/client.store";
 import Button from "../Button/Button";
-import { msalInstance, loginRequest } from "../../authConfig";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import * as S from "./LoginButton.styles";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const LoginButton = () => {
-  const isAuthenticated = useIsAuthenticated();
-
+  const { isAuthenticated, loginWithRedirect, logout, getAccessTokenSilently } =
+    useAuth0();
   const { setToken, token } = useClientStore();
-  const { instance, accounts, inProgress } = useMsal();
-  const account = accounts[0];
 
   useEffect(() => {
     const getToken = async () => {
-      if (!account || inProgress !== "none") {
-        return;
-      }
-
-      try {
-        const silentToken = await instance.acquireTokenSilent({
-          scopes: ["openid", "profile", "User.Read"],
-          account: account,
-        });
-
-        setToken(silentToken.accessToken);
-      } catch (error) {
-        // Handle error, possibly acquire token using a popup if silent fails
-        console.error(error);
-      }
+      const token = await getAccessTokenSilently();
+      setToken(token);
     };
 
     if (isAuthenticated) {
       getToken();
     }
-  }, [isAuthenticated, account, inProgress, instance, setToken]);
+  }, [isAuthenticated, getAccessTokenSilently, setToken]);
 
-  const login = async () => {
-    try {
-      const loginResponse = await msalInstance.loginPopup(loginRequest);
-
-      setToken(loginResponse.accessToken);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const logout = () => {
-    setToken("");
-
-    instance
-      .logoutPopup({
-        postLogoutRedirectUri: "/",
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
+  if (isAuthenticated && token.length > 0) {
+    return (
+      <S.Container>
+        <Button onClick={() => logout()}>Log Out</Button>
+      </S.Container>
+    );
+  }
 
   return (
     <S.Container>
-      {token && isAuthenticated ? (
-        <Button onClick={logout}>Log Out</Button>
-      ) : (
-        <Button onClick={login}>Log In</Button>
-      )}
+      <Button onClick={() => loginWithRedirect()}>Log In</Button>
     </S.Container>
   );
 };
