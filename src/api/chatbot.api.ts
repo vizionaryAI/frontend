@@ -75,3 +75,17 @@ export async function sendAnswerToChatAPI(
     };
   }
 }
+
+export async function getDeleteChatAPI(): Promise<ChatBotConversation> {
+  try {
+    const resp = await api.delete(`api/v0/chat`);
+    return resp.data;
+  } catch (error) {
+    console.log("Failed to delete chat conversation: ", error);
+
+    return {
+      conversation: [],
+      error: "Failed to delete chat conversation",
+    };
+  }
+}
