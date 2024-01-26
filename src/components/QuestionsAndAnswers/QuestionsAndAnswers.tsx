@@ -2,7 +2,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
 import * as S from "./QuestionsAndAnswers.styles";
 import { ThemeContext } from "styled-components";
-import Button from "../Button/Button";
 
 export const QuestionsAndAnswers = () => {
   const theme = useContext(ThemeContext);
@@ -47,9 +46,9 @@ export const QuestionsAndAnswers = () => {
         <div ref={endOfMessagesRef} />
       </S.MessagesContainer>
       {questionsAndAnswers.question.completed ? (
-        <Button onClick={() => console.log("Next Question")}>
-          Next Question
-        </Button>
+        <S.SendButton onClick={() => getNewQA()}>
+          New Daily Reflection
+        </S.SendButton>
       ) : (
         <S.InputContainer>
           <S.Input

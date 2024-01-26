@@ -9,8 +9,6 @@ export async function getQuestionsAndAnswersAPI(): Promise<ChatbotQuestionsAndAn
     const resp = await api.get(`api/v0/next`);
     return resp.data;
   } catch (error) {
-    console.log("Faild to get new questions: ", error);
-
     return {
       question: {
         title: "",
@@ -19,7 +17,7 @@ export async function getQuestionsAndAnswersAPI(): Promise<ChatbotQuestionsAndAn
         completed: false,
       },
       finished_all: false,
-      error: "Failed to fetch data",
+      error: "Something went wrong",
     };
   }
 }
@@ -31,8 +29,6 @@ export async function sendAnswerToQuestionAPI(
     const resp = await api.post(`api/v0/next`, { content: Answer });
     return resp.data;
   } catch (error) {
-    console.log("Faild to send Answer: ", error);
-
     return {
       question: {
         title: "",
@@ -41,7 +37,7 @@ export async function sendAnswerToQuestionAPI(
         completed: false,
       },
       finished_all: false,
-      error: "Failed to send Answer",
+      error: "Something went wrong",
     };
   }
 }
@@ -51,8 +47,6 @@ export async function getChatBotConversationAPI(): Promise<ChatBotConversation> 
     const resp = await api.get(`api/v0/chat`);
     return resp.data;
   } catch (error) {
-    console.log("Failed to fetch chat conversation: ", error);
-
     return {
       conversation: [],
       error: "Failed to fetch chat conversation",
@@ -67,8 +61,6 @@ export async function sendAnswerToChatAPI(
     const resp = await api.post(`api/v0/chat`, { content: Answer });
     return resp.data;
   } catch (error) {
-    console.log("Faild to send Answer: ", error);
-
     return {
       conversation: [],
       error: "Failed to send Answer",
@@ -81,8 +73,6 @@ export async function getDeleteChatAPI(): Promise<ChatBotConversation> {
     const resp = await api.delete(`api/v0/chat`);
     return resp.data;
   } catch (error) {
-    console.log("Failed to delete chat conversation: ", error);
-
     return {
       conversation: [],
       error: "Failed to delete chat conversation",
