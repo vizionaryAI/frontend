@@ -12,7 +12,11 @@ export const Home = () => {
 
   return (
     <React.Fragment>
-      {questionsAndAnswers.finished_all ? <ChatBot /> : <QuestionsAndAnswers />}
+      {!questionsAndAnswers.finished_all ? (
+        <ChatBot />
+      ) : (
+        <QuestionsAndAnswers />
+      )}
     </React.Fragment>
   );
 };

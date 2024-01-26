@@ -57,12 +57,7 @@ export const QuestionsAndAnswers = () => {
             onChange={(e) => setNewAnswer(e.currentTarget.value)}
             placeholder="New Answer, min 200 characters"
           />
-          <S.SendButton
-            disabled={newAnswer.length < 200}
-            onClick={handleSendAnswer}
-          >
-            Answer
-          </S.SendButton>
+          <S.SendButton onClick={handleSendAnswer}>Answer</S.SendButton>
         </S.InputContainer>
       )}
     </S.NotebookPage>

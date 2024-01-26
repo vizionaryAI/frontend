@@ -66,20 +66,20 @@ export const InputContainer = styled.div<{ theme: DefaultTheme }>`
   padding: 0.5rem 1rem;
   border-top: 1px solid ${({ theme }) => theme.border};
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  flex-direction: row;
+  align-items: center;
 `;
 
-export const Input = styled.textarea<{ theme: DefaultTheme }>`
+export const Input = styled.input<{ theme: DefaultTheme }>`
   flex: 1;
-  width: 100%;
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background-color: ${({ theme }) => theme.chatBotBackground};
-  border: 2px solid ${({ theme }) => theme.border};
-  border-radius: 5px;
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: 4px;
   color: ${({ theme }) => theme.text};
   resize: none;
-  min-height: 6rem;
+  align-items: center;
+
   padding: 0.5rem;
   box-sizing: border-box;
 
@@ -98,9 +98,8 @@ export const SendButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
-  align-self: flex-end;
+  margin-left: 0.5rem;
+  padding: 1rem;
   background-color: #007bff;
   color: white;
   cursor: pointer;

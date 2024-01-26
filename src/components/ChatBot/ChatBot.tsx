@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as S from "./ChatBot.styles";
 import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 export const ChatBot: React.FC = () => {
   const { chatBotConversation, getChatBotConversation, sendAnswer } =
@@ -47,13 +49,15 @@ export const ChatBot: React.FC = () => {
         <S.Input
           value={newAnswer}
           onChange={(e) => setNewAnswer(e.currentTarget.value)}
-          placeholder="New Answer, min 200 characters"
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              handleSendAnswer();
+            }
+          }}
+          placeholder="Write a message..."
         />
-        <S.SendButton
-          disabled={newAnswer.length < 10}
-          onClick={handleSendAnswer}
-        >
-          Answer
+        <S.SendButton onClick={handleSendAnswer}>
+          <FontAwesomeIcon icon={faPaperPlane} />
         </S.SendButton>
       </S.InputContainer>
     </S.ChatContainer>
