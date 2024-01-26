@@ -24,7 +24,7 @@ export const ChatBot: React.FC = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [chatBotConversation.conversation]);
+  }, [chatBotConversation.conversation.length]);
 
   if (chatBotConversation.error) {
     return <S.ErrorBox>Error: {chatBotConversation.error}</S.ErrorBox>;

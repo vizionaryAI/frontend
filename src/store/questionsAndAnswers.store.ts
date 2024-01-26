@@ -12,7 +12,7 @@ type QuestionsAndAnswersStore = {
 };
 
 export const useQuestionsAndAnswersStore = create<QuestionsAndAnswersStore>(
-  (set) => ({
+  (set, get) => ({
     questionsAndAnswers: {
       question: {
         title: "",
@@ -30,6 +30,12 @@ export const useQuestionsAndAnswersStore = create<QuestionsAndAnswersStore>(
       set({ questionsAndAnswers: newQA });
     },
     sendAnswerToQuestion: async (Answer: string) => {
+      get().questionsAndAnswers.question.conversation.push({
+        role: "user",
+        content: Answer,
+      });
+      set({ questionsAndAnswers: get().questionsAndAnswers });
+
       const newQA = await sendAnswerToQuestionAPI(Answer);
       set({ questionsAndAnswers: newQA });
     },

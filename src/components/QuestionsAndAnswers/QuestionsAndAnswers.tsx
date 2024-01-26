@@ -27,7 +27,7 @@ export const QuestionsAndAnswers = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [questionsAndAnswers.question.conversation]);
+  }, [questionsAndAnswers.question.conversation.length]);
 
   if (questionsAndAnswers.error) {
     return <S.ErrorBox>Error: {questionsAndAnswers.error}</S.ErrorBox>;

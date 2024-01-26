@@ -12,7 +12,7 @@ type ChatBotConversationStore = {
 };
 
 export const useChatBotConversationStore = create<ChatBotConversationStore>(
-  (set) => ({
+  (set, get) => ({
     chatBotConversation: {
       conversation: [],
       error: null,
@@ -24,6 +24,11 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
       set({ chatBotConversation: conversation });
     },
     sendAnswer: async (Answer: string) => {
+      get().chatBotConversation.conversation.push({
+        role: "user",
+        content: Answer,
+      });
+      set({ chatBotConversation: get().chatBotConversation });
       const conversation = await sendAnswerToChatAPI(Answer);
       set({ chatBotConversation: conversation });
     },
