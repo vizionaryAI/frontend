@@ -39,11 +39,9 @@ export const HamburgerMenu: React.FC<Props> = ({
 
   const handleLinkClick = (title: string) => {
     if (title === "New Chat") {
-      {
-        deleteChat();
-      }
-      toggleMenu();
+      deleteChat();
     }
+    toggleMenu();
   };
 
   return (
