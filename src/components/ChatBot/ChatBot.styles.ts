@@ -16,6 +16,8 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   max-width: 50rem;
+  width: 50rem;
+  min-width: 50rem;
   height: 100vh;
   overflow-y: auto;
   margin: auto;
@@ -32,6 +34,8 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
     max-height: 100vh;
     margin-top: 1.5rem;
     margin-bottom: 2.8rem;
+    width: 100%;
+    min-width: 0;
   }
 `;
 

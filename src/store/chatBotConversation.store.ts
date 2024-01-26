@@ -20,6 +20,7 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
 
     getChatBotConversation: async () => {
       const conversation = await getChatBotConversationAPI();
+
       set({ chatBotConversation: conversation });
     },
     sendAnswer: async (Answer: string) => {

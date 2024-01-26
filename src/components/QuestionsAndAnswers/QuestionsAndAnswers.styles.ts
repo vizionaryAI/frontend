@@ -12,6 +12,7 @@ export const NotebookPage = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   max-width: 50rem;
+  width: 100%;
   height: 100vh;
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: ${(props) => props.theme.notebookBackground};
