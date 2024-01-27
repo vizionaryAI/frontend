@@ -30,12 +30,14 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
 
   @media (max-width: 768px) {
     margin: 0;
-    border-radius: 0;
+    margin-bottom: 10rem;
+    margin-top: 5rem;
+
     max-height: 100vh;
-    margin-top: 1.5rem;
-    margin-bottom: 2.8rem;
     width: 100%;
     min-width: 0;
+
+    box-shadow: none;
   }
 `;
 

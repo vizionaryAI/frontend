@@ -35,13 +35,7 @@ export const NotebookPage = styled.div<{ theme: DefaultTheme }>`
   margin-bottom: 2rem;
 
   @media (max-width: 768px) {
-    margin: 0;
-    border-radius: 0;
-    max-height: 100vh;
-    margin-top: 1.5rem;
-    margin-bottom: 2.8rem;
-    max-height: unset;
-    overflow-y: visible;
+    margin-bottom: 10rem;
   }
 `;
 
@@ -61,10 +55,10 @@ export const Message = styled.div<{ role: string; theme: DefaultTheme }>`
     props.role === "user"
       ? props.theme.userTextBackground
       : props.theme.adviserTextBackground};
-  padding: 10px;
-  border-radius: 10px;
-  margin: 10px 0;
-  display: inline-block;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 5x 0;
+
   font-weight: ${(props) => (props.role !== "user" ? "bold" : "normal")};
   word-wrap: break-word;
   word-break: break-word;
@@ -88,6 +82,7 @@ export const Input = styled.textarea`
   margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
+  resize: none;
 
   &:focus {
     outline: none;

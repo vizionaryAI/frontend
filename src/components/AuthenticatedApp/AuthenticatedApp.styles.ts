@@ -52,8 +52,6 @@ export const Layout = styled.div<{ theme: DefaultTheme; open: boolean }>`
   background-color: ${(props) => props.theme.background};
 
   @media (max-width: 768px) {
-    left: 0;
-    top: 2.5rem;
     width: 100%;
   }
 `;
