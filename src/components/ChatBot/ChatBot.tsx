@@ -79,16 +79,24 @@ export const ChatBot: React.FC = () => {
         )}
       </S.MessagesContainer>
       <S.InputContainer>
-        <S.Input
-          value={newAnswer}
-          onChange={(e) => setNewAnswer(e.currentTarget.value)}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              handleSendAnswer();
-            }
-          }}
-          placeholder="Write a message..."
-        />
+        {window.innerWidth >= 769 ? (
+          <S.Input
+            value={newAnswer}
+            onChange={(e) => setNewAnswer(e.currentTarget.value)}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleSendAnswer();
+              }
+            }}
+            placeholder="Write a message..."
+          />
+        ) : (
+          <S.Input
+            value={newAnswer}
+            onChange={(e) => setNewAnswer(e.currentTarget.value)}
+            placeholder="Write a message..."
+          />
+        )}
         <S.SendButton onClick={handleSendAnswer}>
           <FontAwesomeIcon icon={faPaperPlane} />
         </S.SendButton>
