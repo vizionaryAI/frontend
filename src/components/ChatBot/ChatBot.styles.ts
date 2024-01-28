@@ -119,3 +119,8 @@ export const ErrorBox = styled.div`
   margin: 10px 0;
   border-radius: 4px;
 `;
+
+export const WritingIndicatorContainer = styled.div`
+  align-self: flex-start;
+  margin-left: 1.5rem;
+`;

@@ -48,6 +48,7 @@ export const Subtitle = styled.p`
   color: #666;
   margin: 0;
   padding: 5px 0;
+  margin-bottom: 2rem;
 `;
 
 export const Message = styled.div<{ role: string; theme: DefaultTheme }>`
@@ -55,9 +56,8 @@ export const Message = styled.div<{ role: string; theme: DefaultTheme }>`
     props.role === "user"
       ? props.theme.userTextBackground
       : props.theme.adviserTextBackground};
-  padding: 5px;
   border-radius: 8px;
-  margin: 5x 0;
+  margin-bottom: 0.8rem;
 
   font-weight: ${(props) => (props.role !== "user" ? "bold" : "normal")};
   word-wrap: break-word;

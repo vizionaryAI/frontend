@@ -3,19 +3,38 @@ import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.sto
 import * as S from "./QuestionsAndAnswers.styles";
 import { ThemeContext } from "styled-components";
 
+import { WritingIndicator } from "../WritingIndicator/WritingIndicator";
+import { Typewriter } from "../Typewriter/Typewriter";
+
 export const QuestionsAndAnswers = () => {
   const theme = useContext(ThemeContext);
   const { questionsAndAnswers, getNewQA, sendAnswerToQuestion } =
     useQuestionsAndAnswersStore();
   const [newAnswer, setNewAnswer] = useState("");
+  const [waitingForAnswer, setWaitingForAnswer] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
     getNewQA();
   }, []);
 
+  // If the last message in the conversation is not from the user, then we are waiting for an answer
+  useEffect(() => {
+    if (
+      waitingForAnswer &&
+      questionsAndAnswers.question.conversation[
+        questionsAndAnswers.question.conversation.length - 1
+      ].role !== "user"
+    ) {
+      setWaitingForAnswer(false);
+    }
+  }, [questionsAndAnswers.question.conversation.length]);
+
   const handleSendAnswer = () => {
     sendAnswerToQuestion(newAnswer);
     setNewAnswer("");
+    setWaitingForAnswer(true);
+    setHasInteracted(true);
   };
 
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
@@ -40,10 +59,19 @@ export const QuestionsAndAnswers = () => {
         {questionsAndAnswers.question.conversation.length > 0 &&
           questionsAndAnswers.question.conversation.map((entry, index) => (
             <S.Message key={index} role={entry.role} theme={theme}>
-              {entry.content}
+              {entry.role !== "user" &&
+              index === questionsAndAnswers.question.conversation.length - 1 ? (
+                <Typewriter
+                  text={entry.content}
+                  enableVibration={hasInteracted}
+                />
+              ) : (
+                entry.content
+              )}
             </S.Message>
           ))}
         <div ref={endOfMessagesRef} />
+        {waitingForAnswer && <WritingIndicator />}
       </S.MessagesContainer>
       {questionsAndAnswers.question.completed ? (
         <S.SendButton onClick={() => getNewQA()}>
