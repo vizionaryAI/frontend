@@ -63,6 +63,7 @@ export const ChatBot: React.FC = () => {
                   <Typewriter
                     text={conv.content}
                     enableVibration={hasInteracted}
+                    onTextUpdate={scrollToBottom}
                   />
                 ) : (
                   conv.content

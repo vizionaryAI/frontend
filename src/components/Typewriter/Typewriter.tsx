@@ -4,12 +4,14 @@ type Props = {
   text: string;
   typingSpeed?: number;
   enableVibration: boolean;
+  onTextUpdate: () => void;
 };
 
 export const Typewriter: React.FC<Props> = ({
   text,
   typingSpeed = 100,
   enableVibration = false,
+  onTextUpdate,
 }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [index, setIndex] = useState(0);
@@ -25,6 +27,7 @@ export const Typewriter: React.FC<Props> = ({
         if (enableVibration && "vibrate" in navigator) {
           navigator.vibrate(10);
         }
+        onTextUpdate && onTextUpdate();
       }, typingSpeed);
 
       return () => clearTimeout(timer);

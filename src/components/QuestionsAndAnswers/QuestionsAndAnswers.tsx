@@ -64,6 +64,7 @@ export const QuestionsAndAnswers = () => {
                 <Typewriter
                   text={entry.content}
                   enableVibration={hasInteracted}
+                  onTextUpdate={scrollToBottom}
                 />
               ) : (
                 entry.content
