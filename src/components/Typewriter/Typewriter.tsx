@@ -9,7 +9,7 @@ type Props = {
 
 export const Typewriter: React.FC<Props> = ({
   text,
-  typingSpeed = 100,
+  typingSpeed = 200,
   enableVibration = false,
   onTextUpdate,
 }) => {
