@@ -35,7 +35,7 @@ export const NotebookPage = styled.div<{ theme: DefaultTheme }>`
   margin-bottom: 2rem;
 
   @media (max-width: 768px) {
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
   }
 `;
 
@@ -83,6 +83,7 @@ export const Input = styled.textarea`
   width: 100%;
   box-sizing: border-box;
   resize: none;
+  font-size: 1rem;
 
   &:focus {
     outline: none;

@@ -30,7 +30,7 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
 
   @media (max-width: 768px) {
     margin: 0;
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
     margin-top: 5rem;
 
     max-height: 100vh;
@@ -81,7 +81,7 @@ export const Input = styled.input<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.text};
   resize: none;
   align-items: center;
-
+  font-size: 1rem;
   padding: 0.5rem;
   box-sizing: border-box;
 
