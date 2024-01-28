@@ -79,11 +79,11 @@ export const Input = styled.textarea`
   border-bottom: 1px solid ${(props) => props.theme.border};
   color: ${(props) => props.theme.text};
   padding: 8px 10px;
-  margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
   resize: none;
   font-size: 1rem;
+  line-height: 1.6;
 
   &:focus {
     outline: none;
@@ -92,20 +92,38 @@ export const Input = styled.textarea`
 
   &::placeholder {
     color: #999;
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-grow: 1;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    line-height: 1;
   }
 `;
 
 export const InputContainer = styled.div`
-  padding: 0.5rem 1rem;
+  padding-left: 1rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+  }
 `;
 
 export const SendButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
   border-radius: 5px;
-  align-self: flex-start;
+  align-self: flex-end;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 `;

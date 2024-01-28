@@ -13,6 +13,19 @@ export const QuestionsAndAnswers = () => {
   const [newAnswer, setNewAnswer] = useState("");
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const adjustHeight = () => {
+    const textarea = inputRef.current;
+    if (textarea) {
+      textarea.style.height = "1em";
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  };
+
+  useEffect(() => {
+    adjustHeight();
+  }, [questionsAndAnswers.question.conversation.length]);
 
   useEffect(() => {
     getNewQA();
@@ -81,8 +94,12 @@ export const QuestionsAndAnswers = () => {
       ) : (
         <S.InputContainer>
           <S.Input
+            ref={inputRef}
             value={newAnswer}
-            onChange={(e) => setNewAnswer(e.currentTarget.value)}
+            onChange={(e) => {
+              setNewAnswer(e.currentTarget.value);
+              adjustHeight();
+            }}
             placeholder="New Answer, min 200 characters"
           />
           <S.SendButton onClick={handleSendAnswer}>Answer</S.SendButton>
