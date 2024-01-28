@@ -25,7 +25,8 @@ export const QuestionsAndAnswers = () => {
 
   useEffect(() => {
     adjustHeight();
-  }, [questionsAndAnswers.question.conversation.length]);
+    scrollToBottom();
+  }, [newAnswer]); // A függőségi tömbben az `newAnswer` állapota van figyelve
 
   useEffect(() => {
     getNewQA();
