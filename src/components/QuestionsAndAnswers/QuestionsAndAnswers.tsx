@@ -24,7 +24,10 @@ export const QuestionsAndAnswers = () => {
   };
 
   useEffect(() => {
-    adjustHeight();
+    if (newAnswer.length > 0) {
+      adjustHeight();
+    }
+
     scrollToBottom();
   }, [newAnswer]); // A függőségi tömbben az `newAnswer` állapota van figyelve
 
