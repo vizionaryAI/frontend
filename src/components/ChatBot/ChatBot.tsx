@@ -40,7 +40,7 @@ export const ChatBot: React.FC = () => {
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "auto" });
   };
 
   useEffect(() => {
