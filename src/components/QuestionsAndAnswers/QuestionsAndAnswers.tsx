@@ -25,7 +25,7 @@ export const QuestionsAndAnswers = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    scrollToBottomSmooth();
     adjustHeight();
   }, [newAnswer]);
 
@@ -54,12 +54,16 @@ export const QuestionsAndAnswers = () => {
 
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
+  const scrollToBottomSmooth = () => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const scrollToBottom = () => {
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "auto" });
+  };
+
   useEffect(() => {
-    scrollToBottom();
+    scrollToBottomSmooth();
   }, [questionsAndAnswers.question.conversation.length]);
 
   if (questionsAndAnswers.error) {
