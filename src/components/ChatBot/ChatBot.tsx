@@ -43,6 +43,10 @@ export const ChatBot: React.FC = () => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatBotConversation.conversation.length]);
+
   if (chatBotConversation.error) {
     return <S.ErrorBox>Error: {chatBotConversation.error}</S.ErrorBox>;
   }
