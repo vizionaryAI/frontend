@@ -45,6 +45,10 @@ export const QuestionsAndAnswers = () => {
     setNewAnswer("");
     setWaitingForAnswer(true);
     setHasInteracted(true);
+    const textarea = inputRef.current;
+    if (textarea) {
+      textarea.style.height = "2rem";
+    }
   };
 
   const endOfMessagesRef = useRef<HTMLDivElement>(null);

@@ -116,7 +116,8 @@ export const SendButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 25px;
+  padding: 1.2rem;
   align-self: flex-end;
   cursor: pointer;
 

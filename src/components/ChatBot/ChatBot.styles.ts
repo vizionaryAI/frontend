@@ -110,7 +110,9 @@ export const SendButton = styled(Button)`
   align-items: center;
   align-self: flex-end;
   margin-left: 0.5rem;
-  padding: 1rem;
+  border-radius: 25px;
+  padding: 1.2rem;
+  width: 6rem;
   background-color: #007bff;
   color: white;
   cursor: pointer;
