@@ -38,7 +38,7 @@ export const HamburgerMenu: React.FC<Props> = ({
   };
 
   const handleLinkClick = (title: string) => {
-    if (title === "New Chat") {
+    if (title === "New Daily Reflection") {
       deleteChat();
     }
     toggleMenu();
