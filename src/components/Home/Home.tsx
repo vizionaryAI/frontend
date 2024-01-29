@@ -13,7 +13,7 @@ export const Home = () => {
 
   if (
     !questionsAndAnswers.error &&
-    questionsAndAnswers.question.title.length === 0 && //TODO: add init state
+    questionsAndAnswers.question?.title.length === 0 && //TODO: add init state
     !questionsAndAnswers.finished_all
   ) {
     return <Loader />;
