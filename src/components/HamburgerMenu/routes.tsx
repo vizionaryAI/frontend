@@ -17,6 +17,6 @@ export const routes: NavigationItem[] = [
   {
     path: "/home",
     element: <NewChat />,
-    title: "New Chat",
+    title: "New Daily Reflection",
   },
 ];

@@ -19,7 +19,7 @@ export const QuestionsAndAnswers = () => {
   const adjustHeight = () => {
     const textarea = inputRef.current;
     if (textarea) {
-      textarea.style.height = "1em";
+      textarea.style.height = "1rem";
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   };
@@ -86,9 +86,7 @@ export const QuestionsAndAnswers = () => {
         {waitingForAnswer && <WritingIndicator />}
       </S.MessagesContainer>
       {questionsAndAnswers.question.completed ? (
-        <S.SendButton onClick={() => getNewQA()}>
-          New Daily Reflection
-        </S.SendButton>
+        <S.SendButton onClick={() => getNewQA()}>Next Question</S.SendButton>
       ) : (
         <S.InputContainer>
           <S.Input

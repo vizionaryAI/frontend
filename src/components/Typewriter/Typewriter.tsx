@@ -10,7 +10,7 @@ type Props = {
 
 export const Typewriter: React.FC<Props> = ({
   text,
-  typingSpeed = 60,
+  typingSpeed = 30,
   enableVibration = false,
   onTextUpdate,
   setIsTyping,
@@ -35,7 +35,7 @@ export const Typewriter: React.FC<Props> = ({
           }
           onTextUpdate();
         },
-        index === 0 ? 800 : typingSpeed // delay for first word
+        typingSpeed // delay for first word
       );
 
       return () => clearTimeout(timer);

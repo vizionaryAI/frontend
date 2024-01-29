@@ -78,22 +78,19 @@ export const Input = styled.textarea`
   border: none;
   border-bottom: 1px solid ${(props) => props.theme.border};
   color: ${(props) => props.theme.text};
-  padding: 8px 10px;
   width: 100%;
   box-sizing: border-box;
   resize: none;
   font-size: 1rem;
   line-height: 1.6;
+  height: 2rem;
 
   &:focus {
     outline: none;
-    border-bottom: 0px solid ${(props) => props.theme.highlight};
   }
 
   &::placeholder {
-    color: #999;
     font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-    font-size: 1rem;
   }
 
   @media (max-width: 768px) {
