@@ -3,7 +3,8 @@ import Button from "../Button/Button";
 
 export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   overflow-y: auto;
-  padding: 0 20px;
+  padding-left: 1rem;
+  padding-right: 1rem;
   margin-bottom: 10px;
   flex-grow: 1;
   display: flex;
@@ -16,12 +17,12 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   max-width: 50rem;
-  width: 50rem;
-  min-width: 50rem;
+  width: 100%;
+
   height: 100vh;
   overflow-y: auto;
   margin: auto;
-  padding: 20px;
+
   border-radius: 15px;
   background-color: ${({ theme }) => theme.chatBotBackground};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -65,9 +66,8 @@ export const BotMessage = styled(Message)<{ theme: DefaultTheme }>`
 
 export const InputContainer = styled.div<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotChatBackground};
-  padding: 0.5rem 1rem;
-  // border-top: 1px solid ${({ theme }) => theme.border};
-  padding-left: 1rem;
+  padding: 1rem;
+  margin: 8px;
 
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@ export const Input = styled.textarea`
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: transparent;
   border: none;
-  border-bottom: 1px solid ${(props) => props.theme.border};
+  border-bottom: solid ${(props) => props.theme.border};
   color: ${(props) => props.theme.text};
   width: 100%;
   box-sizing: border-box;
