@@ -66,33 +66,40 @@ export const BotMessage = styled(Message)<{ theme: DefaultTheme }>`
 export const InputContainer = styled.div<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotChatBackground};
   padding: 0.5rem 1rem;
-  border-top: 1px solid ${({ theme }) => theme.border};
+  // border-top: 1px solid ${({ theme }) => theme.border};
+  padding-left: 1rem;
+
   display: flex;
-  flex-direction: row;
   align-items: center;
+  flex-direction: row;
 `;
 
-export const Input = styled.input<{ theme: DefaultTheme }>`
-  flex: 1;
+export const Input = styled.textarea`
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-  background-color: ${({ theme }) => theme.chatBotBackground};
-  border: 1px solid ${({ theme }) => theme.border};
-  border-radius: 4px;
-  color: ${({ theme }) => theme.text};
-  resize: none;
-  align-items: center;
-  font-size: 1rem;
-  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid ${(props) => props.theme.border};
+  color: ${(props) => props.theme.text};
+  width: 100%;
   box-sizing: border-box;
+  resize: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  height: 2rem;
 
   &:focus {
     outline: none;
-    border-color: #0056b3;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
   }
 
   &::placeholder {
-    color: #999;
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  @media (max-width: 768px) {
+    flex-grow: 1;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    line-height: 1.6;
   }
 `;
 
@@ -100,6 +107,7 @@ export const SendButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: flex-end;
   margin-left: 0.5rem;
   padding: 1rem;
   background-color: #007bff;

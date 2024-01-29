@@ -13,6 +13,15 @@ export const ChatBot: React.FC = () => {
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const adjustHeight = () => {
+    const textarea = inputRef.current;
+    if (textarea) {
+      textarea.style.height = "1rem";
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  };
 
   useEffect(() => {
     getChatBotConversation();
@@ -81,24 +90,16 @@ export const ChatBot: React.FC = () => {
         )}
       </S.MessagesContainer>
       <S.InputContainer>
-        {window.innerWidth >= 769 ? (
-          <S.Input
-            value={newAnswer}
-            onChange={(e) => setNewAnswer(e.currentTarget.value)}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                handleSendAnswer();
-              }
-            }}
-            placeholder="Write a message..."
-          />
-        ) : (
-          <S.Input
-            value={newAnswer}
-            onChange={(e) => setNewAnswer(e.currentTarget.value)}
-            placeholder="Write a message..."
-          />
-        )}
+        <S.Input
+          ref={inputRef}
+          value={newAnswer}
+          onChange={(e) => {
+            setNewAnswer(e.currentTarget.value);
+            adjustHeight();
+          }}
+          placeholder="Write a message..."
+        />
+
         <S.SendButton
           disabled={isTyping || waitingForAnswer}
           onClick={handleSendAnswer}
