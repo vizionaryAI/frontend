@@ -76,7 +76,8 @@ export const Input = styled.textarea`
   font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: transparent;
   border: none;
-  border-bottom: solid ${(props) => props.theme.border};
+  border-bottom: 1px solid ${(props) => props.theme.border};
+  border-radius: 0px;
   color: ${(props) => props.theme.text};
   width: 100%;
   box-sizing: border-box;
