@@ -12,6 +12,7 @@ export const ChatBot: React.FC = () => {
   const [newAnswer, setNewAnswer] = useState("");
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     getChatBotConversation();
@@ -64,6 +65,7 @@ export const ChatBot: React.FC = () => {
                     text={conv.content}
                     enableVibration={hasInteracted}
                     onTextUpdate={scrollToBottom}
+                    setIsTyping={setIsTyping}
                   />
                 ) : (
                   conv.content
@@ -97,7 +99,10 @@ export const ChatBot: React.FC = () => {
             placeholder="Write a message..."
           />
         )}
-        <S.SendButton onClick={handleSendAnswer}>
+        <S.SendButton
+          disabled={isTyping || waitingForAnswer}
+          onClick={handleSendAnswer}
+        >
           <FontAwesomeIcon icon={faPaperPlane} />
         </S.SendButton>
       </S.InputContainer>

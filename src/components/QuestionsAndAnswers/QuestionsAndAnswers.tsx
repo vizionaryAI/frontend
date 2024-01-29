@@ -14,6 +14,7 @@ export const QuestionsAndAnswers = () => {
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [isTyping, setIsTyping] = useState(false);
 
   const adjustHeight = () => {
     const textarea = inputRef.current;
@@ -26,7 +27,7 @@ export const QuestionsAndAnswers = () => {
   useEffect(() => {
     scrollToBottom();
     adjustHeight();
-  }, [newAnswer]); // A függőségi tömbben az `newAnswer` állapota van figyelve
+  }, [newAnswer]);
 
   useEffect(() => {
     getNewQA();
@@ -79,6 +80,7 @@ export const QuestionsAndAnswers = () => {
                   text={entry.content}
                   enableVibration={hasInteracted}
                   onTextUpdate={scrollToBottom}
+                  setIsTyping={setIsTyping}
                 />
               ) : (
                 entry.content
@@ -103,7 +105,12 @@ export const QuestionsAndAnswers = () => {
             }}
             placeholder="New Answer, min 200 characters"
           />
-          <S.SendButton onClick={handleSendAnswer}>Answer</S.SendButton>
+          <S.SendButton
+            disabled={isTyping || waitingForAnswer}
+            onClick={handleSendAnswer}
+          >
+            Answer
+          </S.SendButton>
         </S.InputContainer>
       )}
     </S.NotebookPage>
