@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled, { DefaultTheme } from "styled-components";
 
 export const Container = styled.button<{ theme: DefaultTheme }>`
-  border-radius: 0.5rem;
+  border-radius: 25px;
   border: none;
   padding: 0.25rem 1rem;
   font-size: 1rem;
