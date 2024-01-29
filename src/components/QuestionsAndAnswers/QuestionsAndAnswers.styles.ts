@@ -100,7 +100,7 @@ export const Input = styled.textarea`
     flex-grow: 1;
     box-sizing: border-box;
     overflow-y: hidden;
-    line-height: 1;
+    line-height: 1.6;
   }
 `;
 

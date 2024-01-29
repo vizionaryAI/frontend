@@ -53,6 +53,10 @@ export const QuestionsAndAnswers = () => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: "auto" });
   };
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [questionsAndAnswers.question.conversation.length]);
+
   if (questionsAndAnswers.error) {
     return <S.ErrorBox>Error: {questionsAndAnswers.error}</S.ErrorBox>;
   }
