@@ -24,12 +24,7 @@ export const NotebookPage = styled.div<{ theme: DefaultTheme }>`
   overflow-y: auto;
   border-radius: 10px;
   line-height: 1.6;
-  background-image: linear-gradient(
-    to bottom,
-    transparent,
-    transparent 31px,
-    ${(props) => props.theme.border} 31px
-  );
+
   background-size: 100% 32px;
   margin-top: 4.5rem;
   margin-bottom: 2rem;
