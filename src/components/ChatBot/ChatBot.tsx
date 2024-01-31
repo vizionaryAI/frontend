@@ -105,7 +105,7 @@ export const ChatBot: React.FC = () => {
         />
 
         <S.SendButton
-          disabled={isTyping || waitingForAnswer}
+          disabled={isTyping || waitingForAnswer || newAnswer.length < 1}
           onClick={handleSendAnswer}
         >
           <FontAwesomeIcon icon={faPaperPlane} />

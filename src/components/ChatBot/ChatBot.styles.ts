@@ -10,7 +10,7 @@ export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.chatBotMessageBackground};
+  background-color: ${({ theme }) => theme.chatBotBackground};
 `;
 
 export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
@@ -61,7 +61,6 @@ export const BotMessage = styled(Message)<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotMessageBackground};
   color: ${({ theme }) => theme.text};
   align-self: flex-start;
-  border: 1px solid ${({ theme }) => theme.border};
 `;
 
 export const InputContainer = styled.div<{ theme: DefaultTheme }>`
@@ -75,7 +74,6 @@ export const InputContainer = styled.div<{ theme: DefaultTheme }>`
 `;
 
 export const Input = styled.textarea`
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: transparent;
   border: none;
   border-bottom: 1px solid ${(props) => props.theme.border};
@@ -92,10 +90,6 @@ export const Input = styled.textarea`
     outline: none;
   }
 
-  &::placeholder {
-    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-  }
-
   @media (max-width: 768px) {
     flex-grow: 1;
     box-sizing: border-box;
@@ -104,7 +98,7 @@ export const Input = styled.textarea`
   }
 `;
 
-export const SendButton = styled(Button)`
+export const SendButton = styled(Button)<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,12 +107,11 @@ export const SendButton = styled(Button)`
   border-radius: 25px;
   padding: 1.2rem;
   width: 6rem;
-  background-color: #007bff;
+  background-color: ${({ theme }) => theme.sendButton};
   color: white;
   cursor: pointer;
 
   &:disabled {
-    background-color: #ccc;
     cursor: not-allowed;
   }
 `;

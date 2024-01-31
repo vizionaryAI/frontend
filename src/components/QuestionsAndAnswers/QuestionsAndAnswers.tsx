@@ -103,7 +103,7 @@ export const QuestionsAndAnswers = () => {
             placeholder="New Answer, min 200 characters"
           />
           <S.SendButton
-            disabled={isTyping || waitingForAnswer}
+            disabled={isTyping || waitingForAnswer || newAnswer.length < 200}
             onClick={handleSendAnswer}
           >
             Answer

@@ -15,7 +15,7 @@ export const LoginLayout = styled.div<{ theme: DefaultTheme }>`
 `;
 
 export const AppLayout = styled.div<{ theme: DefaultTheme }>`
-  background-color: ${(props) => props.theme.appLayoutBackground || "#fff"};
+  background-color: ${(props) => props.theme.background || "#fff"};
   min-width: 320px;
   min-height: 100vh;
   position: fixed;

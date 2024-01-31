@@ -6,7 +6,6 @@ export const Container = styled.button<{ theme: DefaultTheme }>`
   border: none;
   padding: 0.25rem 1rem;
   font-size: 1rem;
-  font-family: inherit;
   background-color: ${({ theme }) => theme.buttonBackground};
   color: white;
   cursor: pointer;

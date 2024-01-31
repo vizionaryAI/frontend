@@ -14,7 +14,6 @@ export const NotebookPage = styled.div<{ theme: DefaultTheme }>`
   max-width: 50rem;
   width: 100%;
   height: 100vh;
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: ${(props) => props.theme.notebookBackground};
   color: ${(props) => props.theme.text};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -67,9 +66,8 @@ export const ErrorBox = styled.div`
   border-radius: 4px;
 `;
 
-export const Input = styled.textarea`
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
-  background: transparent;
+export const Input = styled.textarea<{ theme: DefaultTheme }>`
+  background: ${(props) => props.theme.notebookBackground};
   border: none;
   border-bottom: 1px solid ${(props) => props.theme.border};
   border-radius: 0px;
@@ -86,7 +84,7 @@ export const Input = styled.textarea`
   }
 
   &::placeholder {
-    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    color: ${(props) => props.theme.placeholderText};
   }
 
   @media (max-width: 768px) {
@@ -107,7 +105,7 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const SendButton = styled(Button)`
+export const SendButton = styled(Button)<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,6 +113,7 @@ export const SendButton = styled(Button)`
   padding: 1.2rem;
   align-self: flex-end;
   cursor: pointer;
+  background-color: ${(props) => props.theme.sendButton};
 
   @media (max-width: 768px) {
     margin-left: 1rem;
