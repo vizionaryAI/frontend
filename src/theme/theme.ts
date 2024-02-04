@@ -23,7 +23,7 @@ export const lightTheme = {
   appLayoutBackground: "#FFF",
   chatBotBackground: "#FFF",
   chatBotUserMessageBackground: "#F9EFDB",
-  chatBotMessageBackground: "#FFF",
+  chatBotMessageBackground: "#F0F0F0",
 };
 
 export const darkTheme = {

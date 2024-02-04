@@ -10,7 +10,7 @@ import * as S from "./AuthenticatedApp.styles";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
-  return { mode: savedTheme ? savedTheme : "dark" };
+  return { mode: savedTheme ? savedTheme : "light" };
 };
 
 export const AuthenticatedApp: React.FC = () => {
