@@ -10,8 +10,7 @@ export const SwitchContainer = styled.div<{
   height: 2rem;
   border-radius: 20px;
   border: 0.5px solid;
-  background-color: ${({ theme }) => theme.body};
-  border-color: ${({ theme }) => theme.toggleBorder};
+  background-color: ${({ theme }) => theme.text};
   position: relative;
   cursor: pointer;
 `;
@@ -29,7 +28,7 @@ export const Slider = styled(animated.div)<{ theme: DefaultTheme }>`
   background-image: ${({ theme }) =>
     theme.mode === "dark" ? `url(${moonIcon})` : `url(${sunIcon})`};
   filter: ${({ theme }) =>
-    theme.mode === "dark"
+    theme.mode === "light"
       ? "brightness(0) invert(1)"
       : "brightness(0) invert(0)"};
 

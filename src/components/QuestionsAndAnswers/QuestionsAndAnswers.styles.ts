@@ -114,6 +114,7 @@ export const SendButton = styled(Button)<{ theme: DefaultTheme }>`
   align-self: flex-end;
   cursor: pointer;
   background-color: ${(props) => props.theme.sendButton};
+  color: #fff;
 
   @media (max-width: 768px) {
     margin-left: 1rem;
