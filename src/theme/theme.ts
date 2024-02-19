@@ -18,11 +18,11 @@ export const lightTheme = {
   loaderBackground: "#FFF",
   loaderColor: "#000",
   hamburgerMenuBackground: "#FFF",
-  hamburgerMenuHoverBackground: "#F9EFDB",
+  hamburgerMenuHoverBackground: "#F1BA54",
   hamburgerMenuBorder: "#ececf1",
   appLayoutBackground: "#FFF",
   chatBotBackground: "#FFF",
-  chatBotUserMessageBackground: "#F9EFDB",
+  chatBotUserMessageBackground: "#F1BA54",
   chatBotMessageBackground: "#F0F0F0",
 };
 

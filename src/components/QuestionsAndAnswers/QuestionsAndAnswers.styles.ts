@@ -78,6 +78,7 @@ export const Input = styled.textarea<{ theme: DefaultTheme }>`
   font-size: 1rem;
   line-height: 1.6;
   height: 2rem;
+  font-family: "Inter";
 
   &:focus {
     outline: none;

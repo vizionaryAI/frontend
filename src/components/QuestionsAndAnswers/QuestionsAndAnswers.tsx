@@ -100,10 +100,10 @@ export const QuestionsAndAnswers = () => {
               setNewAnswer(e.currentTarget.value);
               adjustHeight();
             }}
-            placeholder="New Answer, min 200 characters"
+            placeholder="New Answer, min 100 characters"
           />
           <S.SendButton
-            disabled={isTyping || waitingForAnswer || newAnswer.length < 200}
+            disabled={isTyping || waitingForAnswer || newAnswer.length < 100}
             onClick={handleSendAnswer}
           >
             Answer
