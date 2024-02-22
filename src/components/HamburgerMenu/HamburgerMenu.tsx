@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./HamburgerMenu.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,8 +25,12 @@ export const HamburgerMenu: React.FC<Props> = ({
   setIsMenuOpen,
 }) => {
   const { deleteChat } = useChatBotConversationStore();
-  const { questionsAndAnswers } = useQuestionsAndAnswersStore();
+  const { questionsAndAnswers, getNewQA } = useQuestionsAndAnswersStore();
   const { user } = useClientStore();
+
+  useEffect(() => {
+    getNewQA();
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -40,8 +44,10 @@ export const HamburgerMenu: React.FC<Props> = ({
   };
 
   const handleLinkClick = (title: string) => {
-    if (title === "New Daily Reflection" || title === "New Weekly Reflection") {
+    if (title === "New Daily Reflection") {
       deleteChat("daily");
+    } else if (title === "New Weekly Reflection") {
+      deleteChat("weekly");
     }
     toggleMenu();
   };

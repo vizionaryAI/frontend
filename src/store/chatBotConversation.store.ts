@@ -2,8 +2,11 @@ import { create } from "zustand";
 import { ChatBotConversation } from "../types/chatbot";
 import {
   getChatBotConversationAPI,
-  getDeleteChatAPI,
+  deleteChatAPI,
   sendAnswerToChatAPI,
+  deleteWeeklyAPI,
+  sendAnswerToWeeklyChatAPI,
+  getWeeklyChatBotConversationAPI,
 } from "../api/chatbot.api";
 
 type ChatBotConversationStore = {
@@ -26,7 +29,7 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
         const conversation = await getChatBotConversationAPI();
         set({ chatBotConversation: conversation });
       } else {
-        const conversation = await getChatBotConversationAPI();
+        const conversation = await getWeeklyChatBotConversationAPI();
         set({ chatBotConversation: conversation });
       }
     },
@@ -45,17 +48,17 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
         const conversation = await sendAnswerToChatAPI(answer);
         set({ chatBotConversation: conversation });
       } else {
-        const conversation = await sendAnswerToChatAPI(answer);
+        const conversation = await sendAnswerToWeeklyChatAPI(answer);
         set({ chatBotConversation: conversation });
       }
     },
     deleteChat: async (conversationType: "daily" | "weekly") => {
       if (conversationType === "daily") {
         //daily
-        const conversation = await getDeleteChatAPI();
+        const conversation = await deleteChatAPI();
         set({ chatBotConversation: conversation });
       } else {
-        const conversation = await getDeleteChatAPI();
+        const conversation = await deleteWeeklyAPI();
         set({ chatBotConversation: conversation });
       }
     },

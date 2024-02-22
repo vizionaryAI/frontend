@@ -68,9 +68,47 @@ export async function sendAnswerToChatAPI(
   }
 }
 
-export async function getDeleteChatAPI(): Promise<ChatBotConversation> {
+export async function deleteChatAPI(): Promise<ChatBotConversation> {
   try {
     const resp = await api.delete(`api/v0/chat`);
+    return resp.data;
+  } catch (error) {
+    return {
+      conversation: [],
+      error: "Failed to delete chat conversation",
+    };
+  }
+}
+
+export async function getWeeklyChatBotConversationAPI(): Promise<ChatBotConversation> {
+  try {
+    const resp = await api.get(`api/v0/weekly`);
+    return resp.data;
+  } catch (error) {
+    return {
+      conversation: [],
+      error: "Failed to fetch chat conversation",
+    };
+  }
+}
+
+export async function sendAnswerToWeeklyChatAPI(
+  Answer: string
+): Promise<ChatBotConversation> {
+  try {
+    const resp = await api.post(`api/v0/weekly`, { content: Answer });
+    return resp.data;
+  } catch (error) {
+    return {
+      conversation: [],
+      error: "Failed to send Answer",
+    };
+  }
+}
+
+export async function deleteWeeklyAPI(): Promise<ChatBotConversation> {
+  try {
+    const resp = await api.delete(`api/v0/weekly`);
     return resp.data;
   } catch (error) {
     return {
