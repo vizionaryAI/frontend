@@ -8,9 +8,9 @@ import {
 
 type ChatBotConversationStore = {
   chatBotConversation: ChatBotConversation;
-  getChatBotConversation: () => void;
-  sendAnswer: (Answer: string) => void;
-  deleteChat: () => void;
+  getChatBotConversation: (conversationType: "daily" | "weekly") => void;
+  sendAnswer: (answer: string, conversationType: "daily" | "weekly") => void;
+  deleteChat: (conversationType: "daily" | "weekly") => void;
 };
 
 export const useChatBotConversationStore = create<ChatBotConversationStore>(
@@ -20,21 +20,24 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
       error: null,
     },
 
-    getChatBotConversation: async () => {
+    getChatBotConversation: async (conversationType: "daily" | "weekly") => {
       const conversation = await getChatBotConversationAPI();
 
       set({ chatBotConversation: conversation });
     },
-    sendAnswer: async (Answer: string) => {
+    sendAnswer: async (
+      answer: string,
+      conversationType: "daily" | "weekly"
+    ) => {
       get().chatBotConversation.conversation.push({
         role: "user",
-        content: Answer,
+        content: answer,
       });
       set({ chatBotConversation: get().chatBotConversation });
-      const conversation = await sendAnswerToChatAPI(Answer);
+      const conversation = await sendAnswerToChatAPI(answer);
       set({ chatBotConversation: conversation });
     },
-    deleteChat: async () => {
+    deleteChat: async (conversationType: "daily" | "weekly") => {
       const conversation = await getDeleteChatAPI();
       set({ chatBotConversation: conversation });
     },

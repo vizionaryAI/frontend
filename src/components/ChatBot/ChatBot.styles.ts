@@ -26,7 +26,7 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   border-radius: 15px;
   background-color: ${({ theme }) => theme.chatBotBackground};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 4.5rem;
+  margin-top: 0.5rem;
   margin-bottom: 1.5rem;
 
   @media (max-width: 768px) {

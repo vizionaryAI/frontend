@@ -6,7 +6,11 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { Typewriter } from "../Typewriter/Typewriter";
 import { WritingIndicator } from "../WritingIndicator/WritingIndicator";
 
-export const ChatBot: React.FC = () => {
+type Props = {
+  conversationType: "daily" | "weekly";
+};
+
+export const ChatBot: React.FC<Props> = ({ conversationType }) => {
   const { chatBotConversation, getChatBotConversation, sendAnswer } =
     useChatBotConversationStore();
   const [newAnswer, setNewAnswer] = useState("");
@@ -24,7 +28,7 @@ export const ChatBot: React.FC = () => {
   };
 
   useEffect(() => {
-    getChatBotConversation();
+    getChatBotConversation(conversationType);
   }, []);
 
   // If the last message in the conversation is not from the user, then we are waiting for an answer
@@ -40,7 +44,7 @@ export const ChatBot: React.FC = () => {
   }, [chatBotConversation.conversation.length]);
 
   const handleSendAnswer = () => {
-    sendAnswer(newAnswer);
+    sendAnswer(newAnswer, conversationType);
     setNewAnswer("");
     setWaitingForAnswer(true);
     setHasInteracted(true);

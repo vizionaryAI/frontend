@@ -9,6 +9,7 @@ import { routes } from "./routes";
 import { Logout } from "./MenuItems/Logout";
 import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
 import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
+import { useClientStore } from "../../store/client.store";
 
 type Props = {
   theme: DefaultTheme;
@@ -25,6 +26,7 @@ export const HamburgerMenu: React.FC<Props> = ({
 }) => {
   const { deleteChat } = useChatBotConversationStore();
   const { questionsAndAnswers } = useQuestionsAndAnswersStore();
+  const { user } = useClientStore();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,7 +41,7 @@ export const HamburgerMenu: React.FC<Props> = ({
 
   const handleLinkClick = (title: string) => {
     if (title === "New Daily Reflection") {
-      deleteChat();
+      deleteChat("daily");
     }
     toggleMenu();
   };
@@ -52,19 +54,20 @@ export const HamburgerMenu: React.FC<Props> = ({
 
       {isMenuOpen && (
         <S.Container>
-          {routes.map((route, index) =>
-            !questionsAndAnswers.finished_all &&
-            route.title === "New Daily Reflection" ? null : (
-              <S.MenuItem key={index}>
-                <Link
-                  to={route.path}
-                  onClick={() => handleLinkClick(route.title)}
-                >
-                  {route.title}
-                </Link>
-              </S.MenuItem>
-            )
-          )}
+          {user.isPremium &&
+            routes.map((route, index) =>
+              !questionsAndAnswers.finished_all &&
+              route.title === "New Daily Reflection" ? null : (
+                <S.MenuItem key={index}>
+                  <Link
+                    to={route.path}
+                    onClick={() => handleLinkClick(route.title)}
+                  >
+                    {route.title}
+                  </Link>
+                </S.MenuItem>
+              )
+            )}
           <S.MenuItem>
             <Logout />
           </S.MenuItem>

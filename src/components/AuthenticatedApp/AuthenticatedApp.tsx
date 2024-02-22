@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import { routes } from "../HamburgerMenu/routes";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { useClientStore } from "../../store/client.store";
 import { darkTheme, lightTheme } from "../../theme/theme";
 import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
 import * as S from "./AuthenticatedApp.styles";
+import { Unauthorized } from "../Unauthorized/Unauthorized";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
@@ -17,7 +18,12 @@ export const AuthenticatedApp: React.FC = () => {
   const [theme, setTheme] = useState<DefaultTheme>(getInitialTheme);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { token } = useClientStore();
+  const { token, user, setUser } = useClientStore();
+
+  useEffect(() => {
+    setUser();
+  }, []);
+
   if (token.length === 0) {
     return (
       <ThemeProvider theme={theme.mode === "light" ? lightTheme : darkTheme}>
@@ -39,10 +45,20 @@ export const AuthenticatedApp: React.FC = () => {
         />
         <S.Layout open={isMenuOpen} theme={theme}>
           <Routes>
-            {routes.map((route, index) => (
-              <Route key={index} path={route.path} element={route.element} />
-            ))}
-            <Route path="*" element={<Navigate to="/home" replace />} />
+            {user.isPremium ? (
+              <>
+                {routes.map((route, index) => (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={route.element}
+                  />
+                ))}
+                <Route path="*" element={<Navigate to="/home" replace />} />
+              </>
+            ) : (
+              <Route path="*" element={<Unauthorized />} />
+            )}
           </Routes>
         </S.Layout>
       </S.AppLayout>
