@@ -60,10 +60,12 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
       set({ chatBotConversation: conversation });
       if (conversationType === "daily") {
         //daily
-        const conversation = await deleteChatAPI();
+        await deleteChatAPI();
+        const conversation = await getChatBotConversationAPI();
         set({ chatBotConversation: conversation });
       } else {
-        const conversation = await deleteWeeklyAPI();
+        await deleteWeeklyAPI();
+        const conversation = await getWeeklyChatBotConversationAPI();
         set({ chatBotConversation: conversation });
       }
       return true;
