@@ -53,6 +53,11 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
       }
     },
     deleteChat: async (conversationType: "daily" | "weekly") => {
+      const conversation = {
+        conversation: [],
+        error: null,
+      };
+      set({ chatBotConversation: conversation });
       if (conversationType === "daily") {
         //daily
         const conversation = await deleteChatAPI();
