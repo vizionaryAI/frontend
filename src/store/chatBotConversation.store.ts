@@ -21,9 +21,14 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
     },
 
     getChatBotConversation: async (conversationType: "daily" | "weekly") => {
-      const conversation = await getChatBotConversationAPI();
-
-      set({ chatBotConversation: conversation });
+      if (conversationType === "daily") {
+        //daily
+        const conversation = await getChatBotConversationAPI();
+        set({ chatBotConversation: conversation });
+      } else {
+        const conversation = await getChatBotConversationAPI();
+        set({ chatBotConversation: conversation });
+      }
     },
     sendAnswer: async (
       answer: string,
@@ -34,12 +39,25 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
         content: answer,
       });
       set({ chatBotConversation: get().chatBotConversation });
-      const conversation = await sendAnswerToChatAPI(answer);
-      set({ chatBotConversation: conversation });
+
+      if (conversationType === "daily") {
+        //daily
+        const conversation = await sendAnswerToChatAPI(answer);
+        set({ chatBotConversation: conversation });
+      } else {
+        const conversation = await sendAnswerToChatAPI(answer);
+        set({ chatBotConversation: conversation });
+      }
     },
     deleteChat: async (conversationType: "daily" | "weekly") => {
-      const conversation = await getDeleteChatAPI();
-      set({ chatBotConversation: conversation });
+      if (conversationType === "daily") {
+        //daily
+        const conversation = await getDeleteChatAPI();
+        set({ chatBotConversation: conversation });
+      } else {
+        const conversation = await getDeleteChatAPI();
+        set({ chatBotConversation: conversation });
+      }
     },
   })
 );
