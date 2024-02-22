@@ -40,7 +40,7 @@ export const HamburgerMenu: React.FC<Props> = ({
   };
 
   const handleLinkClick = (title: string) => {
-    if (title === "New Daily Reflection") {
+    if (title === "New Daily Reflection" || title === "New Weekly Reflection") {
       deleteChat("daily");
     }
     toggleMenu();
@@ -56,8 +56,9 @@ export const HamburgerMenu: React.FC<Props> = ({
         <S.Container>
           {user.isPremium &&
             routes.map((route, index) =>
-              !questionsAndAnswers.finished_all &&
-              route.title === "New Daily Reflection" ? null : (
+              (!questionsAndAnswers.finished_all &&
+                route.title === "New Daily Reflection") ||
+              route.title === "New Weekly Reflection" ? null : (
                 <S.MenuItem key={index}>
                   <Link
                     to={route.path}

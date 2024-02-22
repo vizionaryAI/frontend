@@ -1,9 +1,10 @@
 import { ChatBot } from "../ChatBot/ChatBot";
+import * as S from "./DailyReflection.styles";
 
 export const DailyReflection = () => {
   return (
     <>
-      <h1>Daily Reflection</h1>
+      <S.Title>Daily Reflection</S.Title>
       <ChatBot conversationType="daily" />
     </>
   );
