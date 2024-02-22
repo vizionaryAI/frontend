@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./HamburgerMenu.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,7 @@ import { Logout } from "./MenuItems/Logout";
 import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
 import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
 import { useClientStore } from "../../store/client.store";
+import { Loader } from "../Loader/Loader";
 
 type Props = {
   theme: DefaultTheme;
@@ -27,6 +28,7 @@ export const HamburgerMenu: React.FC<Props> = ({
   const { deleteChat } = useChatBotConversationStore();
   const { questionsAndAnswers, getNewQA } = useQuestionsAndAnswersStore();
   const { user } = useClientStore();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getNewQA();
@@ -45,11 +47,17 @@ export const HamburgerMenu: React.FC<Props> = ({
 
   const handleLinkClick = (title: string) => {
     if (title === "New Daily Reflection") {
+      setIsLoading(true);
       deleteChat("daily");
     } else if (title === "New Weekly Reflection") {
+      setIsLoading(true);
       deleteChat("weekly");
     }
-    toggleMenu();
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setIsMenuOpen(false);
+    }, 2000);
   };
 
   return (
@@ -82,6 +90,7 @@ export const HamburgerMenu: React.FC<Props> = ({
           <S.ThemeToggleWrapper>
             <ThemeToggle toggleTheme={toggleTheme} />
           </S.ThemeToggleWrapper>
+          {isLoading && <Loader />}
         </S.Container>
       )}
     </>
