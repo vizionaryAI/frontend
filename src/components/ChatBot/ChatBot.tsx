@@ -29,7 +29,7 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
 
   useEffect(() => {
     getChatBotConversation(conversationType);
-  }, []);
+  }, [chatBotConversation.conversation.length]);
 
   // If the last message in the conversation is not from the user, then we are waiting for an answer
   useEffect(() => {
