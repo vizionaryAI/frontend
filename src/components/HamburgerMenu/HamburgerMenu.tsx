@@ -46,23 +46,36 @@ export const HamburgerMenu: React.FC<Props> = ({
   };
 
   const handleLinkClick = (title: string) => {
+    if (title === "Home") {
+      toggleMenu();
+    }
     if (title === "New Daily Reflection") {
       setIsLoading(true);
       deleteChat("daily");
+
+      let timer = 1500;
+      setTimeout(() => {
+        if (chatBotConversation.conversation.length < 2) {
+          setIsLoading(false);
+          setIsMenuOpen(false);
+        } else {
+          timer = 500;
+        }
+      }, timer);
     } else if (title === "New Weekly Reflection") {
       setIsLoading(true);
       deleteChat("weekly");
-    }
 
-    let timer = 1500;
-    setTimeout(() => {
-      if (chatBotConversation.conversation.length === 0) {
-        setIsLoading(false);
-        setIsMenuOpen(false);
-      } else {
-        timer = 500;
-      }
-    }, timer);
+      let timer = 1500;
+      setTimeout(() => {
+        if (chatBotConversation.conversation.length < 2) {
+          setIsLoading(false);
+          setIsMenuOpen(false);
+        } else {
+          timer = 500;
+        }
+      }, timer);
+    }
   };
 
   return (
