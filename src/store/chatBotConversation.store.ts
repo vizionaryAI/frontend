@@ -13,7 +13,7 @@ type ChatBotConversationStore = {
   chatBotConversation: ChatBotConversation;
   getChatBotConversation: (conversationType: "daily" | "weekly") => void;
   sendAnswer: (answer: string, conversationType: "daily" | "weekly") => void;
-  deleteChat: (conversationType: "daily" | "weekly") => void;
+  deleteChat: (conversationType: "daily" | "weekly") => Promise<boolean>;
 };
 
 export const useChatBotConversationStore = create<ChatBotConversationStore>(
@@ -66,6 +66,7 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
         const conversation = await deleteWeeklyAPI();
         set({ chatBotConversation: conversation });
       }
+      return true;
     },
   })
 );
