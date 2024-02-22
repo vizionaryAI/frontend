@@ -11,8 +11,7 @@ type Props = {
 };
 
 export const ChatBot: React.FC<Props> = ({ conversationType }) => {
-  const { chatBotConversation, getChatBotConversation, sendAnswer } =
-    useChatBotConversationStore();
+  const { chatBotConversation, sendAnswer } = useChatBotConversationStore();
   const [newAnswer, setNewAnswer] = useState("");
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -26,10 +25,6 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   };
-
-  // useEffect(() => {
-  //   getChatBotConversation(conversationType);
-  // }, [chatBotConversation.conversation.length]);
 
   // If the last message in the conversation is not from the user, then we are waiting for an answer
   useEffect(() => {

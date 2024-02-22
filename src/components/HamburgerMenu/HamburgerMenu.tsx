@@ -25,7 +25,7 @@ export const HamburgerMenu: React.FC<Props> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
-  const { deleteChat } = useChatBotConversationStore();
+  const { deleteChat, chatBotConversation } = useChatBotConversationStore();
   const { questionsAndAnswers, getNewQA } = useQuestionsAndAnswersStore();
   const { user } = useClientStore();
   const [isLoading, setIsLoading] = useState(false);
@@ -54,10 +54,15 @@ export const HamburgerMenu: React.FC<Props> = ({
       deleteChat("weekly");
     }
 
+    let timer = 1500;
     setTimeout(() => {
-      setIsLoading(false);
-      setIsMenuOpen(false);
-    }, 2500);
+      if (chatBotConversation.conversation.length === 0) {
+        setIsLoading(false);
+        setIsMenuOpen(false);
+      } else {
+        timer = 500;
+      }
+    }, timer);
   };
 
   return (
