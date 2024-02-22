@@ -57,7 +57,7 @@ export const HamburgerMenu: React.FC<Props> = ({
     setTimeout(() => {
       setIsLoading(false);
       setIsMenuOpen(false);
-    }, 2000);
+    }, 2500);
   };
 
   return (
