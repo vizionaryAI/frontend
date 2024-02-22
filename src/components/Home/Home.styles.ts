@@ -30,4 +30,10 @@ export const Card = styled.div<{ theme: DefaultTheme }>`
     font-size: 1.5rem;
     color: #333;
   }
+  @media (max-width: 768px) {
+    width: 10rem;
+    height: 10rem;
+    padding: 0.4rem;
+    margin: 0.4rem;
+  }
 `;
