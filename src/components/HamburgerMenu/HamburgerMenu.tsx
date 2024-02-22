@@ -56,9 +56,9 @@ export const HamburgerMenu: React.FC<Props> = ({
         <S.Container>
           {user.isPremium &&
             routes.map((route, index) =>
-              (!questionsAndAnswers.finished_all &&
-                route.title === "New Daily Reflection") ||
-              route.title === "New Weekly Reflection" ? null : (
+              !questionsAndAnswers.finished_all &&
+              (route.title === "New Daily Reflection" ||
+                route.title === "New Weekly Reflection") ? null : (
                 <S.MenuItem key={index}>
                   <Link
                     to={route.path}
