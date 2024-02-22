@@ -11,12 +11,17 @@ type Props = {
 };
 
 export const ChatBot: React.FC<Props> = ({ conversationType }) => {
-  const { chatBotConversation, sendAnswer } = useChatBotConversationStore();
+  const { chatBotConversation, sendAnswer, getChatBotConversation } =
+    useChatBotConversationStore();
   const [newAnswer, setNewAnswer] = useState("");
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    getChatBotConversation(conversationType);
+  }, []);
 
   const adjustHeight = () => {
     const textarea = inputRef.current;
