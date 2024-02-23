@@ -13,7 +13,7 @@ export const useClientStore = create<ClientStore>((set) => ({
   token: "",
   user: {
     admin: false,
-    premium: false,
+    premium: true,
     content_monitored_warning: false,
     weekly_open: false,
     weekly_completed: false,

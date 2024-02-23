@@ -21,7 +21,9 @@ export const AuthenticatedApp: React.FC = () => {
   const { token, user, setUser } = useClientStore();
 
   useEffect(() => {
-    setUser();
+    if (token.length > 0) {
+      setUser();
+    }
   }, [token]);
 
   if (token.length === 0) {
