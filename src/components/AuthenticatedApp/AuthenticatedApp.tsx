@@ -22,7 +22,7 @@ export const AuthenticatedApp: React.FC = () => {
 
   useEffect(() => {
     setUser();
-  }, []);
+  }, [token]);
 
   if (token.length === 0) {
     return (
