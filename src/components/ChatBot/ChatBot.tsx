@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { Typewriter } from "../Typewriter/Typewriter";
 import { WritingIndicator } from "../WritingIndicator/WritingIndicator";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   conversationType: "daily" | "weekly";
@@ -18,6 +19,7 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getChatBotConversation(conversationType);
@@ -97,6 +99,13 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
           </S.WritingIndicatorContainer>
         )}
       </S.MessagesContainer>
+      {chatBotConversation.finished && (
+        <S.EndConversationButtonContainer>
+          <S.EndConversationButton onClick={() => navigate("/home")}>
+            End conversation
+          </S.EndConversationButton>
+        </S.EndConversationButtonContainer>
+      )}
       <S.InputContainer>
         <S.Input
           ref={inputRef}

@@ -129,3 +129,16 @@ export const WritingIndicatorContainer = styled.div`
   align-self: flex-start;
   margin-left: 1.5rem;
 `;
+
+export const EndConversationButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const EndConversationButton = styled(Button)<{ theme: DefaultTheme }>`
+  background-color: transparent;
+  border: 0.3px solid
+    ${(props) => (props.theme.mode === "light" ? "#747474" : props.theme.text)};
+  color: ${(props) =>
+    props.theme.mode === "light" ? "#747474" : props.theme.text};
+`;

@@ -18,4 +18,5 @@ export type ChatBotConversation = {
     content: string;
   }[];
   error: string | null;
+  finished: boolean;
 };

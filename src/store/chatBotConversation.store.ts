@@ -21,6 +21,7 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
     chatBotConversation: {
       conversation: [],
       error: null,
+      finished: false,
     },
 
     getChatBotConversation: async (conversationType: "daily" | "weekly") => {
@@ -56,6 +57,7 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
       const conversation = {
         conversation: [],
         error: null,
+        finished: false,
       };
       set({ chatBotConversation: conversation });
       if (conversationType === "daily") {
