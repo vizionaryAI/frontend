@@ -45,7 +45,7 @@ export const AuthenticatedApp: React.FC = () => {
         />
         <S.Layout open={isMenuOpen} theme={theme}>
           <Routes>
-            {user.isPremium ? (
+            {user.premium ? (
               <>
                 {routes.map((route, index) => (
                   <Route

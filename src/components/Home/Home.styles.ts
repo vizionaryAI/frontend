@@ -5,9 +5,11 @@ export const Container = styled.div`
   justify-content: space-around;
 `;
 
-export const Card = styled.div<{ theme: DefaultTheme }>`
-  background-color: ${({ theme }) => theme.hamburgerMenuBackground};
+export const Card = styled.div<{ theme: DefaultTheme; disabled?: boolean }>`
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.disabledBackground : theme.hamburgerMenuBackground};
   color: ${({ theme }) => theme.text};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   padding: 1.25rem;
@@ -19,6 +21,7 @@ export const Card = styled.div<{ theme: DefaultTheme }>`
   align-items: center;
   justify-content: center;
   transition: box-shadow 0.3s ease-in-out;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
 
   &:hover {
     box-shadow: 0 0.5rem 1rem ${({ theme }) => theme.cardShadow};
@@ -36,4 +39,10 @@ export const Card = styled.div<{ theme: DefaultTheme }>`
     padding: 0.4rem;
     margin: 0.4rem;
   }
+`;
+
+export const Notes = styled.p`
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: gray;
 `;

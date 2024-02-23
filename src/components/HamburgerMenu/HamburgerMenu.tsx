@@ -11,6 +11,8 @@ import { useChatBotConversationStore } from "../../store/chatBotConversation.sto
 import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
 import { useClientStore } from "../../store/client.store";
 import { Loader } from "../Loader/Loader";
+import { User } from "../../types/user";
+import { ChatbotQuestionsAndAnswers } from "../../types/chatbot";
 
 type Props = {
   theme: DefaultTheme;
@@ -64,6 +66,22 @@ export const HamburgerMenu: React.FC<Props> = ({
     }
   };
 
+  const routesValidate = (
+    title: string,
+    user: User,
+    questionsAndAnswers: ChatbotQuestionsAndAnswers
+  ) => {
+    if (
+      !questionsAndAnswers.finished_all &&
+      (title === "New Daily Reflection" || title === "New Weekly Reflection")
+    ) {
+      return false;
+    } else if (title === "New Weekly Reflection" && !user.allow_weekly) {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <>
       <S.MenuIcon onClick={toggleMenu}>
@@ -72,20 +90,19 @@ export const HamburgerMenu: React.FC<Props> = ({
 
       {isMenuOpen && (
         <S.Container>
-          {user.isPremium &&
-            routes.map((route, index) =>
-              !questionsAndAnswers.finished_all &&
-              (route.title === "New Daily Reflection" ||
-                route.title === "New Weekly Reflection") ? null : (
-                <S.MenuItem key={index}>
-                  <Link
-                    to={route.path}
-                    onClick={() => handleLinkClick(route.title)}
-                  >
-                    {route.title}
-                  </Link>
-                </S.MenuItem>
-              )
+          {user.premium &&
+            routes.map(
+              (route, index) =>
+                routesValidate(route.title, user, questionsAndAnswers) && (
+                  <S.MenuItem key={index}>
+                    <Link
+                      to={route.path}
+                      onClick={() => handleLinkClick(route.title)}
+                    >
+                      {route.title}
+                    </Link>
+                  </S.MenuItem>
+                )
             )}
           <S.MenuItem>
             <Logout />
