@@ -4,7 +4,7 @@ import { UserWarning } from "../UserWarning/UserWarning";
 import * as S from "./WeeklyReflection.styles";
 
 export const WeeklyReflection = () => {
-  const { user } = useClientStore();
+  const { user } = useClientStore(); //
   return (
     <>
       <S.Container>
