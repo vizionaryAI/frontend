@@ -50,6 +50,7 @@ export async function getChatBotConversationAPI(): Promise<ChatBotConversation> 
     return {
       conversation: [],
       error: "Failed to fetch chat conversation",
+      finished: false,
     };
   }
 }
@@ -64,6 +65,7 @@ export async function sendAnswerToChatAPI(
     return {
       conversation: [],
       error: "Failed to send Answer",
+      finished: false,
     };
   }
 }
@@ -76,6 +78,7 @@ export async function deleteChatAPI(): Promise<ChatBotConversation> {
     return {
       conversation: [],
       error: "Failed to delete chat conversation",
+      finished: false,
     };
   }
 }
@@ -88,6 +91,7 @@ export async function getWeeklyChatBotConversationAPI(): Promise<ChatBotConversa
     return {
       conversation: [],
       error: "Failed to fetch chat conversation",
+      finished: false,
     };
   }
 }
@@ -102,6 +106,7 @@ export async function sendAnswerToWeeklyChatAPI(
     return {
       conversation: [],
       error: "Failed to send Answer",
+      finished: false,
     };
   }
 }
@@ -114,6 +119,7 @@ export async function deleteWeeklyAPI(): Promise<ChatBotConversation> {
     return {
       conversation: [],
       error: "Failed to delete chat conversation",
+      finished: false,
     };
   }
 }
