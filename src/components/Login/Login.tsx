@@ -9,7 +9,7 @@ export const Login = () => {
 
   return (
     <React.Fragment>
-      <S.Title theme={theme}>Vizionary AI</S.Title>
+      <S.Title theme={theme}>Aimful</S.Title>
       <LoginButton />
       <AnimatedLoginBackground />
     </React.Fragment>

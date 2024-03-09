@@ -21,7 +21,7 @@ export const Loader = () => {
           textAnchor="middle"
           fill={theme?.loaderColor}
         >
-          Vizionary AI
+          Aimful
         </S.Path>
       </S.Svg>
     </S.Wrapper>
