@@ -6,8 +6,7 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div<{ theme: DefaultTheme; disabled?: boolean }>`
-  background-color: ${({ theme, disabled }) =>
-    disabled ? theme.disabledBackground : theme.hamburgerMenuBackground};
+  background-color: ${({ theme }) => theme.homeCardBackground};
   color: ${({ theme }) => theme.text};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   border-radius: 0.5rem;

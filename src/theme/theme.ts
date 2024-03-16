@@ -25,6 +25,7 @@ export const lightTheme = {
   chatBotUserMessageBackground: "#F1BA54",
   chatBotMessageBackground: "#F0F0F0",
   cardShadow: "rgba(0, 0, 0, 0.2)",
+  homeCardBackground: "#F1BA54",
 };
 
 export const darkTheme = {
@@ -53,4 +54,5 @@ export const darkTheme = {
   chatBotUserMessageBackground: "#141622",
   chatBotMessageBackground: "#141622",
   cardShadow: "rgba(0, 0, 0, 0.6)",
+  homeCardBackground: "#050611",
 };
