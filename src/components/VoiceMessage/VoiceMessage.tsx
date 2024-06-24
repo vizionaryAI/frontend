@@ -1,11 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { sendVoiceMessage } from "../../api/chatbot.api";
 import * as S from "./VoiceMessage.styles";
 import { RecordingState } from "../../types/chatbot";
 
 const AudioRecorder: React.FC = () => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
-  const [isSending, setIsSending] = useState<boolean>(false);
   const [recordingState, setRecordingState] = useState<RecordingState>(
     RecordingState.None
   );
@@ -35,7 +34,6 @@ const AudioRecorder: React.FC = () => {
         stream.getTracks().forEach((track) => track.stop()); // Stop all tracks
 
         // Send the voice message
-        setIsSending(true);
         setRecordingState(RecordingState.Waiting);
         try {
           const response = await sendVoiceMessage(audioBlob);
@@ -43,15 +41,13 @@ const AudioRecorder: React.FC = () => {
           const returnedBlobUrl = URL.createObjectURL(response.data);
           if (audioPlayerRef.current) {
             audioPlayerRef.current.src = returnedBlobUrl;
+            setRecordingState(RecordingState.Listening);
             audioPlayerRef.current.play();
           }
-          setRecordingState(RecordingState.Listening);
         } catch (error) {
           console.error("Failed to send voice message", error);
           setRecordingState(RecordingState.None);
         }
-        setIsSending(false);
-        setRecordingState(RecordingState.None);
       };
       mediaRecorder.start();
       setIsRecording(true);
@@ -59,15 +55,40 @@ const AudioRecorder: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (audioPlayerRef.current) {
+      const handleAudioEnded = () => {
+        setRecordingState(RecordingState.None);
+      };
+
+      const handleAudioPlay = () => {
+        setRecordingState(RecordingState.Listening);
+      };
+
+      audioPlayerRef.current.addEventListener("ended", handleAudioEnded);
+      audioPlayerRef.current.addEventListener("play", handleAudioPlay);
+
+      return () => {
+        if (audioPlayerRef.current) {
+          audioPlayerRef.current.removeEventListener("ended", handleAudioEnded);
+          audioPlayerRef.current.removeEventListener("play", handleAudioPlay);
+        }
+      };
+    }
+  }, []);
+
   return (
     <S.ChatContainer>
       <S.Button
         onClick={handleStartStopRecording}
-        disabled={isSending}
+        disabled={
+          recordingState !== RecordingState.None &&
+          recordingState !== RecordingState.Recording
+        }
         state={recordingState}
       />
       <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
-      {recordingState && <S.StatusText>{recordingState}</S.StatusText>}
+      <S.StatusText>{recordingState}</S.StatusText>
     </S.ChatContainer>
   );
 };
