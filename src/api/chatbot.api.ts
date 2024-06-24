@@ -42,9 +42,29 @@ export async function sendAnswerToQuestionAPI(
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function sendVoiceMessage(audioBlob: Blob): Promise<any> {
+  try {
+    const formData = new FormData();
+    formData.append("file", audioBlob, "voice-message.wav");
+
+    const response = await api.post("api/v1/reflection/tts", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      responseType: "blob",
+    });
+
+    return response;
+  } catch (error) {
+    console.log("failed to send voice message", error);
+    throw error;
+  }
+}
+
 export async function getChatBotConversationAPI(): Promise<ChatBotConversation> {
   try {
-    const resp = await api.get(`api/v0/chat`);
+    const resp = await api.get(`api/v1/reflection/chat`);
     return resp.data;
   } catch (error) {
     return {
@@ -59,7 +79,7 @@ export async function sendAnswerToChatAPI(
   Answer: string
 ): Promise<ChatBotConversation> {
   try {
-    const resp = await api.post(`api/v0/chat`, { content: Answer });
+    const resp = await api.post(`api/v1/reflection/chat`, { content: Answer });
     return resp.data;
   } catch (error) {
     return {

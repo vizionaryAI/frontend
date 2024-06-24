@@ -20,3 +20,10 @@ export type ChatBotConversation = {
   error: string | null;
   finished: boolean;
 };
+
+export enum RecordingState {
+  Recording = "Recording",
+  Waiting = "Waiting...",
+  Listening = "Listening",
+  None = "Start Recording",
+}
