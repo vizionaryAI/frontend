@@ -38,7 +38,9 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
         </S.SwitchLabel>
       </S.SwitchContainer>
       {isVoiceMessage ? (
-        <VoiceMessage voiceApi={reflectionType} />
+        <VoiceMessage
+          voiceApi={reflectionType === "daily" ? "reflection" : "reflection"}
+        />
       ) : (
         <ChatBot conversationType={reflectionType} />
       )}
