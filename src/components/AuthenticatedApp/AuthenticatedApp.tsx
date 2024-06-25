@@ -8,6 +8,7 @@ import { darkTheme, lightTheme } from "../../theme/theme";
 import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
 import * as S from "./AuthenticatedApp.styles";
 import { Unauthorized } from "../Unauthorized/Unauthorized";
+import { Home } from "../Home/Home";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
@@ -49,18 +50,23 @@ export const AuthenticatedApp: React.FC = () => {
           <Routes>
             {user.premium ? (
               <>
-                {routes.map((route, index) => (
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={route.element}
-                  />
-                ))}
+                {user.introduction_completed ? (
+                  routes.map((route, index) => (
+                    <Route
+                      key={index}
+                      path={route.path}
+                      element={route.element}
+                    />
+                  ))
+                ) : (
+                  <Route path="*" element={<Navigate to="/home" replace />} />
+                )}
                 <Route path="*" element={<Navigate to="/home" replace />} />
               </>
             ) : (
               <Route path="*" element={<Unauthorized />} />
             )}
+            <Route path="/home" element={<Home />} />
           </Routes>
         </S.Layout>
       </S.AppLayout>

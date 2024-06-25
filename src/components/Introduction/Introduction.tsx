@@ -7,10 +7,12 @@ import { WritingIndicator } from "../WritingIndicator/WritingIndicator";
 import { useNavigate } from "react-router-dom";
 import { useIntroductionStore } from "../../store/introduction.store";
 import VoiceMessage from "../VoiceMessage/VoiceMessage";
+import { useClientStore } from "../../store/client.store";
 
 export const Introduction = () => {
   const { introduction, sendIntroduction, getIntroduction } =
     useIntroductionStore();
+  const { setUser } = useClientStore();
   const [newAnswer, setNewAnswer] = useState("");
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -68,6 +70,11 @@ export const Introduction = () => {
     setIsVoiceMessage(!isVoiceMessage);
   };
 
+  const handleEndConversation = () => {
+    setUser();
+    navigate("/home");
+  };
+
   if (introduction.error) {
     return <S.ErrorBox>Error: {introduction.error}</S.ErrorBox>;
   }
@@ -114,7 +121,7 @@ export const Introduction = () => {
           </S.MessagesContainer>
           {introduction.finished && (
             <S.EndConversationButtonContainer>
-              <S.EndConversationButton onClick={() => navigate("/home")}>
+              <S.EndConversationButton onClick={handleEndConversation}>
                 End conversation
               </S.EndConversationButton>
             </S.EndConversationButtonContainer>
