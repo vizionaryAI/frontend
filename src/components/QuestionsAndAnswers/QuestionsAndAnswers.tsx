@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
+import { useQuestionsAndAnswersStore } from "../../store/introduction.store";
 import * as S from "./QuestionsAndAnswers.styles";
 import { ThemeContext } from "styled-components";
 

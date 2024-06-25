@@ -12,12 +12,16 @@ type ClientStore = {
 export const useClientStore = create<ClientStore>((set) => ({
   token: "",
   user: {
+    name: "",
+    email: "",
     admin: false,
     premium: true,
-    content_monitored_warning: false,
     weekly_open: false,
-    weekly_completed: false,
     allow_weekly: false,
+    weekly_completed: false,
+    active_conversation: false,
+    introduction_completed: false,
+    content_monitored_warning: false,
   },
   setToken: (token: string) => set({ token }),
   setUser: async () => {

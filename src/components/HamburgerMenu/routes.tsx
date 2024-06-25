@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Home } from "../Home/Home";
-import { DailyReflection } from "../DailyReflection/DailyReflection";
-import { WeeklyReflection } from "../WeeklyReflection/WeeklyReflection";
+import { Reflection } from "../Reflection/Reflection";
 
 type NavigationItem = {
   path: string;
@@ -17,12 +16,12 @@ export const routes: NavigationItem[] = [
   },
   {
     path: "/daily-reflection",
-    element: <DailyReflection />,
+    element: <Reflection reflectionType="daily" />,
     title: "New Daily Reflection",
   },
   {
     path: "/weekly-reflection",
-    element: <WeeklyReflection />,
+    element: <Reflection reflectionType="weekly" />,
     title: "New Weekly Reflection",
   },
 ];

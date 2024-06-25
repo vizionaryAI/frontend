@@ -3,7 +3,11 @@ import { sendVoiceMessage } from "../../api/chatbot.api";
 import * as S from "./VoiceMessage.styles";
 import { RecordingState } from "../../types/chatbot";
 
-const AudioRecorder: React.FC = () => {
+type Props = {
+  voiceApi: string;
+};
+
+const AudioRecorder: React.FC<Props> = ({ voiceApi }) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [recordingState, setRecordingState] = useState<RecordingState>(
     RecordingState.None
@@ -36,7 +40,7 @@ const AudioRecorder: React.FC = () => {
         // Send the voice message
         setRecordingState(RecordingState.Waiting);
         try {
-          const response = await sendVoiceMessage(audioBlob);
+          const response = await sendVoiceMessage(audioBlob, voiceApi);
 
           const returnedBlobUrl = URL.createObjectURL(response.data);
           if (audioPlayerRef.current) {

@@ -19,9 +19,10 @@ type ChatBotConversationStore = {
 export const useChatBotConversationStore = create<ChatBotConversationStore>(
   (set, get) => ({
     chatBotConversation: {
+      conv_id: "",
       conversation: [],
-      error: null,
       finished: false,
+      user_id: "",
     },
 
     getChatBotConversation: async (conversationType: "daily" | "weekly") => {
@@ -55,9 +56,10 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
     },
     deleteChat: async (conversationType: "daily" | "weekly") => {
       const conversation = {
+        conv_id: "",
         conversation: [],
-        error: null,
         finished: false,
+        user_id: "",
       };
       set({ chatBotConversation: conversation });
       if (conversationType === "daily") {

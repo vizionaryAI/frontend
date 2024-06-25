@@ -4,20 +4,29 @@ import { ChatBot } from "../ChatBot/ChatBot";
 import { UserWarning } from "../UserWarning/UserWarning";
 import VoiceMessage from "../VoiceMessage/VoiceMessage";
 
-import * as S from "./DailyReflection.styles";
+import * as S from "./Reflection.styles";
+import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
 
-export const DailyReflection = () => {
+type Props = {
+  reflectionType: "daily" | "weekly";
+};
+
+export const Reflection: React.FC<Props> = ({ reflectionType }) => {
   const { user } = useClientStore();
   const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(false);
+  const { getChatBotConversation } = useChatBotConversationStore();
 
   const toggleSwitch = () => {
+    getChatBotConversation(reflectionType);
     setIsVoiceMessage(!isVoiceMessage);
   };
 
   return (
     <>
       <S.Container>
-        <S.Title>Daily Reflection</S.Title>
+        <S.Title>
+          {reflectionType === "daily" ? "Daily" : "Weekly"} Reflection
+        </S.Title>
         {user.content_monitored_warning && (
           <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
         )}
@@ -28,7 +37,11 @@ export const DailyReflection = () => {
           <S.SwitchButton isActive={isVoiceMessage} />
         </S.SwitchLabel>
       </S.SwitchContainer>
-      {isVoiceMessage ? <VoiceMessage /> : <ChatBot conversationType="daily" />}
+      {isVoiceMessage ? (
+        <VoiceMessage voiceApi={reflectionType} />
+      ) : (
+        <ChatBot conversationType={reflectionType} />
+      )}
     </>
   );
 };

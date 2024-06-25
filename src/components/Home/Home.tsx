@@ -1,31 +1,25 @@
 import React, { useEffect } from "react";
-import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
-import { QuestionsAndAnswers } from "../QuestionsAndAnswers/QuestionsAndAnswers";
 import { Loader } from "../Loader/Loader";
 import * as S from "./Home.styles";
 import { useNavigate } from "react-router-dom";
 import { useClientStore } from "../../store/client.store";
+import { Introduction } from "../Introduction/Introduction";
 
 export const Home = () => {
-  const { questionsAndAnswers, getNewQA } = useQuestionsAndAnswersStore();
-  const { user } = useClientStore();
+  const { user, setUser } = useClientStore();
   const navigate = useNavigate();
 
   useEffect(() => {
-    getNewQA();
+    setUser();
   }, []);
 
-  if (
-    !questionsAndAnswers.error &&
-    questionsAndAnswers.question?.title.length === 0 && //TODO: add init state
-    !questionsAndAnswers.finished_all
-  ) {
+  if (user.name === "") {
     return <Loader />;
   }
 
   return (
     <React.Fragment>
-      {questionsAndAnswers.finished_all ? (
+      {user.introduction_completed ? (
         <S.Container>
           <S.Card onClick={() => navigate("/daily-reflection")}>
             Daily Reflection
@@ -41,7 +35,7 @@ export const Home = () => {
           </S.Card>
         </S.Container>
       ) : (
-        <QuestionsAndAnswers />
+        <Introduction />
       )}
     </React.Fragment>
   );

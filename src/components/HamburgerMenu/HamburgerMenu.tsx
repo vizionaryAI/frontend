@@ -7,12 +7,11 @@ import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { DefaultTheme } from "styled-components";
 import { routes } from "./routes";
 import { Logout } from "./MenuItems/Logout";
-import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
-import { useQuestionsAndAnswersStore } from "../../store/questionsAndAnswers.store";
+import { useIntroductionStore } from "../../store/introduction.store";
 import { useClientStore } from "../../store/client.store";
 import { Loader } from "../Loader/Loader";
 import { User } from "../../types/user";
-import { ChatbotQuestionsAndAnswers } from "../../types/chatbot";
+import { ChatBotConversation } from "../../types/chatbot";
 
 type Props = {
   theme: DefaultTheme;
@@ -27,13 +26,12 @@ export const HamburgerMenu: React.FC<Props> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
-  const { deleteChat } = useChatBotConversationStore();
-  const { questionsAndAnswers, getNewQA } = useQuestionsAndAnswersStore();
+  const { introduction, getIntroduction } = useIntroductionStore();
   const { user } = useClientStore();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getNewQA();
+    getIntroduction();
   }, []);
 
   const toggleMenu = () => {
@@ -53,26 +51,26 @@ export const HamburgerMenu: React.FC<Props> = ({
     }
     if (title === "New Daily Reflection") {
       setIsLoading(true);
-      deleteChat("daily").then(() => {
-        setIsLoading(false);
-        setIsMenuOpen(false);
-      });
+      // deleteChat("daily").then(() => {
+      setIsLoading(false);
+      setIsMenuOpen(false);
+      // });
     } else if (title === "New Weekly Reflection") {
       setIsLoading(true);
-      deleteChat("weekly").then(() => {
-        setIsLoading(false);
-        setIsMenuOpen(false);
-      });
+      //deleteChat("weekly").then(() => {
+      setIsLoading(false);
+      setIsMenuOpen(false);
+      //});
     }
   };
 
   const routesValidate = (
     title: string,
     user: User,
-    questionsAndAnswers: ChatbotQuestionsAndAnswers
+    introduction: ChatBotConversation
   ) => {
     if (
-      !questionsAndAnswers.finished_all &&
+      introduction.finished &&
       (title === "New Daily Reflection" || title === "New Weekly Reflection")
     ) {
       return false;
@@ -93,7 +91,7 @@ export const HamburgerMenu: React.FC<Props> = ({
           {user.premium &&
             routes.map(
               (route, index) =>
-                routesValidate(route.title, user, questionsAndAnswers) && (
+                routesValidate(route.title, user, introduction) && (
                   <S.MenuItem key={index}>
                     <Link
                       to={route.path}

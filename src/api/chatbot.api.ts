@@ -1,54 +1,52 @@
 import { api } from ".";
-import {
-  ChatBotConversation,
-  ChatbotQuestionsAndAnswers,
-} from "../types/chatbot";
+import { ChatBotConversation } from "../types/chatbot";
 
-export async function getQuestionsAndAnswersAPI(): Promise<ChatbotQuestionsAndAnswers> {
+//introduction api
+export async function getIntroductionAPI(): Promise<ChatBotConversation> {
   try {
-    const resp = await api.get(`api/v0/next`);
+    const resp = await api.get(`api/v1/introduction/chat`);
     return resp.data;
   } catch (error) {
     return {
-      question: {
-        title: "",
-        subtitle: "",
-        conversation: [],
-        completed: false,
-      },
-      finished_all: false,
-      error: "Something went wrong",
+      conv_id: "",
+      conversation: [],
+      error: "Failed to fetch chat conversation",
+      finished: false,
+      user_id: "",
     };
   }
 }
 
-export async function sendAnswerToQuestionAPI(
+//introduction api
+export async function sendIntroductionAPI(
   Answer: string
-): Promise<ChatbotQuestionsAndAnswers> {
+): Promise<ChatBotConversation> {
   try {
-    const resp = await api.post(`api/v0/next`, { content: Answer });
+    const resp = await api.post(`api/v1/introduction/chat`, {
+      content: Answer,
+    });
     return resp.data;
   } catch (error) {
     return {
-      question: {
-        title: "",
-        subtitle: "",
-        conversation: [],
-        completed: false,
-      },
-      finished_all: false,
-      error: "Something went wrong",
+      conv_id: "",
+      conversation: [],
+      error: "Failed to send Answer",
+      finished: false,
+      user_id: "",
     };
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function sendVoiceMessage(audioBlob: Blob): Promise<any> {
+export async function sendVoiceMessage(
+  audioBlob: Blob,
+  type: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Promise<any> {
   try {
     const formData = new FormData();
     formData.append("file", audioBlob, "voice-message.wav");
 
-    const response = await api.post("api/v1/reflection/tts", formData, {
+    const response = await api.post(`api/v1/${type}/tts`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -68,9 +66,11 @@ export async function getChatBotConversationAPI(): Promise<ChatBotConversation> 
     return resp.data;
   } catch (error) {
     return {
+      conv_id: "",
       conversation: [],
       error: "Failed to fetch chat conversation",
       finished: false,
+      user_id: "",
     };
   }
 }
@@ -83,9 +83,11 @@ export async function sendAnswerToChatAPI(
     return resp.data;
   } catch (error) {
     return {
+      conv_id: "",
       conversation: [],
       error: "Failed to send Answer",
       finished: false,
+      user_id: "",
     };
   }
 }
@@ -96,22 +98,26 @@ export async function deleteChatAPI(): Promise<ChatBotConversation> {
     return resp.data;
   } catch (error) {
     return {
+      conv_id: "",
       conversation: [],
       error: "Failed to delete chat conversation",
       finished: false,
+      user_id: "",
     };
   }
 }
 
 export async function getWeeklyChatBotConversationAPI(): Promise<ChatBotConversation> {
   try {
-    const resp = await api.get(`api/v0/weekly`);
+    const resp = await api.get(`api/v1/reflection/chat`);
     return resp.data;
   } catch (error) {
     return {
+      conv_id: "",
       conversation: [],
       error: "Failed to fetch chat conversation",
       finished: false,
+      user_id: "",
     };
   }
 }
@@ -120,13 +126,15 @@ export async function sendAnswerToWeeklyChatAPI(
   Answer: string
 ): Promise<ChatBotConversation> {
   try {
-    const resp = await api.post(`api/v0/weekly`, { content: Answer });
+    const resp = await api.post(`api/v1/reflection/chat`, { content: Answer });
     return resp.data;
   } catch (error) {
     return {
+      conv_id: "",
       conversation: [],
       error: "Failed to send Answer",
       finished: false,
+      user_id: "",
     };
   }
 }
@@ -137,9 +145,11 @@ export async function deleteWeeklyAPI(): Promise<ChatBotConversation> {
     return resp.data;
   } catch (error) {
     return {
+      conv_id: "",
       conversation: [],
       error: "Failed to delete chat conversation",
       finished: false,
+      user_id: "",
     };
   }
 }
