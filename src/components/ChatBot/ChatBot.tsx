@@ -7,6 +7,7 @@ import { Typewriter } from "../Typewriter/Typewriter";
 import { WritingIndicator } from "../WritingIndicator/WritingIndicator";
 import { useNavigate } from "react-router-dom";
 
+// Props for the ChatBot component
 type Props = {
   conversationType: "daily" | "weekly";
 };
