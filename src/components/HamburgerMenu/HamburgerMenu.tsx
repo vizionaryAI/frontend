@@ -63,7 +63,7 @@ export const HamburgerMenu: React.FC<Props> = ({
       (title === "New Daily Reflection" || title === "New Weekly Reflection")
     ) {
       return false;
-    } else if (title === "New Weekly Reflection" && !user.allow_weekly) {
+    } else if (title === "New Weekly Reflection" && !user.weekly_open) {
       return false;
     }
     return true;

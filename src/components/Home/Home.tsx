@@ -31,8 +31,8 @@ export const Home = () => {
             <S.Duration>Duration 5-10mins</S.Duration>
           </S.Card>
           <S.Card
-            disabled={!user.allow_weekly}
-            onClick={() => user.allow_weekly && navigate("/weekly-reflection")}
+            disabled={!user.weekly_open}
+            onClick={() => user.weekly_open && navigate("/weekly-reflection")}
           >
             <h2>Weekly Session</h2>
             <S.Notes>
