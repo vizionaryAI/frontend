@@ -46,21 +46,21 @@ export const Button = styled.button<{ theme: DefaultTheme }>`
 `;
 
 export const StatusText = styled.p<{ theme: DefaultTheme }>`
-  margin-top: 1rem;
   font-size: 1rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textLight};
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
-  width: 8rem;
-  height: 2rem;
-  border-radius: 0%;
+  width: 12rem;
+  height: 3rem;
+  border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid ${({ theme }) => theme.text};
+  border: none;
   cursor: pointer;
-  background-color: transparent;
+  background: ${({ theme }) => theme.buttonBackground};
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
   &:disabled {
     cursor: not-allowed;
