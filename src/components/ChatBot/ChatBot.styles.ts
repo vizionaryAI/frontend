@@ -51,7 +51,7 @@ export const Message = styled.div`
 
 export const UserMessage = styled(Message)<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotUserMessageBackground};
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.textLight};
   align-self: flex-end;
 `;
 

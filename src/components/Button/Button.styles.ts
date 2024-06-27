@@ -6,13 +6,13 @@ export const Container = styled.button<{ theme: DefaultTheme }>`
   border: none;
   padding: 0.25rem 1rem;
   font-size: 1rem;
-  background-color: ${({ theme }) => theme.buttonBackground};
+  background: ${({ theme }) => theme.buttonBackground};
   color: white;
   cursor: pointer;
   transition: all 0.125s ease-in-out;
   outline: 0.0625rem solid transparent;
   height: 1.8rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.buttonText};
 
   &:hover {
     filter: brightness(0.8);

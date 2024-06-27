@@ -49,6 +49,7 @@ export const MenuItem = styled.div<{ theme: DefaultTheme }>`
   &:hover {
     background-color: ${(props) =>
       props.theme.hamburgerMenuHoverBackground || "#f9efdb"};
+    color: ${(props) => props.theme.textLight};
   }
 
   @media (max-width: 768px) {

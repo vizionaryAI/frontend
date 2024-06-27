@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { LoginButton } from "../LoginButton/LoginButton";
 import { AnimatedLoginBackground } from "../AnimatedLoginBackground/AnimatedLoginBackground";
-import * as S from "./Login.styles";
-import { ThemeContext } from "styled-components";
+import centrica from "../../assets/centrica.png";
 
 export const Login = () => {
-  const theme = useContext(ThemeContext);
-
   return (
     <React.Fragment>
-      <S.Title theme={theme}>Aimful</S.Title>
+      <div style={{ textAlign: "center", padding: "3rem", zIndex: 100 }}>
+        <img src={centrica} alt="Centrica Logo" style={{ width: "20rem" }} />
+      </div>
       <LoginButton />
       <AnimatedLoginBackground />
     </React.Fragment>

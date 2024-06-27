@@ -6,11 +6,12 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div<{ theme: DefaultTheme; disabled?: boolean }>`
-  background-color: ${({ theme }) => theme.homeCardBackground};
-  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.homeDisabledCardBackground : theme.homeCardBackground};
+  color: ${({ theme }) => theme.textLight};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   border-radius: 0.5rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.775);
   padding: 1.25rem;
   margin: 0.625rem;
   width: 15rem;
@@ -19,8 +20,8 @@ export const Card = styled.div<{ theme: DefaultTheme; disabled?: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: box-shadow 0.3s ease-in-out;
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  transition: box-shadow 0.2s ease-in-out;
+  opacity: ${({ disabled }) => (disabled ? 0.7 : 1)};
 
   &:hover {
     box-shadow: 0 0.5rem 1rem ${({ theme }) => theme.cardShadow};

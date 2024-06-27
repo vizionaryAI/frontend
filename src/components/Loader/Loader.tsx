@@ -21,7 +21,7 @@ export const Loader = () => {
           textAnchor="middle"
           fill={theme?.loaderColor}
         >
-          Aimful
+          centrica
         </S.Path>
       </S.Svg>
     </S.Wrapper>

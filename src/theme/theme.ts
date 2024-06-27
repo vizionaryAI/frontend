@@ -7,10 +7,11 @@ export const lightTheme = {
   background: "#FFF",
   card: "#F9F9F9",
   border: "#eee",
-  buttonBackground: "#EBD9B4",
+  buttonBackground: "linear-gradient( #2043a5, #0f2253)",
+  buttonText: "#FFF",
   adviserTextBackground: "",
   userTextBackground: "",
-  notebookBackground: "#F1BA54",
+  notebookBackground: "#2043a5",
   sendButton: "#000",
   menuBackground: "#F9EFDB",
   animatedBackground: "#FFF",
@@ -18,15 +19,19 @@ export const lightTheme = {
   loaderBackground: "#FFF",
   loaderColor: "#000",
   hamburgerMenuBackground: "#FFF",
-  hamburgerMenuHoverBackground: "#F1BA54",
+  hamburgerMenuHoverBackground: "#2043a5",
   hamburgerMenuBorder: "#ececf1",
   appLayoutBackground: "#FFF",
   chatBotBackground: "#FFF",
-  chatBotUserMessageBackground: "#F1BA54",
+  chatBotUserMessageBackground: "#2043a5",
   chatBotMessageBackground: "#F0F0F0",
   cardShadow: "rgba(0, 0, 0, 0.2)",
-  homeCardBackground: "#F1BA54",
+  homeCardBackground: "#2043a5",
+  homeDisabledCardBackground: "#0f2253",
+  textLight: "#FFF",
 };
+//#2043a5  light blue
+//#0f2253  dark blue
 
 export const darkTheme = {
   mode: "dark",
@@ -36,7 +41,8 @@ export const darkTheme = {
   background: "#141622",
   card: "#2D2D2D",
   border: "black",
-  buttonBackground: "#3D3B40",
+  buttonBackground: "linear-gradient( #2043a5, #0f2253)",
+  buttonText: "#FFF",
   adviserTextBackground: "#050611",
   userTextBackground: "#050611",
   notebookBackground: "#050611",
@@ -55,4 +61,6 @@ export const darkTheme = {
   chatBotMessageBackground: "#141622",
   cardShadow: "rgba(0, 0, 0, 0.6)",
   homeCardBackground: "#050611",
+  homeDisabledCardBackground: "#050611",
+  textLight: "#FFF",
 };
