@@ -158,9 +158,17 @@ const AudioRecorder: React.FC<Props> = ({
         </>
       ) : (
         <>
-          <S.StartButton onClick={handleStartSession}>
-            <S.StatusText>Start Session</S.StatusText>
-          </S.StartButton>
+          <S.WelcomeContainer>
+            <S.Title>Welcome to Aimful!</S.Title>
+            <S.Description>
+              We're excited to have you here and eager to learn how we can best
+              support you. Ready to begin your first session? Click below to get
+              started.
+            </S.Description>
+            <S.StartButton onClick={handleStartSession}>
+              <S.StatusText>Start Session</S.StatusText>
+            </S.StartButton>
+          </S.WelcomeContainer>
         </>
       )}
     </S.ChatContainer>

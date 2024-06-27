@@ -78,3 +78,25 @@ export const AnimationContainer = styled.div`
     left: 0;
   }
 `;
+
+export const WelcomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+`;
+
+export const Title = styled.h1`
+  font-size: 2rem;
+  color: ${({ theme }) => theme.titleColor};
+`;
+
+export const Description = styled.p`
+  font-size: 1.2rem;
+  margin: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  color: ${({ theme }) => theme.descriptionColor};
+  text-align: center;
+`;
