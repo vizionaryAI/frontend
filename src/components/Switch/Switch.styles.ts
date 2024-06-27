@@ -3,6 +3,17 @@ import { animated } from "react-spring";
 import voice from "../../assets/voice.png";
 import keyboard from "../../assets/keyboard.png";
 
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Icon = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 0.5rem;
+`;
+
 export const SwitchContainer = styled.div<{
   theme: DefaultTheme;
 }>`
@@ -19,23 +30,18 @@ export const Slider = styled(animated.div).withConfig({
   shouldForwardProp: (prop) => prop !== "isVoiceMessage",
 })<{ isVoiceMessage: boolean; theme: DefaultTheme }>`
   position: absolute;
-  top: 0%;
-  width: 50%;
-  height: 100%;
-  border-radius: 15px;
-  background-color: transparent;
-  background-size: 75%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: ${({ isVoiceMessage }) =>
-    isVoiceMessage ? `url(${voice})` : `url(${keyboard})`};
-  right: ${({ isVoiceMessage }) => (isVoiceMessage ? "50%" : "0%")};
-  filter: ${({ theme }) =>
-    theme.mode === "light"
-      ? "brightness(0) invert(1)"
-      : "brightness(0) invert(0)"};
 
-  &:hover {
-    transform: scale(1.3);
-  }
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+
+  border: 0.5px solid;
+  background-color: white;
+
+  background-position: center;
+  transition: 0.4s;
+
+  right: ${({ isVoiceMessage }) => (isVoiceMessage ? "50%" : "0%")};
 `;
+
+export { voice, keyboard };
