@@ -13,7 +13,7 @@ type Props = {
 
 export const Reflection: React.FC<Props> = ({ reflectionType }) => {
   const { user } = useClientStore();
-  const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(false);
+  const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(true);
   const { getChatBotConversation } = useChatBotConversationStore();
 
   const toggleSwitch = () => {

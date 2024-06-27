@@ -60,6 +60,26 @@ export async function sendVoiceMessage(
   }
 }
 
+//session start api
+export async function getVoiceMessage(
+  type: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Promise<any> {
+  try {
+    const response = await api.get(`api/v1/${type}/tts`, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      responseType: "blob",
+    });
+
+    return response;
+  } catch (error) {
+    console.log("failed to send voice message", error);
+    throw error;
+  }
+}
+
 export async function getChatBotConversationAPI(): Promise<ChatBotConversation> {
   try {
     const resp = await api.get(`api/v1/reflection/chat`);

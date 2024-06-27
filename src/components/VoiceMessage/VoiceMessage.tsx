@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { sendVoiceMessage } from "../../api/chatbot.api";
+import { getVoiceMessage, sendVoiceMessage } from "../../api/chatbot.api";
 import * as S from "./VoiceMessage.styles";
 import { RecordingState } from "../../types/chatbot";
 import { RecordingAnimation } from "./RecordingAnimation";
@@ -16,6 +16,7 @@ const AudioRecorder: React.FC<Props> = ({ voiceApi }) => {
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const audioPlayerRef = useRef<HTMLAudioElement | null>(null);
+  const [sessionIsStarted, setSessionIsStarted] = useState(false);
 
   const handleStartStopRecording = async () => {
     if (isRecording) {
@@ -82,19 +83,53 @@ const AudioRecorder: React.FC<Props> = ({ voiceApi }) => {
     }
   }, []);
 
+  const handleStartSession = async () => {
+    setSessionIsStarted(true);
+
+    // Send the voice message
+    setRecordingState(RecordingState.Waiting);
+    try {
+      const response = await getVoiceMessage(voiceApi);
+
+      const returnedBlobUrl = URL.createObjectURL(response.data);
+      if (audioPlayerRef.current) {
+        audioPlayerRef.current.src = returnedBlobUrl;
+        setRecordingState(RecordingState.Listening);
+
+        audioPlayerRef.current.play();
+
+        audioPlayerRef.current.onended = () => {
+          setRecordingState(RecordingState.None);
+        };
+      }
+    } catch (error) {
+      console.error("Failed to send voice message", error);
+      setRecordingState(RecordingState.None);
+    }
+  };
+
   return (
     <S.ChatContainer>
-      <S.Button
-        onClick={handleStartStopRecording}
-        disabled={
-          recordingState !== RecordingState.None &&
-          recordingState !== RecordingState.Recording
-        }
-      >
-        <RecordingAnimation animation={recordingState} />
-      </S.Button>
-      <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
-      <S.StatusText>{recordingState}</S.StatusText>
+      {sessionIsStarted ? (
+        <>
+          <S.Button
+            onClick={handleStartStopRecording}
+            disabled={
+              recordingState !== RecordingState.None &&
+              recordingState !== RecordingState.Recording
+            }
+          >
+            <RecordingAnimation animation={recordingState} />
+          </S.Button>
+          <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
+          <S.StatusText>{recordingState}</S.StatusText>
+        </>
+      ) : (
+        <>
+          <S.Button onClick={handleStartSession} />
+          <S.StatusText>Start Session</S.StatusText>
+        </>
+      )}
     </S.ChatContainer>
   );
 };

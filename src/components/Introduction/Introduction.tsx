@@ -19,7 +19,7 @@ export const Introduction = () => {
   const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
-  const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(false);
+  const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(true);
 
   useEffect(() => {
     getIntroduction();
