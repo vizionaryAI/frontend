@@ -29,14 +29,14 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{ theme: DefaultTheme }>`
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  outline: none;
+  border: 2px solid ${({ theme }) => theme.text};
   cursor: pointer;
   background-color: transparent;
 
@@ -45,8 +45,8 @@ export const Button = styled.button`
   }
 `;
 
-export const StatusText = styled.p`
+export const StatusText = styled.p<{ theme: DefaultTheme }>`
   margin-top: 1rem;
   font-size: 1rem;
-  color: #333;
+  color: ${({ theme }) => theme.text};
 `;

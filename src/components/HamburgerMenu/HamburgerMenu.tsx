@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./HamburgerMenu.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,11 +7,9 @@ import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import { DefaultTheme } from "styled-components";
 import { routes } from "./routes";
 import { Logout } from "./MenuItems/Logout";
-import { useIntroductionStore } from "../../store/introduction.store";
 import { useClientStore } from "../../store/client.store";
 import { Loader } from "../Loader/Loader";
 import { User } from "../../types/user";
-import { ChatBotConversation } from "../../types/chatbot";
 
 type Props = {
   theme: DefaultTheme;
@@ -26,13 +24,8 @@ export const HamburgerMenu: React.FC<Props> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
-  const { introduction, getIntroduction } = useIntroductionStore();
   const { user } = useClientStore();
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    getIntroduction();
-  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -64,13 +57,9 @@ export const HamburgerMenu: React.FC<Props> = ({
     }
   };
 
-  const routesValidate = (
-    title: string,
-    user: User,
-    introduction: ChatBotConversation
-  ) => {
+  const routesValidate = (title: string, user: User) => {
     if (
-      introduction.finished &&
+      !user.introduction_completed &&
       (title === "New Daily Reflection" || title === "New Weekly Reflection")
     ) {
       return false;
@@ -91,7 +80,7 @@ export const HamburgerMenu: React.FC<Props> = ({
           {user.premium &&
             routes.map(
               (route, index) =>
-                routesValidate(route.title, user, introduction) && (
+                routesValidate(route.title, user) && (
                   <S.MenuItem key={index}>
                     <Link
                       to={route.path}
