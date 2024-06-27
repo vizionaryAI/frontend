@@ -1,5 +1,4 @@
 import styled, { DefaultTheme } from "styled-components";
-import { RecordingState } from "../../types/chatbot";
 
 export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
@@ -32,57 +31,19 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
-export const Button = styled.button.withConfig({
-  shouldForwardProp: (prop) => prop !== "state",
-})<{ state: string }>`
-  padding: 10% 10%;
-  font-size: 16px;
-  margin: 10px;
-  cursor: pointer;
-  background-color: ${({ state }) => {
-    switch (state) {
-      case RecordingState.Recording:
-        return "#f44336";
-      case RecordingState.Waiting:
-        return "#ff9800";
-      case RecordingState.Listening:
-        return "#3f51b5";
-      default:
-        return "#4caf50";
-    }
-  }};
-  color: white;
-  border: none;
+export const Button = styled.button`
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
 
-  &:hover {
-    background-color: ${({ state }) => {
-      switch (state) {
-        case RecordingState.Recording:
-          return "#d32f2f";
-        case RecordingState.Waiting:
-          return "#f57c00";
-        case RecordingState.Listening:
-          return "#303f9f";
-        default:
-          return "#388e3c";
-      }
-    }};
-  }
-
-  &:active {
-    background-color: ${({ state }) => {
-      switch (state) {
-        case RecordingState.Recording:
-          return "#d32f2f";
-        case RecordingState.Waiting:
-          return "#f57c00";
-        case RecordingState.Listening:
-          return "#303f9f";
-        default:
-          return "#388e3c";
-      }
-    }};
+  &:disabled {
+    cursor: not-allowed;
   }
 `;
 

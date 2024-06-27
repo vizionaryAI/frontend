@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { sendVoiceMessage } from "../../api/chatbot.api";
 import * as S from "./VoiceMessage.styles";
 import { RecordingState } from "../../types/chatbot";
+import { RecordingAnimation } from "./RecordingAnimation";
 
 type Props = {
   voiceApi: string;
@@ -89,8 +90,9 @@ const AudioRecorder: React.FC<Props> = ({ voiceApi }) => {
           recordingState !== RecordingState.None &&
           recordingState !== RecordingState.Recording
         }
-        state={recordingState}
-      />
+      >
+        <RecordingAnimation animation={recordingState} />
+      </S.Button>
       <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
       <S.StatusText>{recordingState}</S.StatusText>
     </S.ChatContainer>
