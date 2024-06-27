@@ -6,6 +6,7 @@ import VoiceMessage from "../VoiceMessage/VoiceMessage";
 
 import * as S from "./Reflection.styles";
 import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
+import { Switch } from "../Switch/Switch";
 
 type Props = {
   reflectionType: "daily" | "weekly";
@@ -29,12 +30,8 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
       {user.content_monitored_warning && (
         <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
       )}
-
-      <S.SwitchContainer onClick={toggleSwitch}>
-        <S.HiddenCheckbox type="checkbox" checked={isVoiceMessage} readOnly />
-        <S.SwitchLabel isActive={isVoiceMessage}>
-          <S.SwitchButton isActive={isVoiceMessage} />
-        </S.SwitchLabel>
+      <S.SwitchContainer>
+        <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
       </S.SwitchContainer>
       {isVoiceMessage ? (
         <VoiceMessage

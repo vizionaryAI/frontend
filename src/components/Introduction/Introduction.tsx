@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useIntroductionStore } from "../../store/introduction.store";
 import VoiceMessage from "../VoiceMessage/VoiceMessage";
 import { useClientStore } from "../../store/client.store";
+import { Switch } from "../Switch/Switch";
 
 export const Introduction = () => {
   const { introduction, sendIntroduction, getIntroduction } =
@@ -82,11 +83,8 @@ export const Introduction = () => {
   return (
     <S.Container>
       <S.Title>Introduction</S.Title>
-      <S.SwitchContainer onClick={toggleSwitch}>
-        <S.HiddenCheckbox type="checkbox" checked={isVoiceMessage} readOnly />
-        <S.SwitchLabel isActive={isVoiceMessage}>
-          <S.SwitchButton isActive={isVoiceMessage} />
-        </S.SwitchLabel>
+      <S.SwitchContainer>
+        <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
       </S.SwitchContainer>
       {isVoiceMessage ? (
         <VoiceMessage voiceApi="introduction" />
