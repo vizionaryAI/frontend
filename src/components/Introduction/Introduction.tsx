@@ -80,7 +80,7 @@ export const Introduction = () => {
   }
 
   return (
-    <S.ChatContainer>
+    <S.Container>
       <S.Title>Introduction</S.Title>
       <S.SwitchContainer onClick={toggleSwitch}>
         <S.HiddenCheckbox type="checkbox" checked={isVoiceMessage} readOnly />
@@ -146,6 +146,6 @@ export const Introduction = () => {
           </S.InputContainer>
         </>
       )}
-    </S.ChatContainer>
+    </S.Container>
   );
 };

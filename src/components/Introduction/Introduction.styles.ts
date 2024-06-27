@@ -13,7 +13,7 @@ export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotBackground};
 `;
 
-export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
+export const Container = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   max-width: 50rem;
