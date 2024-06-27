@@ -16,6 +16,7 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
   const { user } = useClientStore();
   const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(true);
   const { getChatBotConversation } = useChatBotConversationStore();
+  const [firstUse, setFirstUse] = useState(false); //user profile
 
   const toggleSwitch = () => {
     getChatBotConversation(reflectionType);
@@ -36,6 +37,8 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
       {isVoiceMessage ? (
         <VoiceMessage
           voiceApi={reflectionType === "daily" ? "reflection" : "reflection"}
+          firstUse={firstUse}
+          setFirstUse={setFirstUse}
         />
       ) : (
         <ChatBot conversationType={reflectionType} />

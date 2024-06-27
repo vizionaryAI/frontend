@@ -15,10 +15,9 @@ export const SwitchContainer = styled.div<{
   cursor: pointer;
 `;
 
-export const Slider = styled(animated.div)<{
-  theme: DefaultTheme;
-  isVoiceMessage: boolean;
-}>`
+export const Slider = styled(animated.div).withConfig({
+  shouldForwardProp: (prop) => prop !== "isVoiceMessage",
+})<{ isVoiceMessage: boolean; theme: DefaultTheme }>`
   position: absolute;
   top: 0%;
   width: 50%;

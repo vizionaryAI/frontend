@@ -9,8 +9,10 @@ import { useIntroductionStore } from "../../store/introduction.store";
 import VoiceMessage from "../VoiceMessage/VoiceMessage";
 import { useClientStore } from "../../store/client.store";
 import { Switch } from "../Switch/Switch";
+import { UserWarning } from "../UserWarning/UserWarning";
 
 export const Introduction = () => {
+  const { user } = useClientStore();
   const { introduction, sendIntroduction, getIntroduction } =
     useIntroductionStore();
   const { setUser } = useClientStore();
@@ -21,6 +23,7 @@ export const Introduction = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
   const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(true);
+  const [firstUse, setFirstUse] = useState(true); //user profile
 
   useEffect(() => {
     getIntroduction();
@@ -86,8 +89,15 @@ export const Introduction = () => {
       <S.SwitchContainer>
         <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
       </S.SwitchContainer>
+      {user.content_monitored_warning && (
+        <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
+      )}
       {isVoiceMessage ? (
-        <VoiceMessage voiceApi="introduction" />
+        <VoiceMessage
+          voiceApi="introduction"
+          firstUse={firstUse}
+          setFirstUse={setFirstUse}
+        />
       ) : (
         <>
           <S.MessagesContainer>

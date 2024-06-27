@@ -6,9 +6,15 @@ import { RecordingAnimation } from "./RecordingAnimation";
 
 type Props = {
   voiceApi: string;
+  firstUse: boolean;
+  setFirstUse: (value: boolean) => void;
 };
 
-const AudioRecorder: React.FC<Props> = ({ voiceApi }) => {
+const AudioRecorder: React.FC<Props> = ({
+  voiceApi,
+  firstUse,
+  setFirstUse,
+}) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [recordingState, setRecordingState] = useState<RecordingState>(
     RecordingState.None
@@ -24,6 +30,7 @@ const AudioRecorder: React.FC<Props> = ({ voiceApi }) => {
       mediaRecorderRef.current?.stop();
       setIsRecording(false);
       setRecordingState(RecordingState.Waiting);
+      setFirstUse(false); //user profile TODO!!!!
     } else {
       // Start recording
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -119,15 +126,38 @@ const AudioRecorder: React.FC<Props> = ({ voiceApi }) => {
               recordingState !== RecordingState.Recording
             }
           >
-            <RecordingAnimation animation={recordingState} />
+            {/* Check is first use, before recording */}
+            {firstUse && recordingState === RecordingState.None && (
+              <RecordingAnimation
+                animation={RecordingState.HelpGuideAnimation}
+              />
+            )}
+
+            {/* Check is first use and is recording */}
+            {firstUse && recordingState === RecordingState.Recording ? (
+              <S.AnimationContainer>
+                <RecordingAnimation animation={RecordingState.Recording} />
+                <RecordingAnimation
+                  animation={RecordingState.HelpGuideAnimation}
+                />
+              </S.AnimationContainer>
+            ) : (
+              <RecordingAnimation animation={recordingState} />
+            )}
           </S.Button>
           <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
+
           <S.StatusText>{recordingState}</S.StatusText>
+          {firstUse && recordingState === RecordingState.None && (
+            <S.StatusText>Click to start recording</S.StatusText>
+          )}
+          {firstUse && recordingState === RecordingState.Recording && (
+            <S.StatusText>Click to stop recording</S.StatusText>
+          )}
         </>
       ) : (
         <>
           <S.StartButton onClick={handleStartSession}>
-            {" "}
             <S.StatusText>Start Session</S.StatusText>
           </S.StartButton>
         </>

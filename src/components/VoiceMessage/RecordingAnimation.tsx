@@ -4,6 +4,7 @@ import { recordingAnimation } from "../../assets/animation/recording-animation";
 import { RecordingState } from "../../types/chatbot";
 import { waitingAnimation } from "../../assets/animation/waiting-animation";
 import { listeningAnimation } from "../../assets/animation/listening-animation";
+import { HelpGuideAnimation } from "../../assets/animation/help-guide-animation";
 
 type Props = {
   animation: RecordingState;
@@ -27,6 +28,12 @@ const listeningOptions = {
   animationData: listeningAnimation,
 };
 
+const helpGuideOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: HelpGuideAnimation,
+};
+
 export const RecordingAnimation: React.FC<Props> = ({ animation }) => {
   let options;
 
@@ -39,6 +46,9 @@ export const RecordingAnimation: React.FC<Props> = ({ animation }) => {
       break;
     case RecordingState.Listening:
       options = listeningOptions;
+      break;
+    case RecordingState.HelpGuideAnimation:
+      options = helpGuideOptions;
       break;
     default:
       return <></>;

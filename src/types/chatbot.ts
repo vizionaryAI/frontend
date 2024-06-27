@@ -14,4 +14,5 @@ export enum RecordingState {
   Waiting = "Waiting...",
   Listening = "Listening",
   None = "Start Recording",
+  HelpGuideAnimation = "Click Here",
 }

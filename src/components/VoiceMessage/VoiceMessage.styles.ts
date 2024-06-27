@@ -66,3 +66,15 @@ export const StartButton = styled.button<{ theme: DefaultTheme }>`
     cursor: not-allowed;
   }
 `;
+
+export const AnimationContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  & > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
