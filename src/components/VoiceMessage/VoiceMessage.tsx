@@ -115,6 +115,15 @@ const AudioRecorder: React.FC<Props> = ({
     }
   };
 
+  const renderUIText = () => {
+    if (firstUse && recordingState === RecordingState.None) {
+      return <S.StatusText>Press when Speaking</S.StatusText>;
+    } else if (firstUse && recordingState === RecordingState.Recording) {
+      return <S.StatusText>Press when you've finished Speaking'</S.StatusText>;
+    }
+    return <S.StatusText>{recordingState}</S.StatusText>;
+  };
+
   return (
     <S.ChatContainer>
       {sessionIsStarted ? (
@@ -146,14 +155,7 @@ const AudioRecorder: React.FC<Props> = ({
             )}
           </S.Button>
           <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
-
-          <S.StatusText>{recordingState}</S.StatusText>
-          {firstUse && recordingState === RecordingState.None && (
-            <S.StatusText>Click to start recording</S.StatusText>
-          )}
-          {firstUse && recordingState === RecordingState.Recording && (
-            <S.StatusText>Click to stop recording</S.StatusText>
-          )}
+          {renderUIText()}
         </>
       ) : (
         <>
