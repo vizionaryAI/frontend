@@ -29,6 +29,8 @@ export const lightTheme = {
   homeCardBackground: "#2043a5",
   homeDisabledCardBackground: "#0f2253",
   textLight: "#FFF",
+  switcherBackground: "#2043a5",
+  title: "linear-gradient( #2043a5, #0f2253)",
 };
 //#2043a5  light blue
 //#0f2253  dark blue
@@ -63,4 +65,6 @@ export const darkTheme = {
   homeCardBackground: "#050611",
   homeDisabledCardBackground: "#050611",
   textLight: "#FFF",
+  switcherBackground: "#ececef",
+  title: "linear-gradient( #2043a5, #0f2253)",
 };
