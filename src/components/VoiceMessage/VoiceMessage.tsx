@@ -126,8 +126,10 @@ const AudioRecorder: React.FC<Props> = ({ voiceApi }) => {
         </>
       ) : (
         <>
-          <S.Button onClick={handleStartSession} />
-          <S.StatusText>Start Session</S.StatusText>
+          <S.StartButton onClick={handleStartSession}>
+            {" "}
+            <S.StatusText>Start Session</S.StatusText>
+          </S.StartButton>
         </>
       )}
     </S.ChatContainer>

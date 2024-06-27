@@ -50,3 +50,19 @@ export const StatusText = styled.p<{ theme: DefaultTheme }>`
   font-size: 1rem;
   color: ${({ theme }) => theme.text};
 `;
+
+export const StartButton = styled.button<{ theme: DefaultTheme }>`
+  width: 8rem;
+  height: 2rem;
+  border-radius: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid ${({ theme }) => theme.text};
+  cursor: pointer;
+  background-color: transparent;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;
