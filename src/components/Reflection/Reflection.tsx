@@ -25,9 +25,6 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
 
   return (
     <S.Container>
-      <S.Title>
-        {reflectionType === "daily" ? "Daily" : "Weekly"} Reflection
-      </S.Title>
       {user.content_monitored_warning && (
         <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
       )}

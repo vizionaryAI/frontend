@@ -85,7 +85,6 @@ export const Introduction = () => {
 
   return (
     <S.Container>
-      <S.Title>Introduction</S.Title>
       <S.SwitchContainer>
         <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
       </S.SwitchContainer>
