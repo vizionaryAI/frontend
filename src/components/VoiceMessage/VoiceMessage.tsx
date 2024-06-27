@@ -8,12 +8,16 @@ type Props = {
   voiceApi: string;
   firstUse: boolean;
   setFirstUse: (value: boolean) => void;
+  sessionIsStarted: boolean;
+  setSessionIsStarted: (value: boolean) => void;
 };
 
 const AudioRecorder: React.FC<Props> = ({
   voiceApi,
   firstUse,
   setFirstUse,
+  sessionIsStarted,
+  setSessionIsStarted,
 }) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [recordingState, setRecordingState] = useState<RecordingState>(
@@ -22,7 +26,6 @@ const AudioRecorder: React.FC<Props> = ({
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const audioPlayerRef = useRef<HTMLAudioElement | null>(null);
-  const [sessionIsStarted, setSessionIsStarted] = useState(false);
 
   const handleStartStopRecording = async () => {
     if (isRecording) {

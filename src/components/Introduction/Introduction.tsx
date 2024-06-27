@@ -24,6 +24,7 @@ export const Introduction = () => {
   const navigate = useNavigate();
   const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(true);
   const [firstUse, setFirstUse] = useState(true); //user profile
+  const [sessionIsStarted, setSessionIsStarted] = useState(false);
 
   useEffect(() => {
     getIntroduction();
@@ -96,6 +97,8 @@ export const Introduction = () => {
           voiceApi="introduction"
           firstUse={firstUse}
           setFirstUse={setFirstUse}
+          sessionIsStarted={sessionIsStarted}
+          setSessionIsStarted={setSessionIsStarted}
         />
       ) : (
         <>
