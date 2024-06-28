@@ -42,13 +42,13 @@ export const HamburgerMenu: React.FC<Props> = ({
     if (title === "Home") {
       toggleMenu();
     }
-    if (title === "New Daily Reflection") {
+    if (title === "New Short Session") {
       setIsLoading(true);
       // deleteChat("daily").then(() => {
       setIsLoading(false);
       setIsMenuOpen(false);
       // });
-    } else if (title === "New Weekly Reflection") {
+    } else if (title === "New Weekly Session") {
       setIsLoading(true);
       //deleteChat("weekly").then(() => {
       setIsLoading(false);
@@ -60,10 +60,10 @@ export const HamburgerMenu: React.FC<Props> = ({
   const routesValidate = (title: string, user: User) => {
     if (
       !user.introduction_completed &&
-      (title === "New Daily Reflection" || title === "New Weekly Reflection")
+      (title === "New Short Session" || title === "New Weekly Session")
     ) {
       return false;
-    } else if (title === "New Weekly Reflection" && !user.weekly_open) {
+    } else if (title === "New Weekly Session" && !user.weekly_open) {
       return false;
     }
     return true;
