@@ -14,7 +14,6 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   border-style: solid;
   border-width: 0 0.0625rem 0 0;
   overflow: auto;
-  transition: left 0.3s ease;
 
   box-shadow: 5px 0 5px -2px rgba(0, 0, 0, 0.1);
   @media (max-width: 768px) {

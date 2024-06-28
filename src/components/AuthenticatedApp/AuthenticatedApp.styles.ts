@@ -34,9 +34,10 @@ export const Layout = styled.div<{ theme: DefaultTheme; open: boolean }>`
   min-height: 100vh;
   position: relative;
   left: ${(props) => (props.open ? "15rem" : "0")};
-  transition: left 0.3s ease;
+
   top: 0;
   width: ${(props) => (props.open ? "calc(100% - 15rem)" : "100%")};
+
   height: 100%;
   background-size: cover;
   background-position: center;

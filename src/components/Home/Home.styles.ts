@@ -1,12 +1,53 @@
 import styled, { DefaultTheme } from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ theme: DefaultTheme }>`
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: ${({ theme }) => theme.homeCardBackground};
+  }
+
+  &:before {
+    clip-path: polygon(51.4% 0%, 100% 26.8%, 100% 0%);
+  }
+
+  &:after {
+    clip-path: polygon(0% 100%, 82.4% 100%, 0% 64.5%);
+    right: 0;
+    top: 0;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: ${({ theme }) => theme.homeCardBackground};
+    }
+
+    &:before {
+      clip-path: polygon(100% 0%, 100% 31%, 60.6% 0%);
+    }
+
+    &:after {
+      clip-path: polygon(0% 100%, 82.4% 100%, 0% 77.5%);
+      right: 0;
+      top: 0;
+    }
   }
 `;
 
@@ -30,9 +71,9 @@ export const Card = styled.div<{
   flex-direction: column;
   justify-content: space-between;
   transition: box-shadow 0.2s ease-in-out;
-  opacity: ${({ disabled }) => (disabled ? 0.85 : 1)};
   position: relative;
   overflow: hidden;
+  z-index: 1;
 
   &:hover {
     box-shadow: 0 0.5rem 1rem ${({ theme }) => theme.cardShadow};
