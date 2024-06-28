@@ -7,3 +7,17 @@ export const Title = styled.h1<{ theme: DefaultTheme }>`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;
+
+export const Logo = styled.img<{ theme: DefaultTheme }>`
+  width: 20rem;
+  filter: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "brightness(0) invert(1)"
+      : "brightness(0) invert(0)"};
+`;
+
+export const Container = styled.div`
+  text-align: center;
+  padding: 3rem;
+  z-index: 100;
+`;

@@ -142,9 +142,13 @@ export const LogoContainer = styled.div`
   }
 `;
 
-export const Logo = styled.img`
+export const Logo = styled.img<{ theme: DefaultTheme }>`
   width: 20rem;
   transform: translateX(-90%);
+  filter: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "brightness(0) invert(1)"
+      : "brightness(0) invert(0)"};
 
   @media (max-width: 768px) {
     width: 14rem;

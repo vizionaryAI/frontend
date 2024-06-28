@@ -2,13 +2,14 @@ import React from "react";
 import { LoginButton } from "../LoginButton/LoginButton";
 import { AnimatedLoginBackground } from "../AnimatedLoginBackground/AnimatedLoginBackground";
 import logo from "../../assets/logo.png";
+import * as S from "./Login.styles";
 
 export const Login = () => {
   return (
     <React.Fragment>
-      <div style={{ textAlign: "center", padding: "3rem", zIndex: 100 }}>
-        <img src={logo} alt="Aimful Logo" style={{ width: "20rem" }} />
-      </div>
+      <S.Container>
+        <S.Logo src={logo} alt="Aimful Logo" />
+      </S.Container>
       <LoginButton />
       <AnimatedLoginBackground />
     </React.Fragment>
