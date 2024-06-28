@@ -128,3 +128,27 @@ export const Overlay = styled.div<{ theme: DefaultTheme }>`
     font-weight: bold;
   }
 `;
+
+export const LogoContainer = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+  }
+`;
+
+export const Logo = styled.img`
+  width: 20rem;
+  transform: translateX(-90%);
+
+  @media (max-width: 768px) {
+    width: 15rem;
+    transform: translateX(0%);
+    transform: translateY(-14%);
+    z-index: 10;
+  }
+`;

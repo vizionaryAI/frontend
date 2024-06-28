@@ -4,6 +4,7 @@ import * as S from "./Home.styles";
 import { useNavigate } from "react-router-dom";
 import { useClientStore } from "../../store/client.store";
 import { Introduction } from "../Introduction/Introduction";
+import logo from "../../assets/logo.png";
 
 export const Home = () => {
   const { user, setUser } = useClientStore();
@@ -21,6 +22,9 @@ export const Home = () => {
     <React.Fragment>
       {user.introduction_completed ? (
         <S.Container>
+          <S.LogoContainer>
+            <S.Logo src={logo} alt="Aimful Logo" />
+          </S.LogoContainer>
           <S.Card onClick={() => navigate("/daily-reflection")}>
             <h2>Short Session</h2>
             <S.Notes>
