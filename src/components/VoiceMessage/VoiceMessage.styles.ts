@@ -89,7 +89,7 @@ export const WelcomeContainer = styled.div`
 
 export const Title = styled.h1`
   font-size: 2rem;
-  color: ${({ theme }) => theme.titleColor};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const Description = styled.p`
@@ -97,6 +97,6 @@ export const Description = styled.p`
   margin: 2rem;
   margin-top: 4rem;
   margin-bottom: 4rem;
-  color: ${({ theme }) => theme.descriptionColor};
+  color: ${({ theme }) => theme.text};
   text-align: center;
 `;

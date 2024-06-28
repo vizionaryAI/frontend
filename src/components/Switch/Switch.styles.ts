@@ -8,10 +8,14 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.img<{ theme: DefaultTheme }>`
   width: 1.5rem;
   height: 1.5rem;
   margin: 0 0.5rem;
+  filter: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "brightness(0) invert(1)"
+      : "brightness(0) invert(0)"};
 `;
 
 export const SwitchContainer = styled.div<{
