@@ -1,6 +1,57 @@
 import styled, { DefaultTheme } from "styled-components";
 import Button from "../Button/Button";
 
+export const BGContainer = styled.div<{ theme: DefaultTheme }>`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: ${({ theme }) => theme.homeCardBackground};
+  }
+
+  &:before {
+    clip-path: polygon(51.4% 0%, 100% 26.8%, 100% 0%);
+  }
+
+  &:after {
+    clip-path: polygon(0% 100%, 82.4% 100%, 0% 64.5%);
+    right: 0;
+    top: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: ${({ theme }) => theme.homeCardBackground};
+    }
+
+    &:before {
+      clip-path: polygon(100% 0%, 100% 31%, 60.6% 0%);
+    }
+
+    &:after {
+      clip-path: polygon(0% 100%, 82.4% 100%, 0% 77.5%);
+      right: 0;
+      top: 0;
+    }
+  }
+`;
+
 export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   overflow-y: auto;
   padding-left: 1rem;
@@ -14,31 +65,29 @@ export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
 `;
 
 export const Container = styled.div<{ theme: DefaultTheme }>`
+  z-index: 1;
   display: flex;
   flex-direction: column;
   max-width: 50rem;
   width: 100%;
 
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
   margin: auto;
 
   border-radius: 15px;
   background-color: ${({ theme }) => theme.chatBotBackground};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
 
   @media (max-width: 768px) {
     margin: 0;
-    margin-bottom: 8rem;
-    margin-top: 5rem;
-
-    max-height: 100vh;
+    padding-top: 10%;
+    max-height: 100%;
     width: 100%;
     min-width: 0;
 
     box-shadow: none;
+    border-radius: 0px;
   }
 `;
 

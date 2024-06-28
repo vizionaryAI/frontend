@@ -25,24 +25,26 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
   };
 
   return (
-    <S.Container>
-      {user.content_monitored_warning && (
-        <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
-      )}
-      <S.SwitchContainer>
-        <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
-      </S.SwitchContainer>
-      {isVoiceMessage ? (
-        <VoiceMessage
-          voiceApi={reflectionType === "daily" ? "reflection" : "reflection"}
-          firstUse={firstUse}
-          setFirstUse={setFirstUse}
-          sessionIsStarted={sessionIsStarted}
-          setSessionIsStarted={setSessionIsStarted}
-        />
-      ) : (
-        <ChatBot conversationType={reflectionType} />
-      )}
-    </S.Container>
+    <S.BGContainer>
+      <S.Container>
+        {user.content_monitored_warning && (
+          <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
+        )}
+        <S.SwitchContainer>
+          <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
+        </S.SwitchContainer>
+        {isVoiceMessage ? (
+          <VoiceMessage
+            voiceApi={reflectionType === "daily" ? "reflection" : "reflection"}
+            firstUse={firstUse}
+            setFirstUse={setFirstUse}
+            sessionIsStarted={sessionIsStarted}
+            setSessionIsStarted={setSessionIsStarted}
+          />
+        ) : (
+          <ChatBot conversationType={reflectionType} />
+        )}
+      </S.Container>
+    </S.BGContainer>
   );
 };

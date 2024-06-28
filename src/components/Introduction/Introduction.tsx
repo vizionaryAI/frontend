@@ -85,77 +85,79 @@ export const Introduction = () => {
   }
 
   return (
-    <S.Container>
-      <S.SwitchContainer>
-        <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
-      </S.SwitchContainer>
-      {user.content_monitored_warning && (
-        <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
-      )}
-      {isVoiceMessage ? (
-        <VoiceMessage
-          voiceApi="introduction"
-          firstUse={firstUse}
-          setFirstUse={setFirstUse}
-          sessionIsStarted={sessionIsStarted}
-          setSessionIsStarted={setSessionIsStarted}
-        />
-      ) : (
-        <>
-          <S.MessagesContainer>
-            {introduction.conversation.length > 0 &&
-              introduction.conversation.map((conv, index) =>
-                conv?.role === "user" ? (
-                  <S.UserMessage key={index}>{conv.content}</S.UserMessage>
-                ) : (
-                  <S.BotMessage key={index}>
-                    {index === introduction.conversation.length - 1 ? (
-                      <Typewriter
-                        text={conv.content}
-                        enableVibration={hasInteracted}
-                        onTextUpdate={scrollToBottom}
-                        setIsTyping={setIsTyping}
-                      />
-                    ) : (
-                      conv.content
-                    )}
-                  </S.BotMessage>
-                )
+    <S.BGContainer>
+      <S.Container>
+        <S.SwitchContainer>
+          <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
+        </S.SwitchContainer>
+        {user.content_monitored_warning && (
+          <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
+        )}
+        {isVoiceMessage ? (
+          <VoiceMessage
+            voiceApi="introduction"
+            firstUse={firstUse}
+            setFirstUse={setFirstUse}
+            sessionIsStarted={sessionIsStarted}
+            setSessionIsStarted={setSessionIsStarted}
+          />
+        ) : (
+          <>
+            <S.MessagesContainer>
+              {introduction.conversation.length > 0 &&
+                introduction.conversation.map((conv, index) =>
+                  conv?.role === "user" ? (
+                    <S.UserMessage key={index}>{conv.content}</S.UserMessage>
+                  ) : (
+                    <S.BotMessage key={index}>
+                      {index === introduction.conversation.length - 1 ? (
+                        <Typewriter
+                          text={conv.content}
+                          enableVibration={hasInteracted}
+                          onTextUpdate={scrollToBottom}
+                          setIsTyping={setIsTyping}
+                        />
+                      ) : (
+                        conv.content
+                      )}
+                    </S.BotMessage>
+                  )
+                )}
+              <div ref={endOfMessagesRef} />
+              {waitingForAnswer && (
+                <S.WritingIndicatorContainer>
+                  <WritingIndicator />
+                </S.WritingIndicatorContainer>
               )}
-            <div ref={endOfMessagesRef} />
-            {waitingForAnswer && (
-              <S.WritingIndicatorContainer>
-                <WritingIndicator />
-              </S.WritingIndicatorContainer>
+            </S.MessagesContainer>
+            {introduction.finished && (
+              <S.EndConversationButtonContainer>
+                <S.EndConversationButton onClick={handleEndConversation}>
+                  End conversation
+                </S.EndConversationButton>
+              </S.EndConversationButtonContainer>
             )}
-          </S.MessagesContainer>
-          {introduction.finished && (
-            <S.EndConversationButtonContainer>
-              <S.EndConversationButton onClick={handleEndConversation}>
-                End conversation
-              </S.EndConversationButton>
-            </S.EndConversationButtonContainer>
-          )}
-          <S.InputContainer>
-            <S.Input
-              ref={inputRef}
-              value={newAnswer}
-              onChange={(e) => {
-                setNewAnswer(e.currentTarget.value);
-                adjustHeight();
-              }}
-              placeholder="Write a message..."
-            />
+            <S.InputContainer>
+              <S.Input
+                ref={inputRef}
+                value={newAnswer}
+                onChange={(e) => {
+                  setNewAnswer(e.currentTarget.value);
+                  adjustHeight();
+                }}
+                placeholder="Write a message..."
+              />
 
-            <S.SendButton
-              disabled={isTyping || waitingForAnswer || newAnswer.length < 1}
-              onClick={handleSendAnswer}
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-            </S.SendButton>
-          </S.InputContainer>
-        </>
-      )}
-    </S.Container>
+              <S.SendButton
+                disabled={isTyping || waitingForAnswer || newAnswer.length < 1}
+                onClick={handleSendAnswer}
+              >
+                <FontAwesomeIcon icon={faPaperPlane} />
+              </S.SendButton>
+            </S.InputContainer>
+          </>
+        )}
+      </S.Container>
+    </S.BGContainer>
   );
 };
