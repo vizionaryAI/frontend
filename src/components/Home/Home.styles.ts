@@ -147,9 +147,16 @@ export const Logo = styled.img`
   transform: translateX(-90%);
 
   @media (max-width: 768px) {
-    width: 15rem;
+    width: 14rem;
     transform: translateX(0%);
-    transform: translateY(-14%);
+    transform: translateY(-12%);
+    z-index: 10;
+  }
+
+  @media (max-width: 389px) {
+    width: 10rem;
+    transform: translateX(0%);
+    transform: translateY(-12%);
     z-index: 10;
   }
 `;
