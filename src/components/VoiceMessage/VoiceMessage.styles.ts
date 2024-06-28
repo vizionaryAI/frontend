@@ -53,6 +53,7 @@ export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
+  margin-top: 1rem;
   width: 12rem;
   height: 3rem;
   border-radius: 12px;
@@ -66,6 +67,10 @@ export const StartButton = styled.button<{ theme: DefaultTheme }>`
 
   &:disabled {
     cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 5rem;
   }
 `;
 
@@ -87,18 +92,42 @@ export const WelcomeContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  gap: 0.6rem;
+
+  @media (max-width: 768px) {
+    gap: 0rem;
+  }
 `;
 
 export const Title = styled.h1`
   font-size: 2rem;
   color: ${({ theme }) => theme.text};
+  align-self: flex-start;
+  font-weight: bold;
+
+  margin-left: 5rem;
+  margin-right: 5rem;
+
+  @media (max-width: 768px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 5rem;
+  }
 `;
 
 export const Description = styled.p`
-  font-size: 1.2rem;
-  margin: 2rem;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  font-size: 1rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+
   color: ${({ theme }) => theme.text};
   text-align: center;
+  font-weight: bold;
+
+  @media (max-width: 768px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: 0.9rem;
+    margin-top: 0rem;
+  }
 `;

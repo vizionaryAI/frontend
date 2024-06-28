@@ -110,11 +110,15 @@ export const InputContainer = styled.div<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotChatBackground};
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-bottom: 28%;
+  padding-bottom: 1rem;
 
   display: flex;
   align-items: flex-end;
   flex-direction: row;
+
+  @media (max-width: 768px) {
+    padding-bottom: 28%;
+  }
 `;
 
 export const Input = styled.textarea`

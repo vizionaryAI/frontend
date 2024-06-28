@@ -166,9 +166,20 @@ const AudioRecorder: React.FC<Props> = ({
               <>
                 <S.Title>Welcome to Aimful!</S.Title>
                 <S.Description>
-                  We're excited to have you here and eager to learn how we can
-                  best support you. Ready to begin your first session? Click
-                  below to get started.
+                  We’re excited to have you here and we’re eager to learn how we
+                  can best support you on your personal development journey!
+                </S.Description>
+                <S.Description>
+                  To provide you with the best experience, we need to have to
+                  understand more about you and your ambitions.
+                </S.Description>
+                <S.Description>
+                  Are you ready to begin your first session?
+                </S.Description>
+                <S.Description>If so, Click the button below</S.Description>
+                <S.Description>
+                  (Please ensure your volume is turned up and you’ve granted
+                  microphone permissions)
                 </S.Description>
               </>
             )}
