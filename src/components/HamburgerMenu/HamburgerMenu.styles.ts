@@ -24,7 +24,7 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
 export const MenuIcon = styled.div<{ theme: DefaultTheme }>`
   cursor: pointer;
   position: fixed;
-  top: 2rem;
+  margin-top: 1.5em;
   z-index: 200;
   left: 2rem;
   color: ${(props) => props.theme.text || "#000"};

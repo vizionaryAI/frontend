@@ -27,12 +27,13 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
   return (
     <S.BGContainer>
       <S.Container>
-        {user.content_monitored_warning && (
-          <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
-        )}
         <S.SwitchContainer>
           <Switch setSwitch={toggleSwitch} isVoiceMessage={isVoiceMessage} />
         </S.SwitchContainer>
+        {user.content_monitored_warning && (
+          <UserWarning message="All messages sent can be seen by your organization's administrator. Please do not put any sensitive information like passwords into the chatbox!" />
+        )}
+
         {isVoiceMessage ? (
           <VoiceMessage
             voiceApi={reflectionType === "daily" ? "reflection" : "reflection"}

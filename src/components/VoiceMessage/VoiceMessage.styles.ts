@@ -7,7 +7,7 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   justify-content: center;
   max-width: 50rem;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
   margin: auto;
 
@@ -18,10 +18,7 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
 
   @media (max-width: 768px) {
     margin: 0;
-    margin-bottom: 8rem;
-    margin-top: 5rem;
-
-    max-height: 100vh;
+    max-height: 85%;
     width: 100%;
     min-width: 0;
 

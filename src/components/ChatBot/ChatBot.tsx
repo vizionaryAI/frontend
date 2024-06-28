@@ -72,7 +72,7 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
   }
 
   return (
-    <S.ChatContainer>
+    <>
       <S.MessagesContainer>
         {chatBotConversation.conversation.length > 0 &&
           chatBotConversation.conversation.map((conv, index) =>
@@ -125,6 +125,6 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
           <FontAwesomeIcon icon={faPaperPlane} />
         </S.SendButton>
       </S.InputContainer>
-    </S.ChatContainer>
+    </>
   );
 };

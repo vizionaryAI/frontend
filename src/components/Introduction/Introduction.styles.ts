@@ -68,23 +68,18 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   z-index: 1;
   display: flex;
   flex-direction: column;
+
   max-width: 50rem;
   width: 100%;
-
   height: 100%;
-  overflow-y: auto;
-  margin: auto;
 
   border-radius: 15px;
   background-color: ${({ theme }) => theme.chatBotBackground};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
-    margin: 0;
-    padding-top: 10%;
     max-height: 100%;
     width: 100%;
-    min-width: 0;
 
     box-shadow: none;
     border-radius: 0px;
@@ -114,11 +109,12 @@ export const BotMessage = styled(Message)<{ theme: DefaultTheme }>`
 
 export const InputContainer = styled.div<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotChatBackground};
-  padding: 1rem;
-  margin: 8px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 28%;
 
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   flex-direction: row;
 `;
 
@@ -197,7 +193,7 @@ export const SwitchContainer = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 1rem;
+  margin-top: 1rem;
 `;
 
 export const Title = styled.p<{ theme: DefaultTheme }>`

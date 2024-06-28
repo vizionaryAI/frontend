@@ -13,33 +13,6 @@ export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotBackground};
 `;
 
-export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
-  display: flex;
-  flex-direction: column;
-  max-width: 50rem;
-  width: 100%;
-
-  height: 100vh;
-  overflow-y: auto;
-  margin: auto;
-
-  background-color: ${({ theme }) => theme.chatBotBackground};
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
-
-  @media (max-width: 768px) {
-    margin: 0;
-    margin-bottom: 8rem;
-    margin-top: 5rem;
-
-    max-height: 100vh;
-    width: 100%;
-    min-width: 0;
-
-    box-shadow: none;
-  }
-`;
-
 export const Message = styled.div`
   padding: 10px 15px;
   margin: 8px;
@@ -63,11 +36,12 @@ export const BotMessage = styled(Message)<{ theme: DefaultTheme }>`
 
 export const InputContainer = styled.div<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.chatBotChatBackground};
-  padding: 1rem;
-  margin: 8px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 28%;
 
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   flex-direction: row;
 `;
 
