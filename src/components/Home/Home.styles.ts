@@ -119,7 +119,7 @@ export const Overlay = styled.div<{ theme: DefaultTheme }>`
   justify-content: center;
   align-items: center;
 
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
 
   h2 {
     color: ${({ theme }) => theme.textLight};

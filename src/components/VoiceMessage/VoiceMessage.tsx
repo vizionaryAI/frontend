@@ -122,7 +122,7 @@ const AudioRecorder: React.FC<Props> = ({
     if (firstUse && recordingState === RecordingState.None) {
       return <S.StatusText>Press when Speaking</S.StatusText>;
     } else if (firstUse && recordingState === RecordingState.Recording) {
-      return <S.StatusText>Press when you've finished Speaking</S.StatusText>;
+      return <S.StatusText>Press When you have Finished speaking</S.StatusText>;
     }
   };
 
