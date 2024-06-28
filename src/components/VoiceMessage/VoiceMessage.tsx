@@ -122,7 +122,7 @@ const AudioRecorder: React.FC<Props> = ({
     if (firstUse && recordingState === RecordingState.None) {
       return <S.StatusText>Press when Speaking</S.StatusText>;
     } else if (firstUse && recordingState === RecordingState.Recording) {
-      return <S.StatusText>Press when you've finished Speaking'</S.StatusText>;
+      return <S.StatusText>Press when you've finished Speaking</S.StatusText>;
     }
   };
 
@@ -162,14 +162,18 @@ const AudioRecorder: React.FC<Props> = ({
       ) : (
         <>
           <S.WelcomeContainer>
-            <S.Title>Welcome to Aimful!</S.Title>
-            <S.Description>
-              We're excited to have you here and eager to learn how we can best
-              support you. Ready to begin your first session? Click below to get
-              started.
-            </S.Description>
+            {firstUse && (
+              <>
+                <S.Title>Welcome to Aimful!</S.Title>
+                <S.Description>
+                  We're excited to have you here and eager to learn how we can
+                  best support you. Ready to begin your first session? Click
+                  below to get started.
+                </S.Description>
+              </>
+            )}
             <S.StartButton onClick={handleStartSession}>
-              <S.StatusText>Start Session</S.StatusText>
+              <S.ButtonTitle>Start Session</S.ButtonTitle>
             </S.StartButton>
           </S.WelcomeContainer>
         </>

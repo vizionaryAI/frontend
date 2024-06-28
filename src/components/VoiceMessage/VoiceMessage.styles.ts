@@ -47,6 +47,11 @@ export const Button = styled.button<{ theme: DefaultTheme }>`
 
 export const StatusText = styled.p<{ theme: DefaultTheme }>`
   font-size: 1rem;
+  color: ${({ theme }) => theme.text};
+`;
+
+export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
+  font-size: 1rem;
   color: ${({ theme }) => theme.textLight};
 `;
 
