@@ -84,6 +84,7 @@ export const Card = styled.div<{
     font-size: 1.1rem;
     color: ${({ theme }) => theme.textLight};
     text-align: left;
+    font-weight: bold;
   }
 
   @media (max-width: 768px) {
