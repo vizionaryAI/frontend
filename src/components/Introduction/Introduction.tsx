@@ -23,7 +23,6 @@ export const Introduction = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
   const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(true);
-  const [firstUse, setFirstUse] = useState(true); //user profile
   const [sessionIsStarted, setSessionIsStarted] = useState(false);
 
   useEffect(() => {
@@ -96,10 +95,10 @@ export const Introduction = () => {
         {isVoiceMessage ? (
           <VoiceMessage
             voiceApi="introduction"
-            firstUse={firstUse}
-            setFirstUse={setFirstUse}
+            firstUse={user.first_session}
             sessionIsStarted={sessionIsStarted}
             setSessionIsStarted={setSessionIsStarted}
+            updateUserProfile={setUser}
           />
         ) : (
           <>

@@ -22,6 +22,7 @@ export const useClientStore = create<ClientStore>((set) => ({
     active_conversation: false,
     introduction_completed: false,
     content_monitored_warning: false,
+    first_session: false,
   },
   setToken: (token: string) => set({ token }),
   setUser: async () => {

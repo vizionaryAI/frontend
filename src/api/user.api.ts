@@ -17,6 +17,7 @@ export async function fetchUserAPI(): Promise<User> {
       active_conversation: false,
       introduction_completed: false,
       content_monitored_warning: false,
+      first_session: false,
     };
   }
 }

@@ -9,4 +9,5 @@ export type User = {
   active_conversation: boolean;
   introduction_completed: boolean;
   content_monitored_warning: boolean;
+  first_session: boolean;
 };

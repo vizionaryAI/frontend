@@ -7,17 +7,17 @@ import { RecordingAnimation } from "./RecordingAnimation";
 type Props = {
   voiceApi: string;
   firstUse: boolean;
-  setFirstUse: (value: boolean) => void;
   sessionIsStarted: boolean;
+  updateUserProfile: () => void;
   setSessionIsStarted: (value: boolean) => void;
 };
 
 const AudioRecorder: React.FC<Props> = ({
   voiceApi,
   firstUse,
-  setFirstUse,
   sessionIsStarted,
   setSessionIsStarted,
+  updateUserProfile,
 }) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [recordingState, setRecordingState] = useState<RecordingState>(
@@ -33,7 +33,7 @@ const AudioRecorder: React.FC<Props> = ({
       mediaRecorderRef.current?.stop();
       setIsRecording(false);
       setRecordingState(RecordingState.Waiting);
-      setFirstUse(false); //user profile TODO!!!!
+      updateUserProfile();
     } else {
       // Start recording
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });

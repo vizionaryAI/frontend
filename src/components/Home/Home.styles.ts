@@ -6,6 +6,7 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   &:before,
   &:after {
@@ -51,6 +52,23 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
+export const CardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  align-items: center;
+
+  transform: translateY(-4rem);
+
+  width: 100%;
+  height: 100vh;
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
 export const Card = styled.div<{
   theme: DefaultTheme;
   disabled?: boolean;
@@ -66,7 +84,7 @@ export const Card = styled.div<{
   padding-right: 1.25rem;
   margin: 0.625rem;
   width: 15rem;
-  height: 15rem;
+  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -87,11 +105,14 @@ export const Card = styled.div<{
     font-weight: bold;
   }
 
-  @media (max-width: 768px) {
-    width: 15rem;
-    height: 15rem;
+  @media (max-width: 550px) {
+    width: 12rem;
     padding: 0.4rem;
     margin: 0.4rem;
+
+    h2 {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -100,7 +121,12 @@ export const Notes = styled.p<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.textLight};
   text-align: left;
   font-weight: normal;
-  line-height: 1rem;
+  line-height: 1.15rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+    line-height: 0.8rem;
+  }
 `;
 
 export const Duration = styled.p<{ theme: DefaultTheme }>`
@@ -108,6 +134,10 @@ export const Duration = styled.p<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.textLight};
   text-align: right;
   font-weight: normal;
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const Overlay = styled.div<{ theme: DefaultTheme }>`
@@ -131,36 +161,24 @@ export const Overlay = styled.div<{ theme: DefaultTheme }>`
 `;
 
 export const LogoContainer = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
+  position: relative;
+  width: 8rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+  transform: translateX(-13rem);
 
   @media (max-width: 768px) {
+    padding-top: 20%;
+    transform: translateX(0);
   }
 `;
 
 export const Logo = styled.img<{ theme: DefaultTheme }>`
-  width: 20rem;
-  transform: translateX(-90%);
+  width: 100%;
   filter: ${({ theme }) =>
     theme.mode === "dark"
       ? "brightness(0) invert(1)"
       : "brightness(0) invert(0)"};
-
-  @media (max-width: 768px) {
-    width: 14rem;
-    transform: translateX(0%);
-    transform: translateY(-12%);
-    z-index: 10;
-  }
-
-  @media (max-width: 389px) {
-    width: 10rem;
-    transform: translateX(0%);
-    transform: translateY(-12%);
-    z-index: 10;
-  }
 `;
