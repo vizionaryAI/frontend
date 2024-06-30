@@ -9,7 +9,7 @@ export const Title = styled.h1<{ theme: DefaultTheme }>`
 `;
 
 export const Logo = styled.img<{ theme: DefaultTheme }>`
-  width: 20rem;
+  width: 12rem;
   filter: ${({ theme }) =>
     theme.mode === "dark"
       ? "brightness(0) invert(1)"
