@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { ChatBotConversation } from "../types/chatbot";
+import { IntroConversation } from "../types/chatbot";
 import { getIntroductionAPI, sendIntroductionAPI } from "../api/chatbot.api";
 
 type IntroductionStore = {
-  introduction: ChatBotConversation;
+  introduction: IntroConversation;
   getIntroduction: () => void;
   sendIntroduction: (answer: string) => void;
 };

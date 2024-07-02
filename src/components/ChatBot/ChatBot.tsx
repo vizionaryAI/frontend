@@ -13,18 +13,18 @@ type Props = {
 };
 
 export const ChatBot: React.FC<Props> = ({ conversationType }) => {
-  const { chatBotConversation, sendAnswer, getChatBotConversation } =
-    useChatBotConversationStore();
+  const {
+    chatBotConversation,
+    sendAnswer,
+    getChatBotConversation,
+    deleteChat,
+  } = useChatBotConversationStore();
   const [newAnswer, setNewAnswer] = useState("");
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getChatBotConversation(conversationType);
-  }, []);
 
   const adjustHeight = () => {
     const textarea = inputRef.current;
@@ -38,13 +38,13 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
   useEffect(() => {
     if (
       waitingForAnswer &&
-      chatBotConversation.conversation[
-        chatBotConversation.conversation.length - 1
+      chatBotConversation[conversationType][
+        chatBotConversation[conversationType].length - 1
       ].role !== "user"
     ) {
       setWaitingForAnswer(false);
     }
-  }, [chatBotConversation.conversation.length]);
+  }, [chatBotConversation[conversationType].length]);
 
   const handleSendAnswer = () => {
     sendAnswer(newAnswer, conversationType);
@@ -64,31 +64,36 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
   };
 
   useEffect(() => {
+    if (chatBotConversation[conversationType].length === 0) {
+      getChatBotConversation(conversationType);
+    }
+
     scrollToBottom();
-  }, [chatBotConversation.conversation.length]);
+  }, [chatBotConversation[conversationType].length]);
 
   if (chatBotConversation.error) {
     return <S.ErrorBox>Error: {chatBotConversation.error}</S.ErrorBox>;
   }
 
   const handleEndConversation = () => {
-    sendAnswer(
+    deleteChat(
       "goodbye (skip to session recap and goodbye step)",
       conversationType
     );
+
     navigate("/home");
   };
 
   return (
     <>
       <S.MessagesContainer>
-        {chatBotConversation.conversation.length > 0 &&
-          chatBotConversation.conversation.map((conv, index) =>
+        {chatBotConversation[conversationType].length > 0 &&
+          chatBotConversation[conversationType].map((conv, index) =>
             conv?.role === "user" ? (
               <S.UserMessage key={index}>{conv.content}</S.UserMessage>
             ) : (
               <S.BotMessage key={index}>
-                {index === chatBotConversation.conversation.length - 1 ? (
+                {index === chatBotConversation[conversationType].length - 1 ? (
                   <Typewriter
                     text={conv.content}
                     enableVibration={hasInteracted}

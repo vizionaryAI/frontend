@@ -2,9 +2,7 @@ import { create } from "zustand";
 import { ChatBotConversation } from "../types/chatbot";
 import {
   getChatBotConversationAPI,
-  deleteChatAPI,
   sendAnswerToChatAPI,
-  deleteWeeklyAPI,
   sendAnswerToWeeklyChatAPI,
   getWeeklyChatBotConversationAPI,
 } from "../api/chatbot.api";
@@ -13,14 +11,15 @@ type ChatBotConversationStore = {
   chatBotConversation: ChatBotConversation;
   getChatBotConversation: (conversationType: "daily" | "weekly") => void;
   sendAnswer: (answer: string, conversationType: "daily" | "weekly") => void;
-  deleteChat: (conversationType: "daily" | "weekly") => Promise<boolean>;
+  deleteChat: (answer: string, conversationType: "daily" | "weekly") => void;
 };
 
 export const useChatBotConversationStore = create<ChatBotConversationStore>(
   (set, get) => ({
     chatBotConversation: {
       conv_id: "",
-      conversation: [],
+      daily: [],
+      weekly: [],
       finished: false,
       user_id: "",
     },
@@ -29,6 +28,7 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
       if (conversationType === "daily") {
         //daily
         const conversation = await getChatBotConversationAPI();
+
         set({ chatBotConversation: conversation });
       } else {
         const conversation = await getWeeklyChatBotConversationAPI();
@@ -39,11 +39,10 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
       answer: string,
       conversationType: "daily" | "weekly"
     ) => {
-      get().chatBotConversation.conversation.push({
+      get().chatBotConversation[conversationType].push({
         role: "user",
         content: answer,
       });
-      set({ chatBotConversation: get().chatBotConversation });
 
       if (conversationType === "daily") {
         //daily
@@ -54,25 +53,22 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
         set({ chatBotConversation: conversation });
       }
     },
-    deleteChat: async (conversationType: "daily" | "weekly") => {
+    deleteChat: (answer: string, conversationType: "daily" | "weekly") => {
+      if (conversationType === "daily") {
+        sendAnswerToChatAPI(answer);
+      } else {
+        sendAnswerToWeeklyChatAPI(answer);
+      }
+
       const conversation = {
         conv_id: "",
-        conversation: [],
+        daily: [],
+        weekly: [],
         finished: false,
         user_id: "",
       };
+
       set({ chatBotConversation: conversation });
-      if (conversationType === "daily") {
-        //daily
-        await deleteChatAPI();
-        const conversation = await getChatBotConversationAPI();
-        set({ chatBotConversation: conversation });
-      } else {
-        await deleteWeeklyAPI();
-        const conversation = await getWeeklyChatBotConversationAPI();
-        set({ chatBotConversation: conversation });
-      }
-      return true;
     },
   })
 );

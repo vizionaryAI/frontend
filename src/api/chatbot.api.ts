@@ -1,8 +1,8 @@
 import { api } from ".";
-import { ChatBotConversation } from "../types/chatbot";
+import { ChatBotConversation, ChatBotConversationDto } from "../types/chatbot";
 
 //introduction api
-export async function getIntroductionAPI(): Promise<ChatBotConversation> {
+export async function getIntroductionAPI(): Promise<ChatBotConversationDto> {
   try {
     const resp = await api.get(`api/v1/introduction/chat`);
     return resp.data;
@@ -20,7 +20,7 @@ export async function getIntroductionAPI(): Promise<ChatBotConversation> {
 //introduction api
 export async function sendIntroductionAPI(
   Answer: string
-): Promise<ChatBotConversation> {
+): Promise<ChatBotConversationDto> {
   try {
     const resp = await api.post(`api/v1/introduction/chat`, {
       content: Answer,
@@ -83,11 +83,19 @@ export async function getVoiceMessage(
 export async function getChatBotConversationAPI(): Promise<ChatBotConversation> {
   try {
     const resp = await api.get(`api/v1/shortchat/chat`);
-    return resp.data;
+    const data: ChatBotConversation = {
+      conv_id: resp.data.conv_id,
+      daily: resp.data.conversation,
+      weekly: [],
+      finished: resp.data.finished,
+      user_id: resp.data.user_id,
+    };
+    return data;
   } catch (error) {
     return {
       conv_id: "",
-      conversation: [],
+      daily: [],
+      weekly: [],
       error: "Failed to fetch chat conversation",
       finished: false,
       user_id: "",
@@ -100,11 +108,19 @@ export async function sendAnswerToChatAPI(
 ): Promise<ChatBotConversation> {
   try {
     const resp = await api.post(`api/v1/shortchat/chat`, { content: Answer });
-    return resp.data;
+    const data: ChatBotConversation = {
+      conv_id: resp.data.conv_id,
+      daily: resp.data.conversation,
+      weekly: [],
+      finished: resp.data.finished,
+      user_id: resp.data.user_id,
+    };
+    return data;
   } catch (error) {
     return {
       conv_id: "",
-      conversation: [],
+      daily: [],
+      weekly: [],
       error: "Failed to send Answer",
       finished: false,
       user_id: "",
@@ -115,11 +131,19 @@ export async function sendAnswerToChatAPI(
 export async function deleteChatAPI(): Promise<ChatBotConversation> {
   try {
     const resp = await api.delete(`api/v0/chat`);
-    return resp.data;
+    const data: ChatBotConversation = {
+      conv_id: resp.data.conv_id,
+      daily: resp.data.conversation,
+      weekly: [],
+      finished: resp.data.finished,
+      user_id: resp.data.user_id,
+    };
+    return data;
   } catch (error) {
     return {
       conv_id: "",
-      conversation: [],
+      daily: [],
+      weekly: [],
       error: "Failed to delete chat conversation",
       finished: false,
       user_id: "",
@@ -130,11 +154,19 @@ export async function deleteChatAPI(): Promise<ChatBotConversation> {
 export async function getWeeklyChatBotConversationAPI(): Promise<ChatBotConversation> {
   try {
     const resp = await api.get(`api/v1/reflection/chat`);
-    return resp.data;
+    const data: ChatBotConversation = {
+      conv_id: resp.data.conv_id,
+      daily: [],
+      weekly: resp.data.conversation,
+      finished: resp.data.finished,
+      user_id: resp.data.user_id,
+    };
+    return data;
   } catch (error) {
     return {
       conv_id: "",
-      conversation: [],
+      daily: [],
+      weekly: [],
       error: "Failed to fetch chat conversation",
       finished: false,
       user_id: "",
@@ -147,11 +179,19 @@ export async function sendAnswerToWeeklyChatAPI(
 ): Promise<ChatBotConversation> {
   try {
     const resp = await api.post(`api/v1/reflection/chat`, { content: Answer });
-    return resp.data;
+    const data: ChatBotConversation = {
+      conv_id: resp.data.conv_id,
+      daily: [],
+      weekly: resp.data.conversation,
+      finished: resp.data.finished,
+      user_id: resp.data.user_id,
+    };
+    return data;
   } catch (error) {
     return {
       conv_id: "",
-      conversation: [],
+      daily: [],
+      weekly: [],
       error: "Failed to send Answer",
       finished: false,
       user_id: "",
@@ -162,11 +202,19 @@ export async function sendAnswerToWeeklyChatAPI(
 export async function deleteWeeklyAPI(): Promise<ChatBotConversation> {
   try {
     const resp = await api.delete(`api/v0/weekly`);
-    return resp.data;
+    const data: ChatBotConversation = {
+      conv_id: resp.data.conv_id,
+      daily: [],
+      weekly: resp.data.conversation,
+      finished: resp.data.finished,
+      user_id: resp.data.user_id,
+    };
+    return data;
   } catch (error) {
     return {
       conv_id: "",
-      conversation: [],
+      daily: [],
+      weekly: [],
       error: "Failed to delete chat conversation",
       finished: false,
       user_id: "",

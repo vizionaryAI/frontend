@@ -17,11 +17,11 @@ export const routes: NavigationItem[] = [
   {
     path: "/daily-reflection",
     element: <Reflection reflectionType="daily" />,
-    title: "New Short Session",
+    title: "Short Session",
   },
   {
     path: "/weekly-reflection",
     element: <Reflection reflectionType="weekly" />,
-    title: "New Weekly Session",
+    title: "Weekly Session",
   },
 ];
