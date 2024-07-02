@@ -12,10 +12,9 @@ import { Switch } from "../Switch/Switch";
 import { UserWarning } from "../UserWarning/UserWarning";
 
 export const Introduction = () => {
-  const { user } = useClientStore();
-  const { introduction, sendIntroduction, getIntroduction } =
+  const { user, setUser } = useClientStore();
+  const { introduction, sendIntroduction, getIntroduction, deleteChat } =
     useIntroductionStore();
-  const { setUser } = useClientStore();
   const [newAnswer, setNewAnswer] = useState("");
   const [waitingForAnswer, setWaitingForAnswer] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -83,6 +82,12 @@ export const Introduction = () => {
     return <S.ErrorBox>Error: {introduction.error}</S.ErrorBox>;
   }
 
+  const handleDeleteChat = (message: string, conversationType: string) => {
+    deleteChat(message, conversationType).then(() => {
+      setUser();
+    });
+  };
+
   return (
     <S.BGContainer>
       <S.Container>
@@ -94,7 +99,8 @@ export const Introduction = () => {
         )}
         {isVoiceMessage ? (
           <VoiceMessage
-            voiceApi="introduction"
+            deleteChat={handleDeleteChat}
+            conversationType="introduction"
             firstUse={user.first_session}
             sessionIsStarted={sessionIsStarted}
             setSessionIsStarted={setSessionIsStarted}

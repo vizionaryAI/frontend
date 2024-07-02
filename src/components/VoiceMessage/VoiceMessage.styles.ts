@@ -131,3 +131,14 @@ export const Description = styled.p`
     margin-top: 0rem;
   }
 `;
+
+export const RecorderButtonContainer = styled.div`
+  display: flex;
+
+  align-items: center;
+  height: 100%;
+`;
+
+export const EndConversationButtonContainer = styled.div`
+  display: flex;
+`;

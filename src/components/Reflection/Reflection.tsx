@@ -15,7 +15,7 @@ type Props = {
 export const Reflection: React.FC<Props> = ({ reflectionType }) => {
   const { user, setUser } = useClientStore();
   const [isVoiceMessage, setIsVoiceMessage] = useState<boolean>(true);
-  const { getChatBotConversation } = useChatBotConversationStore();
+  const { getChatBotConversation, deleteChat } = useChatBotConversationStore();
   const [sessionIsStarted, setSessionIsStarted] = useState(false);
 
   const toggleSwitch = () => {
@@ -35,7 +35,10 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
 
         {isVoiceMessage ? (
           <VoiceMessage
-            voiceApi={reflectionType === "daily" ? "shortchat" : "reflection"}
+            deleteChat={deleteChat}
+            conversationType={
+              reflectionType === "daily" ? "shortchat" : "reflection"
+            }
             firstUse={user.first_session}
             sessionIsStarted={sessionIsStarted}
             setSessionIsStarted={setSessionIsStarted}

@@ -3,22 +3,27 @@ import { getVoiceMessage, sendVoiceMessage } from "../../api/chatbot.api";
 import * as S from "./VoiceMessage.styles";
 import { RecordingState } from "../../types/chatbot";
 import { RecordingAnimation } from "./RecordingAnimation";
+import { useNavigate } from "react-router-dom";
+import Button from "../Button/Button";
 
 type Props = {
-  voiceApi: string;
+  conversationType: string;
   firstUse: boolean;
   sessionIsStarted: boolean;
   updateUserProfile: () => void;
   setSessionIsStarted: (value: boolean) => void;
+  deleteChat: (message: string, conversationType: string) => void;
 };
 
 const AudioRecorder: React.FC<Props> = ({
-  voiceApi,
+  conversationType,
   firstUse,
   sessionIsStarted,
   setSessionIsStarted,
   updateUserProfile,
+  deleteChat,
 }) => {
+  const navigate = useNavigate();
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [recordingState, setRecordingState] = useState<RecordingState>(
     RecordingState.None
@@ -52,7 +57,7 @@ const AudioRecorder: React.FC<Props> = ({
         // Send the voice message
         setRecordingState(RecordingState.Waiting);
         try {
-          const response = await sendVoiceMessage(audioBlob, voiceApi);
+          const response = await sendVoiceMessage(audioBlob, conversationType);
 
           const returnedBlobUrl = URL.createObjectURL(response.data);
           if (audioPlayerRef.current) {
@@ -99,7 +104,7 @@ const AudioRecorder: React.FC<Props> = ({
     // Send the voice message
     setRecordingState(RecordingState.Waiting);
     try {
-      const response = await getVoiceMessage(voiceApi);
+      const response = await getVoiceMessage(conversationType);
 
       const returnedBlobUrl = URL.createObjectURL(response.data);
       if (audioPlayerRef.current) {
@@ -126,38 +131,52 @@ const AudioRecorder: React.FC<Props> = ({
     }
   };
 
+  const handleEndConversation = () => {
+    deleteChat(
+      "goodbye (skip to session recap and goodbye step)",
+      conversationType
+    );
+
+    navigate("/home");
+  };
+
   return (
     <S.ChatContainer>
       {sessionIsStarted ? (
         <>
-          <S.Button
-            onClick={handleStartStopRecording}
-            disabled={
-              recordingState !== RecordingState.None &&
-              recordingState !== RecordingState.Recording
-            }
-          >
-            {/* Check is first use, before recording */}
-            {firstUse && recordingState === RecordingState.None && (
-              <RecordingAnimation
-                animation={RecordingState.HelpGuideAnimation}
-              />
-            )}
-
-            {/* Check is first use and is recording */}
-            {firstUse && recordingState === RecordingState.Recording ? (
-              <S.AnimationContainer>
-                <RecordingAnimation animation={RecordingState.Recording} />
+          <S.RecorderButtonContainer>
+            <S.Button
+              onClick={handleStartStopRecording}
+              disabled={
+                recordingState !== RecordingState.None &&
+                recordingState !== RecordingState.Recording
+              }
+            >
+              {/* Check is first use, before recording */}
+              {firstUse && recordingState === RecordingState.None && (
                 <RecordingAnimation
                   animation={RecordingState.HelpGuideAnimation}
                 />
-              </S.AnimationContainer>
-            ) : (
-              <RecordingAnimation animation={recordingState} />
-            )}
-          </S.Button>
+              )}
+
+              {/* Check is first use and is recording */}
+              {firstUse && recordingState === RecordingState.Recording ? (
+                <S.AnimationContainer>
+                  <RecordingAnimation animation={RecordingState.Recording} />
+                  <RecordingAnimation
+                    animation={RecordingState.HelpGuideAnimation}
+                  />
+                </S.AnimationContainer>
+              ) : (
+                <RecordingAnimation animation={recordingState} />
+              )}
+            </S.Button>
+          </S.RecorderButtonContainer>
           <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
           {renderUIText()}
+          <S.EndConversationButtonContainer>
+            <Button onClick={handleEndConversation}>End conversation</Button>
+          </S.EndConversationButtonContainer>
         </>
       ) : (
         <>

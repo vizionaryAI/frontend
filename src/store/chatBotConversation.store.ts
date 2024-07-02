@@ -11,7 +11,7 @@ type ChatBotConversationStore = {
   chatBotConversation: ChatBotConversation;
   getChatBotConversation: (conversationType: "daily" | "weekly") => void;
   sendAnswer: (answer: string, conversationType: "daily" | "weekly") => void;
-  deleteChat: (answer: string, conversationType: "daily" | "weekly") => void;
+  deleteChat: (answer: string, conversationType: string) => void;
 };
 
 export const useChatBotConversationStore = create<ChatBotConversationStore>(
@@ -53,8 +53,8 @@ export const useChatBotConversationStore = create<ChatBotConversationStore>(
         set({ chatBotConversation: conversation });
       }
     },
-    deleteChat: (answer: string, conversationType: "daily" | "weekly") => {
-      if (conversationType === "daily") {
+    deleteChat: (answer: string, conversationType: string) => {
+      if (conversationType === "daily" || conversationType === "shortchat") {
         sendAnswerToChatAPI(answer);
       } else {
         sendAnswerToWeeklyChatAPI(answer);
