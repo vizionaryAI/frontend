@@ -71,6 +71,14 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
     return <S.ErrorBox>Error: {chatBotConversation.error}</S.ErrorBox>;
   }
 
+  const handleEndConversation = () => {
+    sendAnswer(
+      "goodbye (skip to session recap and goodbye step)",
+      conversationType
+    );
+    navigate("/home");
+  };
+
   return (
     <>
       <S.MessagesContainer>
@@ -100,13 +108,13 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
           </S.WritingIndicatorContainer>
         )}
       </S.MessagesContainer>
-      {chatBotConversation.finished && (
-        <S.EndConversationButtonContainer>
-          <S.EndConversationButton onClick={() => navigate("/home")}>
-            End conversation
-          </S.EndConversationButton>
-        </S.EndConversationButtonContainer>
-      )}
+
+      <S.EndConversationButtonContainer>
+        <S.EndConversationButton onClick={handleEndConversation}>
+          End conversation
+        </S.EndConversationButton>
+      </S.EndConversationButtonContainer>
+
       <S.InputContainer>
         <S.Input
           ref={inputRef}
