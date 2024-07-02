@@ -136,9 +136,11 @@ export const RecorderButtonContainer = styled.div`
   display: flex;
 
   align-items: center;
-  height: 100%;
+  height: 80%;
 `;
 
 export const EndConversationButtonContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
