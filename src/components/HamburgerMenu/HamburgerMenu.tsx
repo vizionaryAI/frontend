@@ -9,7 +9,6 @@ import { routes } from "./routes";
 import { Logout } from "./MenuItems/Logout";
 import { useClientStore } from "../../store/client.store";
 import { Loader } from "../Loader/Loader";
-import { User } from "../../types/user";
 
 type Props = {
   theme: DefaultTheme;
@@ -47,6 +46,7 @@ export const HamburgerMenu: React.FC<Props> = ({
       // deleteChat("daily").then(() => {
       setIsLoading(false);
       setIsMenuOpen(false);
+
       // });
     } else if (title === "New Weekly Session") {
       setIsLoading(true);
@@ -57,15 +57,17 @@ export const HamburgerMenu: React.FC<Props> = ({
     }
   };
 
-  const routesValidate = (title: string, user: User) => {
+  const routesValidate = (title: string) => {
     if (
-      !user.introduction_completed &&
-      (title === "New Short Session" || title === "New Weekly Session")
+      // !user.introduction_completed &&
+      title === "New Short Session" ||
+      title === "New Weekly Session"
     ) {
       return false;
-    } else if (title === "New Weekly Session" && !user.weekly_open) {
-      return false;
     }
+    // else if (title === "New Weekly Session" && !user.weekly_open) {
+    //   return false;
+
     return true;
   };
 
@@ -80,7 +82,7 @@ export const HamburgerMenu: React.FC<Props> = ({
           {user.premium &&
             routes.map(
               (route, index) =>
-                routesValidate(route.title, user) && (
+                routesValidate(route.title) && (
                   <S.MenuItem key={index}>
                     <Link
                       to={route.path}

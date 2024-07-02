@@ -82,7 +82,7 @@ export async function getVoiceMessage(
 
 export async function getChatBotConversationAPI(): Promise<ChatBotConversation> {
   try {
-    const resp = await api.get(`api/v1/reflection/chat`);
+    const resp = await api.get(`api/v1/shortchat/chat`);
     return resp.data;
   } catch (error) {
     return {
@@ -99,7 +99,7 @@ export async function sendAnswerToChatAPI(
   Answer: string
 ): Promise<ChatBotConversation> {
   try {
-    const resp = await api.post(`api/v1/reflection/chat`, { content: Answer });
+    const resp = await api.post(`api/v1/shortchat/chat`, { content: Answer });
     return resp.data;
   } catch (error) {
     return {

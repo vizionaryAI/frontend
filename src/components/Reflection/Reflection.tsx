@@ -35,7 +35,7 @@ export const Reflection: React.FC<Props> = ({ reflectionType }) => {
 
         {isVoiceMessage ? (
           <VoiceMessage
-            voiceApi={reflectionType === "daily" ? "reflection" : "reflection"}
+            voiceApi={reflectionType === "daily" ? "shortchat" : "reflection"}
             firstUse={user.first_session}
             sessionIsStarted={sessionIsStarted}
             setSessionIsStarted={setSessionIsStarted}
