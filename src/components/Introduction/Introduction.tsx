@@ -138,7 +138,7 @@ export const Introduction = () => {
             {introduction.finished && (
               <S.EndConversationButtonContainer>
                 <S.EndConversationButton onClick={handleEndConversation}>
-                  End conversation
+                  End Conversation
                 </S.EndConversationButton>
               </S.EndConversationButtonContainer>
             )}

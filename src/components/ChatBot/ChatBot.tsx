@@ -116,7 +116,7 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
 
       <S.EndConversationButtonContainer>
         <S.EndConversationButton onClick={handleEndConversation}>
-          End conversation
+          End Conversation
         </S.EndConversationButton>
       </S.EndConversationButtonContainer>
 

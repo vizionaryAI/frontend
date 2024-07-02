@@ -175,7 +175,7 @@ const AudioRecorder: React.FC<Props> = ({
           <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
           {renderUIText()}
           <S.EndConversationButtonContainer>
-            <Button onClick={handleEndConversation}>End conversation</Button>
+            <Button onClick={handleEndConversation}>End Conversation</Button>
           </S.EndConversationButtonContainer>
         </>
       ) : (
