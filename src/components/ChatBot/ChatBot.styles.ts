@@ -111,8 +111,6 @@ export const EndConversationButtonContainer = styled.div`
 `;
 
 export const EndConversationButton = styled(Button)<{ theme: DefaultTheme }>`
-  background-color: transparent;
-  border: 0.3px solid
-    ${(props) => (props.theme.mode === "light" ? "#747474" : props.theme.text)};
+  ${(props) => (props.theme.mode === "light" ? "#747474" : props.theme.text)};
   color: white;
 `;
