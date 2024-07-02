@@ -102,7 +102,7 @@ export const WelcomeContainer = styled.div`
 export const Title = styled.h1`
   font-size: 2rem;
   color: ${({ theme }) => theme.text};
-  align-self: flex-start;
+  align-self: center;
   font-weight: bold;
 
   margin-left: 5rem;

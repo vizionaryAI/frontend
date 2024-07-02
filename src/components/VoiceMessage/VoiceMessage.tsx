@@ -189,8 +189,8 @@ const AudioRecorder: React.FC<Props> = ({
                   can best support you on your personal development journey!
                 </S.Description>
                 <S.Description>
-                  To provide you with the best experience, we need to have to
-                  understand more about you and your ambitions.
+                  To provide you with the best experience, we need to understand
+                  more about you and your ambitions.
                 </S.Description>
                 <S.Description>
                   Are you ready to begin your first session?
