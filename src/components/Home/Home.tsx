@@ -3,7 +3,6 @@ import { Loader } from "../Loader/Loader";
 import * as S from "./Home.styles";
 import { useNavigate } from "react-router-dom";
 import { useClientStore } from "../../store/client.store";
-import { Introduction } from "../Introduction/Introduction";
 import logo from "../../assets/logo.png";
 
 export const Home = () => {
@@ -62,7 +61,28 @@ export const Home = () => {
           </S.CardContainer>
         </S.Container>
       ) : (
-        <Introduction />
+        <S.Container>
+          <S.WelcomeContainer>
+            <>
+              <S.Title>Introducing Aimful</S.Title>
+              <S.Description>
+                A World-Class Personal Development Coach Accessible via both{" "}
+                <S.OrangeText>Voice</S.OrangeText> &{" "}
+                <S.BlueText>Text</S.BlueText>
+              </S.Description>
+              <S.Description>
+                Available <S.GreenText>24/7, On-Demand</S.GreenText>
+              </S.Description>
+              <S.Description>
+                Ready to begin your onboarding session?
+              </S.Description>
+            </>
+
+            <S.StartButton onClick={() => navigate("/introduction")}>
+              <S.ButtonTitle>Start Now</S.ButtonTitle>
+            </S.StartButton>
+          </S.WelcomeContainer>
+        </S.Container>
       )}
     </React.Fragment>
   );

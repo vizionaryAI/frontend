@@ -182,3 +182,92 @@ export const Logo = styled.img<{ theme: DefaultTheme }>`
       ? "brightness(0) invert(1)"
       : "brightness(0) invert(0)"};
 `;
+
+export const WelcomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 0.6rem;
+
+  @media (max-width: 768px) {
+    gap: 0rem;
+  }
+`;
+
+export const Title = styled.h1`
+  font-size: 2rem;
+  color: ${({ theme }) => theme.text};
+  align-self: center;
+  font-weight: bold;
+
+  margin-left: 5rem;
+  margin-right: 5rem;
+
+  @media (max-width: 768px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+  }
+`;
+
+export const Description = styled.p`
+  font-size: 1rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+
+  font-style: italic;
+
+  color: ${({ theme }) => theme.text};
+  text-align: center;
+  font-weight: bold;
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+
+  @media (max-width: 768px) {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+  }
+`;
+
+export const GreenText = styled.span`
+  color: green;
+`;
+
+export const OrangeText = styled.span`
+  color: orange;
+`;
+
+export const BlueText = styled.span`
+  color: blue;
+`;
+
+export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.textLight};
+`;
+
+export const StartButton = styled.button<{ theme: DefaultTheme }>`
+  margin-top: 1rem;
+  width: 12rem;
+  height: 3rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  background: ${({ theme }) => theme.buttonBackground};
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
+`;

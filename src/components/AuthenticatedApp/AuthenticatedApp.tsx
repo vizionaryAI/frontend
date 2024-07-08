@@ -9,6 +9,7 @@ import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
 import * as S from "./AuthenticatedApp.styles";
 import { Unauthorized } from "../Unauthorized/Unauthorized";
 import { Home } from "../Home/Home";
+import { Introduction } from "../Introduction/Introduction";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("themeMode");
@@ -59,7 +60,10 @@ export const AuthenticatedApp: React.FC = () => {
                     />
                   ))
                 ) : (
-                  <Route path="*" element={<Navigate to="/home" replace />} />
+                  <>
+                    <Route path="/introduction" element={<Introduction />} />
+                    <Route path="*" element={<Navigate to="/home" replace />} />
+                  </>
                 )}
                 <Route path="*" element={<Navigate to="/home" replace />} />
               </>

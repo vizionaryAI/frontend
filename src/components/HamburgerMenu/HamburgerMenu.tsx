@@ -55,6 +55,12 @@ export const HamburgerMenu: React.FC<Props> = ({
       setIsLoading(false);
       setIsMenuOpen(false);
       //});
+    } else if (title === "Introduction") {
+      setIsLoading(true);
+      //deleteChat("introduction").then(() => {
+      setIsLoading(false);
+      setIsMenuOpen(false);
+      //});
     }
   };
 
@@ -92,6 +98,16 @@ export const HamburgerMenu: React.FC<Props> = ({
                   </S.MenuItem>
                 )
             )}
+          {!user.introduction_completed && (
+            <S.MenuItem>
+              <Link
+                to="/introduction"
+                onClick={() => handleLinkClick("Introduction")}
+              >
+                Introduction
+              </Link>
+            </S.MenuItem>
+          )}
           <S.MenuItem>
             <Logout />
           </S.MenuItem>
