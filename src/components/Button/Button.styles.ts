@@ -7,12 +7,11 @@ export const Container = styled.button<{ theme: DefaultTheme }>`
   padding: 0.25rem 1rem;
   font-size: 1rem;
   background: ${({ theme }) => theme.buttonBackground};
-  color: white;
+  color: ${({ theme }) => theme.buttonText};
   cursor: pointer;
   transition: all 0.125s ease-in-out;
   outline: 0.0625rem solid transparent;
   height: 1.8rem;
-  color: ${({ theme }) => theme.buttonText};
 
   &:hover {
     filter: brightness(0.8);
