@@ -49,7 +49,7 @@ export const StatusText = styled.p<{ theme: DefaultTheme }>`
 
 export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
   font-size: 1rem;
-  color: ${({ theme }) => theme.textLight};
+  color: ${({ theme }) => theme.buttonText};
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
