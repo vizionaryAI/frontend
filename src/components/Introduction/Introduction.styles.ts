@@ -54,7 +54,7 @@ export const Message = styled.div`
 
 export const UserMessage = styled(Message)<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.highlightColor};
-  color: ${({ theme }) => theme.mainColor};
+  color: ${({ theme }) => theme.text};
   align-self: flex-end;
 `;
 
