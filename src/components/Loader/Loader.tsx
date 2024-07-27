@@ -6,7 +6,7 @@ export const Loader = () => {
   const theme = useContext(ThemeContext);
 
   return (
-    <S.Wrapper color={theme?.loaderBackground}>
+    <S.Wrapper color={theme?.mainColor}>
       <S.Svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ export const Loader = () => {
           fontFamily="Arial"
           fontSize="450"
           textAnchor="middle"
-          fill={theme?.loaderColor}
+          fill={theme?.text}
         >
           Aimful
         </S.Path>

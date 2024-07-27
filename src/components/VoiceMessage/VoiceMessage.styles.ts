@@ -11,7 +11,7 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   overflow-y: auto;
   margin: auto;
 
-  background-color: ${({ theme }) => theme.chatBotBackground};
+  background-color: ${({ theme }) => theme.mainColor};
 
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
@@ -49,7 +49,7 @@ export const StatusText = styled.p<{ theme: DefaultTheme }>`
 
 export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
   font-size: 1rem;
-  color: ${({ theme }) => theme.buttonText};
+  color: white;
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
@@ -62,7 +62,8 @@ export const StartButton = styled.button<{ theme: DefaultTheme }>`
   align-items: center;
   border: none;
   cursor: pointer;
-  background: ${({ theme }) => theme.buttonBackground};
+  background: ${({ theme }) => theme.blue};
+  color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
   &:disabled {

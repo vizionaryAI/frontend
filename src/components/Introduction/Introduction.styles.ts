@@ -7,49 +7,7 @@ export const BGContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: ${({ theme }) => theme.homeCardBackground};
-  }
-
-  &:before {
-    clip-path: polygon(51.4% 0%, 100% 26.8%, 100% 0%);
-  }
-
-  &:after {
-    clip-path: polygon(0% 100%, 82.4% 100%, 0% 64.5%);
-    right: 0;
-    top: 0;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: ${({ theme }) => theme.homeCardBackground};
-    }
-
-    &:before {
-      clip-path: polygon(100% 0%, 100% 31%, 60.6% 0%);
-    }
-
-    &:after {
-      clip-path: polygon(0% 100%, 82.4% 100%, 0% 77.5%);
-      right: 0;
-      top: 0;
-    }
-  }
+  background: ${({ theme }) => theme.background};
 `;
 
 export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
@@ -61,7 +19,7 @@ export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.chatBotBackground};
+  background-color: ${({ theme }) => theme.mainColor};
 `;
 
 export const Container = styled.div<{ theme: DefaultTheme }>`
@@ -74,7 +32,7 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   height: 100%;
 
   border-radius: 15px;
-  background-color: ${({ theme }) => theme.chatBotBackground};
+  background-color: ${({ theme }) => theme.mainColor};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
@@ -95,8 +53,8 @@ export const Message = styled.div`
 `;
 
 export const UserMessage = styled(Message)<{ theme: DefaultTheme }>`
-  background-color: ${({ theme }) => theme.chatBotUserMessageBackground};
-  color: ${({ theme }) => theme.textLight};
+  background-color: ${({ theme }) => theme.highlightColor};
+  color: ${({ theme }) => theme.mainColor};
   align-self: flex-end;
 `;
 
@@ -156,7 +114,7 @@ export const SendButton = styled(Button)<{ theme: DefaultTheme }>`
   border-radius: 25px;
   padding: 1.2rem;
   width: 6rem;
-  background-color: ${({ theme }) => theme.sendButton};
+  background-color: ${({ theme }) => theme.blue};
   color: white;
   cursor: pointer;
 
@@ -187,8 +145,8 @@ export const EndConversationButton = styled(Button)<{ theme: DefaultTheme }>`
   background-color: transparent;
   border: 0.3px solid
     ${(props) => (props.theme.mode === "light" ? "#747474" : props.theme.text)};
-  color: ${(props) =>
-    props.theme.mode === "light" ? "#747474" : props.theme.text};
+
+  color: ${({ theme }) => theme.text};
 `;
 
 export const SwitchContainer = styled.div`

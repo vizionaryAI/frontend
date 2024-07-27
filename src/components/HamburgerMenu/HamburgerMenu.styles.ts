@@ -1,7 +1,7 @@
 import styled, { DefaultTheme } from "styled-components";
 
 export const Container = styled.div<{ theme: DefaultTheme }>`
-  background-color: ${(props) => props.theme.hamburgerMenuBackground || "#fff"};
+  background-color: ${(props) => props.theme.mainColor || "#fff"};
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   padding-top: 3rem;
-  border-color: ${(props) => props.theme.hamburgerMenuBorder || "#eee"};
+  border-color: ${(props) => props.theme.border || "#eee"};
   border-style: solid;
   border-width: 0 0.0625rem 0 0;
   overflow: auto;
@@ -46,9 +46,8 @@ export const MenuItem = styled.div<{ theme: DefaultTheme }>`
   }
 
   &:hover {
-    background-color: ${(props) =>
-      props.theme.hamburgerMenuHoverBackground || "#f9efdb"};
-    color: ${(props) => props.theme.textLight};
+    background-color: ${(props) => props.theme.highlightColor};
+    color: ${(props) => props.theme.text};
   }
 
   @media (max-width: 768px) {

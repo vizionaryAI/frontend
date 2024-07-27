@@ -10,7 +10,7 @@ export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.chatBotBackground};
+  background-color: ${({ theme }) => theme.mainColor};
 `;
 
 export const Message = styled.div`
@@ -22,8 +22,8 @@ export const Message = styled.div`
 `;
 
 export const UserMessage = styled(Message)<{ theme: DefaultTheme }>`
-  background-color: ${({ theme }) => theme.chatBotUserMessageBackground};
-  color: ${({ theme }) => theme.textLight};
+  background-color: ${({ theme }) => theme.highlightColor};
+  color: ${({ theme }) => theme.text};
   align-self: flex-end;
 `;
 
@@ -83,7 +83,7 @@ export const SendButton = styled(Button)<{ theme: DefaultTheme }>`
   border-radius: 25px;
   padding: 1.2rem;
   width: 6rem;
-  background-color: ${({ theme }) => theme.sendButton};
+  background-color: ${({ theme }) => theme.blue};
   color: white;
   cursor: pointer;
 
@@ -111,6 +111,6 @@ export const EndConversationButtonContainer = styled.div`
 `;
 
 export const EndConversationButton = styled(Button)<{ theme: DefaultTheme }>`
-  ${(props) => (props.theme.mode === "light" ? "#747474" : props.theme.text)};
-  color: white;
+  background-color: ${({ theme }) => theme.highlightColor};
+  color: ${({ theme }) => theme.text};
 `;

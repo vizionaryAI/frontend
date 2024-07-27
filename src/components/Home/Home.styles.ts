@@ -6,50 +6,7 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: ${({ theme }) => theme.homeCardBackground};
-  }
-
-  &:before {
-    clip-path: polygon(51.4% 0%, 100% 26.8%, 100% 0%);
-  }
-
-  &:after {
-    clip-path: polygon(0% 100%, 82.4% 100%, 0% 64.5%);
-    right: 0;
-    top: 0;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: ${({ theme }) => theme.homeCardBackground};
-    }
-
-    &:before {
-      clip-path: polygon(100% 0%, 100% 31%, 60.6% 0%);
-    }
-
-    &:after {
-      clip-path: polygon(0% 100%, 82.4% 100%, 0% 77.5%);
-      right: 0;
-      top: 0;
-    }
-  }
+  background: ${({ theme }) => theme.background};
 `;
 
 export const CardContainer = styled.div`
@@ -75,8 +32,8 @@ export const Card = styled.div<{
   blurred?: boolean;
 }>`
   background-color: ${({ theme, disabled }) =>
-    disabled ? theme.homeDisabledCardBackground : theme.homeCardBackground};
-  color: ${({ theme }) => theme.textLight};
+    disabled ? theme.blue : theme.blue};
+  color: ${({ theme }) => theme.mainColor};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.775);
@@ -94,13 +51,13 @@ export const Card = styled.div<{
   z-index: 1;
 
   &:hover {
-    box-shadow: 0 0.5rem 1rem ${({ theme }) => theme.cardShadow};
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   }
 
   h2 {
     font-weight: normal;
     font-size: 1.1rem;
-    color: ${({ theme }) => theme.textLight};
+    color: white;
     text-align: left;
     font-weight: bold;
   }
@@ -118,7 +75,7 @@ export const Card = styled.div<{
 
 export const Notes = styled.p<{ theme: DefaultTheme }>`
   font-size: 0.7rem;
-  color: ${({ theme }) => theme.textLight};
+  color: white;
   text-align: left;
   font-weight: normal;
   line-height: 1.15rem;
@@ -131,7 +88,7 @@ export const Notes = styled.p<{ theme: DefaultTheme }>`
 
 export const Duration = styled.p<{ theme: DefaultTheme }>`
   font-size: 0.9rem;
-  color: ${({ theme }) => theme.textLight};
+  color: white;
   text-align: right;
   font-weight: normal;
 
@@ -153,7 +110,7 @@ export const Overlay = styled.div<{ theme: DefaultTheme }>`
   backdrop-filter: blur(1px);
 
   h2 {
-    color: ${({ theme }) => theme.textLight};
+    color: white;
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
@@ -237,17 +194,13 @@ export const GreenText = styled.span`
   color: green;
 `;
 
-export const OrangeText = styled.span`
-  color: orange;
-`;
-
-export const BlueText = styled.span`
-  color: blue;
+export const BlueText = styled.span<{ theme: DefaultTheme }>`
+  color: ${({ theme }) => theme.blue};
 `;
 
 export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
   font-size: 1rem;
-  color: ${({ theme }) => theme.buttonText};
+  color: white;
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
@@ -260,8 +213,9 @@ export const StartButton = styled.button<{ theme: DefaultTheme }>`
   align-items: center;
   border: none;
   cursor: pointer;
-  background: ${({ theme }) => theme.buttonBackground};
+  background: ${({ theme }) => theme.blue};
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  color: white;
 
   &:disabled {
     cursor: not-allowed;

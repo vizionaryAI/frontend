@@ -19,7 +19,7 @@ export const Wrapper = styled.div<{ theme: DefaultTheme }>`
   justify-content: center;
   align-items: center;
   z-index: 10;
-  background: ${({ theme }) => theme.loaderBackground || "black"};
+  background: ${({ theme }) => theme.mainColor || "black"};
 `;
 
 export const Svg = styled.svg`
@@ -40,7 +40,7 @@ const strokeLong = keyframes`
 export const Path = styled.text<{ theme: DefaultTheme }>`
   transform: scale(40%) translate(1%, 25%);
   fill: transparent !important;
-  stroke: ${({ theme }) => theme.loaderColor || "white"};
+  stroke: ${({ theme }) => theme.text || "white"};
   stroke-width: 15px;
   stroke-dasharray: 1800 200;
   animation: ${strokeLong} 10s alternate-reverse;
