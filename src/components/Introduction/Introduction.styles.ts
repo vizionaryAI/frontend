@@ -7,7 +7,50 @@ export const BGContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.background};
+  flex-direction: column;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: ${({ theme }) => theme.highlightColor};
+  }
+
+  &:before {
+    clip-path: polygon(51.4% 0%, 100% 26.8%, 100% 0%);
+  }
+
+  &:after {
+    clip-path: polygon(0% 100%, 82.4% 100%, 0% 64.5%);
+    right: 0;
+    top: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: ${({ theme }) => theme.highlightColor};
+    }
+
+    &:before {
+      clip-path: polygon(100% 0%, 100% 31%, 60.6% 0%);
+    }
+
+    &:after {
+      clip-path: polygon(0% 100%, 82.4% 100%, 0% 77.5%);
+      right: 0;
+      top: 0;
+    }
+  }
 `;
 
 export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
