@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Loader } from "../Loader/Loader";
 import * as S from "./Home.styles";
 import { useNavigate } from "react-router-dom";
-import { useClientStore } from "../../store/client.store";
 import logo from "../../assets/logo.png";
+import short_session_light from "../../assets/short_session_light.svg";
+import short_session_dark from "../../assets/short_session_dark.svg";
+import weekly_session from "../../assets/weekly_session.svg";
+import { ThemeContext } from "styled-components";
+import { useClientStore } from "../../store/client.store";
 
 export const Home = () => {
   const { user, setUser } = useClientStore();
   const navigate = useNavigate();
+  const theme = useContext(ThemeContext);
 
   useEffect(() => {
     setUser();
@@ -26,7 +31,17 @@ export const Home = () => {
           </S.LogoContainer>
           <S.CardsContainer>
             <S.Card onClick={() => navigate("/daily-reflection")}>
-              <h2>Short Session</h2>
+              <S.CardTitleContainer>
+                <h2>Short Session</h2>
+                <S.CardLogo
+                  src={
+                    theme && theme.mode === "light"
+                      ? short_session_light
+                      : short_session_dark
+                  }
+                  alt="Short Session"
+                />
+              </S.CardTitleContainer>
               <S.Notes>
                 This is a focused and concise coaching session, designed
                 specifically for you to work intensively on a particular skill
@@ -38,7 +53,10 @@ export const Home = () => {
               disabled={!user.weekly_open}
               onClick={() => user.weekly_open && navigate("/weekly-reflection")}
             >
-              <h2>Weekly Session</h2>
+              <S.CardTitleContainer>
+                <h2>Weekly Session</h2>
+                <S.CardLogo src={weekly_session} alt="Weekly Session" />
+              </S.CardTitleContainer>
               <S.Notes>
                 In these sessions, we'll take a step back to review your
                 progress over the past week. We’ll assess how well you're

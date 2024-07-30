@@ -134,6 +134,17 @@ export const Overlay = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
+export const CardTitleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const CardLogo = styled.img<{ theme: DefaultTheme }>`
+  width: 20px;
+`;
+
 export const Logo = styled.img<{ theme: DefaultTheme }>`
   width: 100%;
   filter: ${({ theme }) =>
