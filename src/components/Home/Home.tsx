@@ -3,7 +3,7 @@ import { Loader } from "../Loader/Loader";
 import * as S from "./Home.styles";
 import { useNavigate } from "react-router-dom";
 import { useClientStore } from "../../store/client.store";
-//import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.png";
 
 export const Home = () => {
   const { user, setUser } = useClientStore();
@@ -21,10 +21,10 @@ export const Home = () => {
     <React.Fragment>
       {user.introduction_completed ? (
         <S.Container>
-          {/* <S.LogoContainer>
+          <S.LogoContainer>
             <S.Logo src={logo} alt="Aimful Logo" />
-          </S.LogoContainer> */}
-          <S.CardContainer>
+          </S.LogoContainer>
+          <S.CardsContainer>
             <S.Card onClick={() => navigate("/daily-reflection")}>
               <h2>Short Session</h2>
               <S.Notes>
@@ -58,7 +58,7 @@ export const Home = () => {
                 </S.Overlay>
               )}
             </S.Card>
-          </S.CardContainer>
+          </S.CardsContainer>
         </S.Container>
       ) : (
         <S.Container>
