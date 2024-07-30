@@ -28,7 +28,7 @@ export const Slider = styled(animated.div)<{ theme: DefaultTheme }>`
   background-image: ${({ theme }) =>
     theme.mode === "dark" ? `url(${moonIcon})` : `url(${sunIcon})`};
   filter: ${({ theme }) =>
-    theme.mode === "dark"
+    theme.mode === "light"
       ? "brightness(0) invert(1)"
       : "brightness(0) invert(0)"};
 

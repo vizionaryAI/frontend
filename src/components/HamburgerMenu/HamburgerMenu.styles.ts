@@ -37,7 +37,7 @@ export const MenuItem = styled.div<{ theme: DefaultTheme }>`
   cursor: pointer;
   text-align: start;
   padding-left: 3rem;
-  color: ${(props) => props.theme.text || "#000"};
+  color: ${({ theme }) => theme.text};
 
   a {
     text-decoration: none;
@@ -47,7 +47,7 @@ export const MenuItem = styled.div<{ theme: DefaultTheme }>`
 
   &:hover {
     background-color: ${(props) => props.theme.highlightColor};
-    color: ${(props) => props.theme.text};
+    color: ${({ theme }) => theme.mainColor};
   }
 
   @media (max-width: 768px) {

@@ -4,7 +4,6 @@ import * as S from "./VoiceMessage.styles";
 import { RecordingState } from "../../types/chatbot";
 import { RecordingAnimation } from "./RecordingAnimation";
 import { useNavigate } from "react-router-dom";
-import Button from "../Button/Button";
 
 type Props = {
   conversationType: string;
@@ -145,7 +144,7 @@ const AudioRecorder: React.FC<Props> = ({
       {sessionIsStarted ? (
         <>
           <S.RecorderButtonContainer>
-            <S.Button
+            <S.VoiceButton
               onClick={handleStartStopRecording}
               disabled={
                 recordingState !== RecordingState.None &&
@@ -170,12 +169,14 @@ const AudioRecorder: React.FC<Props> = ({
               ) : (
                 <RecordingAnimation animation={recordingState} />
               )}
-            </S.Button>
+            </S.VoiceButton>
           </S.RecorderButtonContainer>
           <audio ref={audioPlayerRef} style={{ display: "none" }}></audio>
           {renderUIText()}
           <S.EndConversationButtonContainer>
-            <Button onClick={handleEndConversation}>End Conversation</Button>
+            <S.EndConversationButton onClick={handleEndConversation}>
+              End Conversation
+            </S.EndConversationButton>
           </S.EndConversationButtonContainer>
         </>
       ) : (

@@ -1,4 +1,5 @@
 import styled, { DefaultTheme } from "styled-components";
+import Button from "../Button/Button";
 
 export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   display: flex;
@@ -26,7 +27,7 @@ export const ChatContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
-export const Button = styled.button<{ theme: DefaultTheme }>`
+export const VoiceButton = styled.button<{ theme: DefaultTheme }>`
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
@@ -49,7 +50,7 @@ export const StatusText = styled.p<{ theme: DefaultTheme }>`
 
 export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
   font-size: 1rem;
-  color: white;
+  color: ${({ theme }) => theme.mainColor};
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
@@ -62,7 +63,7 @@ export const StartButton = styled.button<{ theme: DefaultTheme }>`
   align-items: center;
   border: none;
   cursor: pointer;
-  background: ${({ theme }) => theme.blue};
+  background: ${({ theme }) => theme.highlightColor};
   color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
@@ -144,4 +145,8 @@ export const EndConversationButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const EndConversationButton = styled(Button)<{ theme: DefaultTheme }>`
+  color: ${({ theme }) => theme.mainColor};
 `;

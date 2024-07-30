@@ -208,12 +208,12 @@ export const GreenText = styled.span`
 `;
 
 export const BlueText = styled.span<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.blue};
+  color: ${({ theme }) => theme.highlightColor};
 `;
 
 export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
   font-size: 1rem;
-  color: white;
+  color: ${({ theme }) => theme.mainColor};
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
@@ -226,7 +226,7 @@ export const StartButton = styled.button<{ theme: DefaultTheme }>`
   align-items: center;
   border: none;
   cursor: pointer;
-  background: ${({ theme }) => theme.blue};
+  background: ${({ theme }) => theme.highlightColor};
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   color: white;
 

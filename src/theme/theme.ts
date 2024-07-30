@@ -3,7 +3,7 @@
 export const lightTheme = {
   mode: "light",
   mainColor: "#FFF",
-  highlightColor: "#F1BA54",
+  highlightColor: "#000",
   text: "#666666",
   border: "#eee",
   background: `white`,
@@ -14,7 +14,7 @@ export const lightTheme = {
 export const darkTheme = {
   mode: "dark",
   mainColor: "#050611",
-  highlightColor: "#141622",
+  highlightColor: "#FFF",
   text: "#a7a7a7",
   border: "black",
   background: `black`,
