@@ -4,7 +4,6 @@ import * as S from "./VoiceMessage.styles";
 import { RecordingState } from "../../types/chatbot";
 import { RecordingAnimation } from "./RecordingAnimation";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.png";
 
 type Props = {
   conversationType: string;
@@ -183,14 +182,9 @@ const AudioRecorder: React.FC<Props> = ({
       ) : (
         <>
           <S.WelcomeContainer>
-            <S.Title>Welcome to...</S.Title>
-            <S.Logo src={logo} alt="Aimful Logo" />
-            <S.StartButtonContainer>
-              <S.Description>Ready to begin our first session?</S.Description>
-              <S.StartButton onClick={handleStartSession}>
-                <S.ButtonTitle>Start Session</S.ButtonTitle>
-              </S.StartButton>
-            </S.StartButtonContainer>
+            <S.StartButton onClick={handleStartSession}>
+              <S.ButtonTitle>Start Voice Chat</S.ButtonTitle>
+            </S.StartButton>
           </S.WelcomeContainer>
         </>
       )}

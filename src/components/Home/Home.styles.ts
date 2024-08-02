@@ -157,84 +157,79 @@ export const WelcomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 0.6rem;
+  justify-content: space-between;
+  height: 80%;
+  width: 100%;
+  @media (max-width: 768px) {
+    height: 60%;
+  }
+`;
+
+export const IntroLogo = styled.img<{ theme: DefaultTheme }>`
+  width: 10%;
+  filter: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "brightness(0) invert(1)"
+      : "brightness(0) invert(0)"};
 
   @media (max-width: 768px) {
-    gap: 0rem;
+    width: 40%;
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
-  color: ${({ theme }) => theme.text};
-  align-self: center;
-  font-weight: bold;
-
-  margin-left: 5rem;
-  margin-right: 5rem;
+  font-size: 3.5rem;
+  color: ${({ theme }) => theme.highlightColor};
+  font-weight: 100;
+  font-style: italic;
 
   @media (max-width: 768px) {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
+    font-size: 2.5rem;
   }
 `;
 
 export const Description = styled.p`
-  font-size: 1rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
-
-  font-style: italic;
-
-  color: ${({ theme }) => theme.text};
-  text-align: center;
-  font-weight: bold;
-  margin-top: 0rem;
-  margin-bottom: 0rem;
-
-  @media (max-width: 768px) {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    font-size: 0.9rem;
-    margin-top: 0.3rem;
-  }
-`;
-
-export const GreenText = styled.span`
-  color: green;
-`;
-
-export const BlueText = styled.span<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.highlightColor};
+  font-weight: 300;
+  font-style: italic;
+  margin: 0;
 `;
 
-export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
-  font-size: 1rem;
-  color: ${({ theme }) => theme.mainColor};
+export const StartButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
   margin-top: 1rem;
-  width: 12rem;
-  height: 3rem;
-  border-radius: 12px;
+  width: 14rem;
+  height: 2rem;
+  border-radius: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   cursor: pointer;
   background: ${({ theme }) => theme.highlightColor};
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
 
   &:disabled {
     cursor: not-allowed;
   }
 
-  @media (max-width: 768px) {
-    margin-top: 2rem;
+  &:hover {
+    box-shadow: 0 0.4rem 1rem
+      ${({ theme }) =>
+        theme.mode === "dark"
+          ? "rgba(255, 255, 255, 0.4)"
+          : "rgba(128, 128, 128, 0.7)"};
   }
+`;
+
+export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.mainColor};
 `;

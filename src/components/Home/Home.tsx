@@ -81,23 +81,14 @@ export const Home = () => {
       ) : (
         <S.Container>
           <S.WelcomeContainer>
-            <>
-              <S.Title>Introducing Aimful</S.Title>
-              <S.Description>
-                A World-Class Personal Development Coach Accessible via both{" "}
-                <S.BlueText>Voice</S.BlueText> & <S.BlueText>Text</S.BlueText>
-              </S.Description>
-              <S.Description>
-                Available <S.GreenText>24/7, On-Demand</S.GreenText>
-              </S.Description>
-              <S.Description>
-                Ready to begin your onboarding session?
-              </S.Description>
-            </>
-
-            <S.StartButton onClick={() => navigate("/introduction")}>
-              <S.ButtonTitle>Start Now</S.ButtonTitle>
-            </S.StartButton>
+            <S.Title>Welcome to...</S.Title>
+            <S.IntroLogo src={logo} alt="Aimful Logo" />
+            <S.StartButtonContainer>
+              <S.Description>Ready to begin our first session?</S.Description>
+              <S.StartButton onClick={() => navigate("/introduction")}>
+                <S.ButtonTitle>Start Session</S.ButtonTitle>
+              </S.StartButton>
+            </S.StartButtonContainer>
           </S.WelcomeContainer>
         </S.Container>
       )}
