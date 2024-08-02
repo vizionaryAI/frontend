@@ -126,6 +126,7 @@ export const Overlay = styled.div<{ theme: DefaultTheme }>`
   flex-direction: column;
 
   backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 
   h2 {
     color: ${({ theme }) => theme.highlightColor};
