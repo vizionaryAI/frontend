@@ -66,7 +66,7 @@ export const Home = () => {
                 skills and attributes you're most interested in improving.
               </S.Notes>
               <S.Duration> Duration 15-20mins</S.Duration>
-              {!user.weekly_open && (
+              {user.weekly_open && (
                 <S.Overlay>
                   <S.OverlayLogo
                     src={available_friday}
