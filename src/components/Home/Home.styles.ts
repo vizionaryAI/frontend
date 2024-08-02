@@ -123,15 +123,26 @@ export const Overlay = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2px);
 
   h2 {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.highlightColor};
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1rem;
+    font-style: italic;
+    margin: 0;
   }
+`;
+
+export const OverlayLogo = styled.img<{ theme: DefaultTheme }>`
+  width: 1.8rem;
+  margin: 0.4rem;
+  filter: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "brightness(0) invert(1)"
+      : "brightness(0) invert(0)"};
 `;
 
 export const CardTitleContainer = styled.div`

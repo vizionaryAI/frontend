@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import short_session_light from "../../assets/short_session_light.svg";
 import short_session_dark from "../../assets/short_session_dark.svg";
+import available_friday from "../../assets/available_friday.svg";
 import weekly_session from "../../assets/weekly_session.svg";
 import { ThemeContext } from "styled-components";
 import { useClientStore } from "../../store/client.store";
@@ -67,7 +68,11 @@ export const Home = () => {
               <S.Duration> Duration 15-20mins</S.Duration>
               {!user.weekly_open && (
                 <S.Overlay>
-                  <h2>Open on Friday</h2>
+                  <S.OverlayLogo
+                    src={available_friday}
+                    alt="Available Friday"
+                  />
+                  <h2>Available Friday</h2>
                 </S.Overlay>
               )}
               {user.weekly_completed && (
