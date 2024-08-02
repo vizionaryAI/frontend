@@ -158,10 +158,10 @@ export const WelcomeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 80%;
+  height: 60%;
   width: 100%;
   @media (max-width: 768px) {
-    height: 60%;
+    height: 50%;
   }
 `;
 
@@ -178,7 +178,7 @@ export const IntroLogo = styled.img<{ theme: DefaultTheme }>`
 `;
 
 export const Title = styled.h1`
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   color: ${({ theme }) => theme.highlightColor};
   font-weight: 100;
   font-style: italic;
