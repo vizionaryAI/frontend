@@ -55,9 +55,9 @@ export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
   margin-top: 1rem;
-  width: 12rem;
-  height: 3rem;
-  border-radius: 12px;
+  width: 14rem;
+  height: 2rem;
+  border-radius: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,6 +66,11 @@ export const StartButton = styled.button<{ theme: DefaultTheme }>`
   background: ${({ theme }) => theme.highlightColor};
   color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   &:hover {
     box-shadow: 0 0.4rem 1rem
@@ -73,10 +78,6 @@ export const StartButton = styled.button<{ theme: DefaultTheme }>`
         theme.mode === "dark"
           ? "rgba(255, 255, 255, 0.4)"
           : "rgba(128, 128, 128, 0.7)"};
-  }
-
-  @media (max-width: 768px) {
-    margin-top: 5rem;
   }
 `;
 
