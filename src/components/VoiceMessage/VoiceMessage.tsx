@@ -183,7 +183,11 @@ const AudioRecorder: React.FC<Props> = ({
         <>
           <S.WelcomeContainer>
             <S.StartButton onClick={handleStartSession}>
-              <S.ButtonTitle>Start Voice Chat</S.ButtonTitle>
+              <S.ButtonTitle>
+                {conversationType === "introduction"
+                  ? "Start Voice Chat"
+                  : "Start Session"}
+              </S.ButtonTitle>
             </S.StartButton>
           </S.WelcomeContainer>
         </>
