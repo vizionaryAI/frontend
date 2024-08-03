@@ -4,82 +4,41 @@ export const Container = styled.div<{ theme: DefaultTheme }>`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.background};
+`;
 
-  &:before,
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: ${({ theme }) => theme.highlightColor};
-  }
-
-  &:before {
-    clip-path: polygon(51.4% 0%, 100% 26.8%, 100% 0%);
-  }
-
-  &:after {
-    clip-path: polygon(0% 100%, 82.4% 100%, 0% 64.5%);
-    right: 0;
-    top: 0;
-  }
+export const LogoContainer = styled.div`
+  width: 10rem;
+  margin-bottom: 4rem;
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: ${({ theme }) => theme.highlightColor};
-    }
-
-    &:before {
-      clip-path: polygon(100% 0%, 100% 31%, 60.6% 0%);
-    }
-
-    &:after {
-      clip-path: polygon(0% 100%, 82.4% 100%, 0% 77.5%);
-      right: 0;
-      top: 0;
-    }
+    width: 8rem;
+    margin-bottom: 0.1rem;
   }
 `;
 
-export const CardContainer = styled.div`
+export const CardsContainer = styled.div`
   display: flex;
   justify-content: center;
-  z-index: 1;
   align-items: center;
+  margin-top: 1rem;
 
-  transform: translateY(-4rem);
-
-  width: 100%;
-  height: 100vh;
-
-  @media (max-width: 550px) {
+  @media (max-width: 768px) {
     flex-direction: column;
-    align-items: center;
   }
 `;
 
 export const Card = styled.div<{
   theme: DefaultTheme;
   disabled?: boolean;
-  blurred?: boolean;
 }>`
-  background-color: ${({ theme, disabled }) =>
-    disabled ? theme.blue : theme.blue};
+  background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.mainColor};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-  border-radius: 0.5rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.775);
+  border-radius: 1.5rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   margin: 0.625rem;
@@ -88,37 +47,52 @@ export const Card = styled.div<{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: box-shadow 0.2s ease-in-out;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+  border: 1px solid transparent;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: calc(1.5rem + 10px);
+    border: 5px solid
+      ${({ theme }) =>
+        theme.mode === "dark"
+          ? "rgba(255, 255, 255, 0.5)"
+          : "rgba(128, 128, 128, 0.5)"};
+    filter: blur(6px);
+    z-index: -1;
+    transition: all 0.3s ease;
+  }
+
+  &:hover::before {
+    border-color: transparent;
+    filter: none;
+  }
 
   &:hover {
+    border-color: ${({ theme }) => theme.text};
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   }
 
   h2 {
-    font-weight: normal;
-    font-size: 1.1rem;
-    color: white;
-    text-align: left;
     font-weight: bold;
-  }
-
-  @media (max-width: 550px) {
-    width: 12rem;
-    padding: 0.4rem;
-    margin: 0.4rem;
-
-    h2 {
-      font-size: 0.8rem;
-    }
+    font-size: 1.1rem;
+    color: ${({ theme }) => theme.text};
+    text-align: left;
   }
 `;
 
 export const Notes = styled.p<{ theme: DefaultTheme }>`
   font-size: 0.7rem;
-  color: white;
+  color: ${({ theme }) => theme.text};
   text-align: left;
   font-weight: normal;
   line-height: 1.15rem;
@@ -131,9 +105,9 @@ export const Notes = styled.p<{ theme: DefaultTheme }>`
 
 export const Duration = styled.p<{ theme: DefaultTheme }>`
   font-size: 0.9rem;
-  color: white;
+  color: ${({ theme }) => theme.text};
   text-align: right;
-  font-weight: normal;
+  font-weight: bold;
 
   @media (max-width: 768px) {
     font-size: 0.7rem;
@@ -149,30 +123,38 @@ export const Overlay = styled.div<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 
   h2 {
-    color: white;
+    color: ${({ theme }) => theme.highlightColor};
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1rem;
+    font-style: italic;
+    margin: 0;
   }
 `;
 
-export const LogoContainer = styled.div`
-  position: relative;
-  width: 8rem;
-  display: flex;
-  justify-content: center;
-  padding-top: 5rem;
-  padding-bottom: 1rem;
-  transform: translateX(-13rem);
+export const OverlayLogo = styled.img<{ theme: DefaultTheme }>`
+  width: 1.8rem;
+  margin: 0.4rem;
+  filter: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "brightness(0) invert(1)"
+      : "brightness(0) invert(0)"};
+`;
 
-  @media (max-width: 768px) {
-    padding-top: 20%;
-    transform: translateX(0);
-  }
+export const CardTitleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const CardLogo = styled.img<{ theme: DefaultTheme }>`
+  width: 20px;
 `;
 
 export const Logo = styled.img<{ theme: DefaultTheme }>`
@@ -187,84 +169,79 @@ export const WelcomeContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 0.6rem;
+  justify-content: space-between;
+  height: 60%;
+  width: 100%;
+  @media (max-width: 768px) {
+    height: 50%;
+  }
+`;
+
+export const IntroLogo = styled.img<{ theme: DefaultTheme }>`
+  width: 10%;
+  filter: ${({ theme }) =>
+    theme.mode === "dark"
+      ? "brightness(0) invert(1)"
+      : "brightness(0) invert(0)"};
 
   @media (max-width: 768px) {
-    gap: 0rem;
+    width: 40%;
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 2rem;
-  color: ${({ theme }) => theme.text};
-  align-self: center;
-  font-weight: bold;
-
-  margin-left: 5rem;
-  margin-right: 5rem;
+  font-size: 4.5rem;
+  color: ${({ theme }) => theme.highlightColor};
+  font-weight: 100;
+  font-style: italic;
 
   @media (max-width: 768px) {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
+    font-size: 2.5rem;
   }
 `;
 
 export const Description = styled.p`
-  font-size: 1rem;
-  margin-left: 5rem;
-  margin-right: 5rem;
-
+  color: ${({ theme }) => theme.highlightColor};
+  font-weight: 300;
   font-style: italic;
-
-  color: ${({ theme }) => theme.text};
-  text-align: center;
-  font-weight: bold;
-  margin-top: 0rem;
-  margin-bottom: 0rem;
-
-  @media (max-width: 768px) {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    font-size: 0.9rem;
-    margin-top: 0.3rem;
-  }
+  margin: 0;
 `;
 
-export const GreenText = styled.span`
-  color: green;
-`;
-
-export const BlueText = styled.span<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.blue};
-`;
-
-export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
-  font-size: 1rem;
-  color: white;
+export const StartButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const StartButton = styled.button<{ theme: DefaultTheme }>`
   margin-top: 1rem;
-  width: 12rem;
-  height: 3rem;
-  border-radius: 12px;
+  width: 14rem;
+  height: 2rem;
+  border-radius: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
   cursor: pointer;
-  background: ${({ theme }) => theme.blue};
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.highlightColor};
   color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
 
   &:disabled {
     cursor: not-allowed;
   }
 
-  @media (max-width: 768px) {
-    margin-top: 2rem;
+  &:hover {
+    box-shadow: 0 0.4rem 1rem
+      ${({ theme }) =>
+        theme.mode === "dark"
+          ? "rgba(255, 255, 255, 0.4)"
+          : "rgba(128, 128, 128, 0.7)"};
   }
+`;
+
+export const ButtonTitle = styled.p<{ theme: DefaultTheme }>`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.mainColor};
 `;

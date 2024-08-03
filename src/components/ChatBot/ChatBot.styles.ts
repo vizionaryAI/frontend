@@ -1,5 +1,6 @@
 import styled, { DefaultTheme } from "styled-components";
 import Button from "../Button/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const MessagesContainer = styled.div<{ theme: DefaultTheme }>`
   overflow-y: auto;
@@ -23,7 +24,7 @@ export const Message = styled.div`
 
 export const UserMessage = styled(Message)<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.highlightColor};
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.mainColor};
   align-self: flex-end;
 `;
 
@@ -83,13 +84,18 @@ export const SendButton = styled(Button)<{ theme: DefaultTheme }>`
   border-radius: 25px;
   padding: 1.2rem;
   width: 6rem;
-  background-color: ${({ theme }) => theme.blue};
-  color: white;
   cursor: pointer;
+  background-color: ${({ theme }) => theme.highlightColor};
 
   &:disabled {
     cursor: not-allowed;
   }
+`;
+
+export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)<{
+  theme: DefaultTheme;
+}>`
+  color: ${({ theme }) => theme.mainColor};
 `;
 
 export const ErrorBox = styled.div`
@@ -112,5 +118,5 @@ export const EndConversationButtonContainer = styled.div`
 
 export const EndConversationButton = styled(Button)<{ theme: DefaultTheme }>`
   background-color: ${({ theme }) => theme.highlightColor};
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.mainColor};
 `;

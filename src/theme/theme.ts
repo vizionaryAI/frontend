@@ -3,17 +3,10 @@
 export const lightTheme = {
   mode: "light",
   mainColor: "#FFF",
-  highlightColor: "#F1BA54",
-  text: "#000000",
+  highlightColor: "#000",
+  text: "#666666",
   border: "#eee",
-  background: `
-    radial-gradient(
-      circle at ${Math.random() * 100}% ${Math.random() * 100}%,
-      white,
-      #F1BA54,
-      gray
-    )
-  `,
+  background: `white`,
   blue: "#342eff",
   chatBotMessageBackground: "#F0F0F0",
 };
@@ -21,17 +14,10 @@ export const lightTheme = {
 export const darkTheme = {
   mode: "dark",
   mainColor: "#050611",
-  highlightColor: "#141622",
-  text: "#FFF",
+  highlightColor: "#FFF",
+  text: "#a7a7a7",
   border: "black",
-  background: `
-  radial-gradient(
-    circle at ${Math.random() * 100}% ${Math.random() * 100}%,
-    gray,
-    #050611,
-    black
-  )
-`,
+  background: `black`,
   blue: "#342eff",
   chatBotMessageBackground: "#141622",
 };

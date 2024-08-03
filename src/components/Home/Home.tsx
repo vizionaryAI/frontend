@@ -1,13 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Loader } from "../Loader/Loader";
 import * as S from "./Home.styles";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png";
+import short_session_light from "../../assets/short_session_light.svg";
+import short_session_dark from "../../assets/short_session_dark.svg";
+import available_friday from "../../assets/available_friday.svg";
+import weekly_session from "../../assets/weekly_session.svg";
+import { ThemeContext } from "styled-components";
 import { useClientStore } from "../../store/client.store";
-//import logo from "../../assets/logo.png";
 
 export const Home = () => {
   const { user, setUser } = useClientStore();
   const navigate = useNavigate();
+  const theme = useContext(ThemeContext);
 
   useEffect(() => {
     setUser();
@@ -21,12 +27,22 @@ export const Home = () => {
     <React.Fragment>
       {user.introduction_completed ? (
         <S.Container>
-          {/* <S.LogoContainer>
+          <S.LogoContainer>
             <S.Logo src={logo} alt="Aimful Logo" />
-          </S.LogoContainer> */}
-          <S.CardContainer>
+          </S.LogoContainer>
+          <S.CardsContainer>
             <S.Card onClick={() => navigate("/daily-reflection")}>
-              <h2>Short Session</h2>
+              <S.CardTitleContainer>
+                <h2>Short Session</h2>
+                <S.CardLogo
+                  src={
+                    theme && theme.mode === "light"
+                      ? short_session_light
+                      : short_session_dark
+                  }
+                  alt="Short Session"
+                />
+              </S.CardTitleContainer>
               <S.Notes>
                 This is a focused and concise coaching session, designed
                 specifically for you to work intensively on a particular skill
@@ -38,7 +54,10 @@ export const Home = () => {
               disabled={!user.weekly_open}
               onClick={() => user.weekly_open && navigate("/weekly-reflection")}
             >
-              <h2>Weekly Session</h2>
+              <S.CardTitleContainer>
+                <h2>Weekly Session</h2>
+                <S.CardLogo src={weekly_session} alt="Weekly Session" />
+              </S.CardTitleContainer>
               <S.Notes>
                 In these sessions, we'll take a step back to review your
                 progress over the past week. We’ll assess how well you're
@@ -49,7 +68,11 @@ export const Home = () => {
               <S.Duration> Duration 15-20mins</S.Duration>
               {!user.weekly_open && (
                 <S.Overlay>
-                  <h2>Open on Friday</h2>
+                  <S.OverlayLogo
+                    src={available_friday}
+                    alt="Available Friday"
+                  />
+                  <h2>Available Friday</h2>
                 </S.Overlay>
               )}
               {user.weekly_completed && (
@@ -58,28 +81,19 @@ export const Home = () => {
                 </S.Overlay>
               )}
             </S.Card>
-          </S.CardContainer>
+          </S.CardsContainer>
         </S.Container>
       ) : (
         <S.Container>
           <S.WelcomeContainer>
-            <>
-              <S.Title>Introducing Aimful</S.Title>
-              <S.Description>
-                A World-Class Personal Development Coach Accessible via both{" "}
-                <S.BlueText>Voice</S.BlueText> & <S.BlueText>Text</S.BlueText>
-              </S.Description>
-              <S.Description>
-                Available <S.GreenText>24/7, On-Demand</S.GreenText>
-              </S.Description>
-              <S.Description>
-                Ready to begin your onboarding session?
-              </S.Description>
-            </>
-
-            <S.StartButton onClick={() => navigate("/introduction")}>
-              <S.ButtonTitle>Start Now</S.ButtonTitle>
-            </S.StartButton>
+            <S.Title>Welcome to...</S.Title>
+            <S.IntroLogo src={logo} alt="Aimful Logo" />
+            <S.StartButtonContainer>
+              <S.Description>Ready to begin our first session?</S.Description>
+              <S.StartButton onClick={() => navigate("/introduction")}>
+                <S.ButtonTitle>Start Session</S.ButtonTitle>
+              </S.StartButton>
+            </S.StartButtonContainer>
           </S.WelcomeContainer>
         </S.Container>
       )}

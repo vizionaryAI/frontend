@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as S from "./ChatBot.styles";
 import { useChatBotConversationStore } from "../../store/chatBotConversation.store";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { Typewriter } from "../Typewriter/Typewriter";
 import { WritingIndicator } from "../WritingIndicator/WritingIndicator";
@@ -135,7 +134,7 @@ export const ChatBot: React.FC<Props> = ({ conversationType }) => {
           disabled={isTyping || waitingForAnswer || newAnswer.length < 1}
           onClick={handleSendAnswer}
         >
-          <FontAwesomeIcon icon={faPaperPlane} />
+          <S.StyledFontAwesomeIcon icon={faPaperPlane} />
         </S.SendButton>
       </S.InputContainer>
     </>
