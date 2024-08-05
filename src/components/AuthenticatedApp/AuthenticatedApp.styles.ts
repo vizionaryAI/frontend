@@ -4,7 +4,7 @@ export const LoginLayout = styled.div<{ theme: DefaultTheme }>`
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.mainColor};
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -15,7 +15,7 @@ export const LoginLayout = styled.div<{ theme: DefaultTheme }>`
 `;
 
 export const AppLayout = styled.div<{ theme: DefaultTheme }>`
-  background-color: ${(props) => props.theme.background || "#fff"};
+  background-color: ${(props) => props.theme.mainColor || "#fff"};
   min-width: 320px;
   min-height: 100vh;
   position: fixed;
@@ -46,7 +46,7 @@ export const Layout = styled.div<{ theme: DefaultTheme; open: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => props.theme.background};
+  background-color: ${(props) => props.theme.mainColor};
 
   @media (max-width: 768px) {
     width: 100%;

@@ -10,7 +10,7 @@ export const SwitchContainer = styled.div<{
   height: 2rem;
   border-radius: 20px;
   border: 0.5px solid;
-  background-color: ${({ theme }) => theme.switcherBackground};
+  background-color: ${({ theme }) => theme.highlightColor};
   position: relative;
   cursor: pointer;
 `;

@@ -8,7 +8,7 @@ export const useAnimatedObjectOptions = () => {
   const animatedObjectOptions: ISourceOptions = {
     background: {
       color: {
-        value: theme!.animatedBackground,
+        value: theme!.mainColor,
       },
     },
     fpsLimit: 120,
@@ -35,10 +35,10 @@ export const useAnimatedObjectOptions = () => {
     },
     particles: {
       color: {
-        value: theme!.animatedBackgroundText,
+        value: theme!.text,
       },
       links: {
-        color: theme!.animatedBackgroundText,
+        color: theme!.text,
         distance: 200,
         enable: true,
         opacity: 0.5,
