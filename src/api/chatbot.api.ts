@@ -1,4 +1,5 @@
 import { api } from ".";
+import { convertBlobToWav } from "../services/audioConverter";
 import { ChatBotConversation, ChatBotConversationDto } from "../types/chatbot";
 
 //introduction api
@@ -43,8 +44,9 @@ export async function sendVoiceMessage(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> {
   try {
+    const wavBlob = await convertBlobToWav(audioBlob);
     const formData = new FormData();
-    formData.append("file", audioBlob, "voice-message.wav");
+    formData.append("file", wavBlob, "voice-message.wav");
 
     const response = await api.post(`api/v1/${type}/tts`, formData, {
       headers: {
