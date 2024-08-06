@@ -39,23 +39,53 @@ const AudioRecorder: React.FC<Props> = ({
       setRecordingState(RecordingState.Waiting);
       updateUserProfile();
     } else {
-      // Start recording
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorderRef.current = mediaRecorder;
-      mediaRecorder.ondataavailable = (event: BlobEvent) => {
-        audioChunksRef.current.push(event.data);
-      };
-      mediaRecorder.onstop = async () => {
-        const audioBlob = new Blob(audioChunksRef.current, {
-          type: "audio/wav",
+      try {
+        // Start recording
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+          video: false,
         });
-        audioChunksRef.current = []; // Clear chunks
-        stream.getTracks().forEach((track) => track.stop()); // Stop all tracks
 
-        // Send the voice message
-        setRecordingState(RecordingState.Waiting);
-        try {
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorderRef.current = mediaRecorder;
+        audioChunksRef.current = []; // Reset audio chunks
+
+        mediaRecorder.ondataavailable = (event) => {
+          audioChunksRef.current.push(event.data);
+        };
+
+        mediaRecorder.onstop = async () => {
+          if (audioChunksRef.current.length === 0) {
+            console.error("No audio data available");
+            return;
+          }
+
+          // Determine the audio type from the first chunk
+          const audioType = audioChunksRef.current[0].type;
+          const audioBlob = new Blob(audioChunksRef.current, {
+            type: audioType,
+          });
+
+          audioChunksRef.current = []; // Clear chunks
+          stream.getTracks().forEach((track) => track.stop()); // Stop all tracks
+
+          //================================================================================================
+          // Create a URL for the recorded audio and play it
+          // const audioUrl = URL.createObjectURL(audioBlob);
+
+          // if (audioPlayerRef.current) {
+          //   audioPlayerRef.current.src = audioUrl;
+          //   audioPlayerRef.current.load(); // Ensure the new source is loaded
+          //   console.log("Playing audio...");
+          //   audioPlayerRef.current.play().catch((error) => {
+          //     console.error("Error playing audio:", error);
+          //   });
+          // } else {
+          //   console.error("Audio player reference is null");
+          // }
+
+          //================================================================================================
+          setRecordingState(RecordingState.Waiting);
           const response = await sendVoiceMessage(audioBlob, conversationType);
 
           const returnedBlobUrl = URL.createObjectURL(response.data);
@@ -64,14 +94,17 @@ const AudioRecorder: React.FC<Props> = ({
             setRecordingState(RecordingState.Listening);
             audioPlayerRef.current.play();
           }
-        } catch (error) {
-          console.error("Failed to send voice message", error);
+          //================================================================================================
+
           setRecordingState(RecordingState.None);
-        }
-      };
-      mediaRecorder.start();
-      setIsRecording(true);
-      setRecordingState(RecordingState.Recording);
+        };
+
+        mediaRecorder.start();
+        setIsRecording(true);
+        setRecordingState(RecordingState.Recording);
+      } catch (error) {
+        console.error("Error accessing microphone", error);
+      }
     }
   };
 
