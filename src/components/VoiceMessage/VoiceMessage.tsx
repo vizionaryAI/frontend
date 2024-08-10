@@ -157,9 +157,9 @@ const AudioRecorder: React.FC<Props> = ({
 
   const renderUIText = () => {
     if (firstUse && recordingState === RecordingState.None) {
-      return <S.StatusText>Press when Speaking</S.StatusText>;
+      return <S.StatusText>Tap to Speak</S.StatusText>;
     } else if (firstUse && recordingState === RecordingState.Recording) {
-      return <S.StatusText>Press When you have Finished speaking</S.StatusText>;
+      return <S.StatusText>Tap when you have Finished Speaking</S.StatusText>;
     }
   };
 
